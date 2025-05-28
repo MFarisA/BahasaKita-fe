@@ -13,18 +13,19 @@ const CommunityForum = dynamic(() => import("./pages/CommunityForum"));
 const LessonView = dynamic(() => import("./pages/LessonView"));
 
 // Main router component
-export default function Router({
+export default async function Router({
   searchParams,
 }: {
-  searchParams: { route?: string; lessonId?: string; unitId?: string };
+  searchParams: Promise<{ route?: string; lessonId?: string; unitId?: string }>;
 }) {
-  const route = searchParams.route || "landing";
-  const lessonId = searchParams.lessonId;
-  const unitId = searchParams.unitId;
+  const params = await searchParams;
+  const route = params.route || "landing";
+  const lessonId = params.lessonId;
+  const unitId = params.unitId;
 
   // Route mapping
   switch (route) {
-    case "landing":
+    case "":
       return <LandingPage />;
     case "home":
       return <Home />;

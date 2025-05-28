@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../components/ui/button";
 import {
   Card,
@@ -35,6 +35,23 @@ const LandingPage: React.FC = () => {
   const AwardIcon = LucideIcons["Award"];
   const UsersIcon = LucideIcons["Users"];
   const ArrowRightIcon = LucideIcons["ArrowRight"];
+  const [activeLanguage, setActiveLanguage] = useState(0);
+
+
+  const localLanguages = [
+    { name: "Bahasa Jawa", flag: "🏛️", region: "Jawa Tengah & Timur" },
+    { name: "Bahasa Sunda", flag: "🏔️", region: "Jawa Barat" },
+    { name: "Bahasa Bali", flag: "🏝️", region: "Bali" },
+    { name: "Bahasa Batak", flag: "🏞️", region: "Sumatera Utara" },
+    { name: "Bahasa Minang", flag: "🏔️", region: "Sumatera Barat" },
+    { name: "Bahasa Betawi", flag: "🏙️", region: "Jakarta" },
+    { name: "Bahasa Bugis", flag: "⛵", region: "Sulawesi Selatan" },
+    { name: "Bahasa Dayak", flag: "🌳", region: "Kalimantan" },
+    { name: "Bahasa Aceh", flag: "🕌", region: "Aceh" },
+    { name: "Bahasa Banjar", flag: "🏞️", region: "Kalimantan Selatan" },
+    { name: "Bahasa Makassar", flag: "🏖️", region: "Sulawesi Selatan" },
+    { name: "Bahasa Toraja", flag: "🏔️", region: "Sulawesi Selatan" },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-100 via-purple-50 to-blue-100">
@@ -75,6 +92,36 @@ const LandingPage: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Language Selection */}
+      <section className="py-12 backdrop-blur-lg bg-white/60 border-y border-white/10 mt-20">
+        <div className="container mx-auto px-6">
+          <h3 className="text-2xl font-bold text-center mb-8 bg-indigo-900 bg-clip-text text-transparent">
+            Pilih Bahasa Daerah Favoritmu
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {localLanguages.map((lang, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveLanguage(index)}
+                className={`group p-4 rounded-xl border transition-all  shadow-lg bg-white/80 transform hover:scale-105 ${
+                  activeLanguage === index
+                    ? "bg-black/50 border-transparent shadow-xl"
+                    : "bg-white/10 border-white/20 hover:bg-white/20"
+                }`}
+              >
+                <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">
+                  {lang.flag}
+                </div>
+                <div className="font-semibold text-black text-sm">{lang.name}</div>
+                <div className="text-xs text-gray-800 group-hover:text-gray-300">
+                  {lang.region}
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
 
         {/* Floating badges */}
         <div className="absolute top-40 left-10 hidden lg:block">
