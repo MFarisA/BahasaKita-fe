@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import {
   Card,
@@ -20,6 +19,14 @@ import {
   featuresList,
 } from "../data/landingPageData";
 import * as LucideIcons from "lucide-react";
+import Link from 'next/link';
+import { FunctionComponent, SVGProps } from 'react';
+
+// Helper function to safely get Lucide icon component by string name
+type LucideIconComponent = FunctionComponent<SVGProps<SVGSVGElement>>;
+function getLucideIcon(name: string): LucideIconComponent {
+  return (LucideIcons as Record<string, unknown>)[name] as LucideIconComponent || (() => null);
+}
 
 const LandingPage: React.FC = () => {
   const SparklesIcon = LucideIcons["Sparkles"];
@@ -49,16 +56,16 @@ const LandingPage: React.FC = () => {
               community of learners.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/home">
+              <Link href="/home">
                 <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700">
                   Get Started
                 </Button>
               </Link>
-              <Link to="/register">
+              <Link href="/register">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-indigo-600 text-indigo-600 hover:bg-indigo-50"
+                  className="bg-indigo-900 border-0 hover:bg-indigo-700"
                 >
                   Create Account
                 </Button>
@@ -71,13 +78,13 @@ const LandingPage: React.FC = () => {
         <div className="absolute top-40 left-10 hidden lg:block">
           <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg flex items-center gap-2">
             <AwardIcon className="h-5 w-5 text-yellow-500" />
-            <span className="text-sm font-medium">Earn Achievements</span>
+            <span className="text-sm text-black font-medium">Earn Achievements</span>
           </div>
         </div>
         <div className="absolute top-60 right-10 hidden lg:block">
           <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg flex items-center gap-2">
             <UsersIcon className="h-5 w-5 text-blue-500" />
-            <span className="text-sm font-medium">Join Community</span>
+            <span className="text-sm text-black font-medium">Join Community</span>
           </div>
         </div>
       </section>
@@ -97,7 +104,7 @@ const LandingPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, idx) => {
-              const Icon = LucideIcons[feature.icon];
+              const Icon = getLucideIcon(feature.icon);
               return (
                 <Card
                   key={feature.title}
@@ -146,7 +153,7 @@ const LandingPage: React.FC = () => {
               ))}
             </TabsList>
             {extraFeatures.map((ef) => {
-              const Icon = LucideIcons[ef.icon];
+              const Icon = getLucideIcon(ef.icon);
               return (
                 <TabsContent
                   key={ef.value}
@@ -163,11 +170,11 @@ const LandingPage: React.FC = () => {
                         {ef.items.map((item) => (
                           <li key={item} className="flex items-center gap-2">
                             <Icon className="h-5 w-5 text-indigo-600" />
-                            <span>{item}</span>
+                            <span className="text-black">{item}</span>
                           </li>
                         ))}
                       </ul>
-                      <Link to={ef.buttonLink}>
+                      <Link href={ef.buttonLink}>
                         <Button className="bg-indigo-600 hover:bg-indigo-700">
                           {ef.buttonText}{" "}
                           <ArrowRightIcon className="ml-2 h-4 w-4" />
@@ -201,7 +208,7 @@ const LandingPage: React.FC = () => {
               skills through our gamified platform.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/register">
+              <Link href="/register">
                 <Button
                   size="lg"
                   variant="secondary"
@@ -210,11 +217,11 @@ const LandingPage: React.FC = () => {
                   Get Started for Free
                 </Button>
               </Link>
-              <Link to="/login">
+              <Link href="/login">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white/10"
+                  className="border-0 bg-indigo-900 text-white hover:bg-indigo-700"
                 >
                   Sign In
                 </Button>
@@ -243,7 +250,7 @@ const LandingPage: React.FC = () => {
                 {quickLinks.map((link) => (
                   <li key={link.to}>
                     <Link
-                      to={link.to}
+                      href={link.to}
                       className="text-indigo-200 hover:text-white transition-colors"
                     >
                       {link.label}
