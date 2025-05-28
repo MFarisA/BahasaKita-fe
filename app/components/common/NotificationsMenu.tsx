@@ -36,7 +36,7 @@ const NotificationsMenu: React.FC<NotificationsMenuProps> = ({
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-80">
+      <DropdownMenuContent align="end" className="w-80 bg-black/80">
         <div className="p-2 font-medium border-b">Notifications</div>
         <div className="max-h-80 overflow-auto">
           {notifications.map((notification) => (

@@ -1,8 +1,50 @@
-'use client';
-import dynamic from 'next/dynamic';
+import { redirect } from "next/navigation";
+import dynamic from "next/dynamic";
 
-const LandingPage = dynamic(() => import('./pages/LandingPage'), { ssr: false });
+// Import all components
+const LandingPage = dynamic(() => import("./pages/LandingPage"));
+const Home = dynamic(() => import("./pages/home"));
+const Login = dynamic(() => import("./pages/Login"));
+const Register = dynamic(() => import("./pages/Register"));
+const ProfileSettings = dynamic(() => import("./pages/ProfileSettings"));
+const AIFeatures = dynamic(() => import("./pages/AIFeatures"));
+const CultureContent = dynamic(() => import("./pages/CultureContent"));
+const CommunityForum = dynamic(() => import("./pages/CommunityForum"));
+const LessonView = dynamic(() => import("./pages/LessonView"));
 
-export default function Home() {
-  return <LandingPage />;
+// Main router component
+export default function Router({
+  searchParams,
+}: {
+  searchParams: { route?: string; lessonId?: string };
+}) {
+  const route = searchParams.route || "landing";
+  const lessonId = searchParams.lessonId;
+
+  // Route mapping
+  switch (route) {
+    case "landing":
+      return <LandingPage />;
+    case "home":
+      return <Home />;
+    case "login":
+      return <Login />;
+    case "register":
+      return <Register />;
+    case "profile-settings":
+      return <ProfileSettings />;
+    case "ai-features":
+      return <AIFeatures />;
+    case "culture-content":
+      return <CultureContent />;
+    case "community-forum":
+      return <CommunityForum />;
+    case "lesson":
+      if (!lessonId) {
+        return <div>Lesson ID is required</div>;
+      }
+      return <LessonView lessonId={lessonId} />;
+    default:
+      return <LandingPage />;
+  }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import {
   Card,
   CardHeader,
@@ -25,8 +25,8 @@ const AIFeaturesCard: React.FC = () => (
       </p>
     </CardContent>
     <CardFooter>
-      <Link to="/ai-features" className="w-full">
-        <Button size="sm" className="w-full">
+      <Link href="/ai-features" className="w-full">
+        <Button size="sm" className="w-full bg-slate-300">
           Try AI Features
         </Button>
       </Link>
