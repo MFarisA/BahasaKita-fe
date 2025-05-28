@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { geminiService } from "../services/aiServices";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";

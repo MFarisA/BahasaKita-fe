@@ -1,9 +1,11 @@
+"use client";
+
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Globe } from "lucide-react";
 import { coursesData } from "../data/coursesData";
 import { CourseProps } from "../types/course";
 import ModernCourseCard from "../components/common/ModernCourseCard";
+import { useRouter } from "next/navigation";
 
 interface CourseSelectionProps {
   courses?: CourseProps[];
@@ -29,17 +31,17 @@ const CourseSelection: React.FC<CourseSelectionProps> = ({
   description = "Choose a language to start or continue your learning journey",
   onCourseSelect,
 }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const handleCourseClick = (courseId: string) => {
     if (onCourseSelect) {
       onCourseSelect(courseId);
     } else {
-      navigate(`/lesson/${courseId}`);
+      router.push(`/lesson?lessonId=${courseId}`);
     }
   };
 
   return (
-    <div className="w-full bg-background py-8">
+    <div className="w-full bg-white/50 py-8 rounded-xl shadow-md backdrop-blur-md">
       <div className="container mx-auto px-4">
         <div className="flex items-center mb-6">
           <Globe className="h-6 w-6 mr-2 text-[#1a237e]" />
