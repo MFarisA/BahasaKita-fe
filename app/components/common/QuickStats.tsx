@@ -31,7 +31,7 @@ const QuickStats: React.FC<QuickStatsProps> = ({ streakDays }) => (
         </div>
       </CardContent>
       <CardFooter>
-        <Button size="sm" className="w-full">
+        <Button size="sm" className="w-full bg-slate-400">
           Continue Learning
         </Button>
       </CardFooter>
@@ -58,13 +58,13 @@ const QuickStats: React.FC<QuickStatsProps> = ({ streakDays }) => (
       </CardHeader>
       <CardContent>
         <div className="flex justify-center gap-2">
-          <Badge className="bg-blue-800 hover:bg-blue-900">
+          <Badge className="bg-blue-800 hover:bg-blue-900 text-white">
             <Award className="h-4 w-4 mr-1" /> 5 Badges
           </Badge>
         </div>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" size="sm" className="w-full">
+        <Button variant="outline" size="sm" className="w-full text-white">
           View All
         </Button>
       </CardFooter>

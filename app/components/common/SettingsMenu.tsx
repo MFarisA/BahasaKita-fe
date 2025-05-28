@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Button } from "../../components/ui/button";
 import {
   DropdownMenu,
@@ -13,8 +13,8 @@ const SettingsMenu: React.FC = () => (
     <DropdownMenuTrigger asChild>
       <Button variant="outline">Settings</Button>
     </DropdownMenuTrigger>
-    <DropdownMenuContent align="end" className="w-48">
-      <Link to="/profile-settings" className="w-full">
+    <DropdownMenuContent align="end" className="w-48 bg-black/80">
+      <Link href="/profile-settings" className="w-full">
         <DropdownMenuItem>Profile Settings</DropdownMenuItem>
       </Link>
       <DropdownMenuItem onClick={() => console.log("Logout clicked")}>
