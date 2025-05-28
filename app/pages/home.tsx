@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Calendar } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
@@ -38,9 +40,9 @@ const Home: React.FC<HomeProps> = ({
   const unreadNotifications = notifications.filter((n) => !n.read).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-indigo-50 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-indigo-50 p-4 md:p-8">
       {/* Header */}
-      <header className="flex justify-between items-center mb-8 bg-white rounded-xl p-4 shadow-sm">
+      <header className="flex justify-between items-center mb-8 bg-indigo-900 rounded-xl p-4 shadow-sm">
         <div className="flex items-center gap-4">
           <Avatar className="h-12 w-12 border-2 border-primary">
             <AvatarImage
@@ -82,19 +84,14 @@ const Home: React.FC<HomeProps> = ({
 
             {/* Course Selection */}
             <div>
-              <h2 className="text-2xl font-bold mb-4">Continue Learning</h2>
+              <h2 className="text-2xl font-bold mb-4 text-black">Continue Learning</h2>
               <CourseSelection />
             </div>
 
             {/* AI Features */}
             <div className="mt-8">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">AI Learning Tools</h2>
-                <Link to="/ai-features">
-                  <Button variant="outline" size="sm">
-                    View All AI Tools
-                  </Button>
-                </Link>
+                <h2 className="text-2xl font-bold text-black">AI Learning Tools</h2>
               </div>
               <AIFeaturesCard />
             </div>

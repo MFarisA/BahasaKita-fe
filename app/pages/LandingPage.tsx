@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Button } from "../components/ui/button";
 import {
@@ -56,11 +58,11 @@ const LandingPage: React.FC = () => {
               community of learners.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/home">
+                <Link href="/home">
                 <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700">
                   Get Started
                 </Button>
-              </Link>
+                </Link>
               <Link href="/register">
                 <Button
                   size="lg"
