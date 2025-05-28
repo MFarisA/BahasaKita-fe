@@ -16,10 +16,11 @@ const LessonView = dynamic(() => import("./pages/LessonView"));
 export default function Router({
   searchParams,
 }: {
-  searchParams: { route?: string; lessonId?: string };
+  searchParams: { route?: string; lessonId?: string; unitId?: string };
 }) {
   const route = searchParams.route || "landing";
   const lessonId = searchParams.lessonId;
+  const unitId = searchParams.unitId;
 
   // Route mapping
   switch (route) {
@@ -43,7 +44,7 @@ export default function Router({
       if (!lessonId) {
         return <div>Lesson ID is required</div>;
       }
-      return <LessonView lessonId={lessonId} />;
+      return <LessonView lessonId={lessonId} unitId={unitId} />;
     default:
       return <LandingPage />;
   }

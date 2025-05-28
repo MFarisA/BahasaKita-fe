@@ -36,7 +36,8 @@ const CourseSelection: React.FC<CourseSelectionProps> = ({
     if (onCourseSelect) {
       onCourseSelect(courseId);
     } else {
-      router.push(`/lesson?lessonId=${courseId}`);
+      // Gunakan route custom sesuai router utama
+      router.push(`/?route=lesson&unitId=1&lessonId=${courseId}`);
     }
   };
 
