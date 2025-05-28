@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { geminiService } from "../services/aiServices";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Sparkles, Volume2 } from "lucide-react";
-import { ApiKeyDialog, GeminiTab, TTSTab } from "./ai/AIFeatures";
-import { useGemini } from "./ai/hooks/useGemini";
-import { useTTS } from "./ai/hooks/useTTS";
+import { ApiKeyDialog, GeminiTab, TTSTab } from "../components/ai/AIFeatures";
+import { useGemini } from "../components/ai/hooks/useGemini";
+import { useTTS } from "../components/ai/hooks/useTTS";
 
 const AIFeatures: React.FC = () => {
   // API Key Dialog state

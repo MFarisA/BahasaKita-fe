@@ -12,10 +12,10 @@ import {
 } from "../components/ui/tabs";
 import CourseSelection from "./CourseSelection";
 import ProgressDashboard from "./ProgressDashboard";
-import NotificationsMenu from "./common/NotificationsMenu";
-import SettingsMenu from "./common/SettingsMenu";
-import QuickStats from "./common/QuickStats";
-import AIFeaturesCard from "./common/AIFeaturesCard";
+import NotificationsMenu from "../components/common/NotificationsMenu";
+import SettingsMenu from "../components/common/SettingsMenu";
+import QuickStats from "../components/common/QuickStats";
+import AIFeaturesCard from "../components/common/AIFeaturesCard";
 import { notificationsData } from "../data/notificationsData";
 
 interface HomeProps {

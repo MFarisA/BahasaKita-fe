@@ -9,31 +9,31 @@ import {
   Bot,
   Volume2,
 } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../components/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import { Progress } from "./ui/progress";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-import { Label } from "./ui/label";
-import { Badge } from "./ui/badge";
+} from "../components/ui/card";
+import { Progress } from "../components/ui/progress";
+import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
+import { Label } from "../components/ui/label";
+import { Badge } from "../components/ui/badge";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "./ui/dialog";
+} from "../components/ui/dialog";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from "../components/ui/tooltip";
 import { ttsService, geminiService } from "../services/aiServices";
 import { exerciseQuestionsData } from "../data/exerciseQuestionsData";
 import { Question } from "../types/exercise";

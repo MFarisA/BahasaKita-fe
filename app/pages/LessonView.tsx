@@ -8,7 +8,7 @@ import {
   Volume2,
   Bot,
 } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../components/ui/button";
 import {
   Card,
   CardContent,
@@ -16,11 +16,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import { Progress } from "./ui/progress";
-import { Separator } from "./ui/separator";
-import { Badge } from "./ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+} from "../components/ui/card";
+import { Progress } from "../components/ui/progress";
+import { Separator } from "../components/ui/separator";
+import { Badge } from "../components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import ExerciseComponent from "./ExerciseComponent";
 import { ttsService, geminiService } from "../services/aiServices";
 import {

@@ -45,6 +45,10 @@ export default function Login() {
     }
   }, [code, router]);
 
+  useEffect(() => {
+    router.replace('/landing');
+  }, [router]);
+
   return (
     <div>
       <button onClick={handleGoogleLogin}>
