@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -59,7 +61,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
                 <Link
-                  to="/forgot-password"
+                  href="/forgot-password"
                   className="text-sm text-primary hover:underline"
                 >
                   Forgot password?
@@ -88,7 +90,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
               </Label>
             </div>
             <div className="mt-4">
-              <Link to="/home" className="w-full">
+              <Link href="/home" className="w-full">
                 <Button type="button" className="w-full">
                   Sign in
                 </Button>
@@ -99,7 +101,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         <CardFooter className="flex flex-col space-y-4">
           <div className="text-sm text-center text-muted-foreground">
             {"Don't have an account?"}
-            <Link to="/register" className="text-primary hover:underline">
+            <Link href="/register" className="text-primary hover:underline">
               Sign up
             </Link>
           </div>

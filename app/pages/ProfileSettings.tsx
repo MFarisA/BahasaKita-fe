@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -89,7 +91,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center mb-6">
           <Link
-            to="/"
+            href="/"
             className="flex items-center text-primary hover:text-primary/80"
           >
             <ArrowLeft className="h-5 w-5 mr-2" />

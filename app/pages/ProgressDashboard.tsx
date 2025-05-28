@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -51,8 +53,8 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
   languageProficiency = languageProficiencyDefault,
 }) => {
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 bg-background">
-      <h1 className="text-3xl font-bold mb-6 text-center">
+    <div className="w-full max-w-7xl mx-auto p-4 bg-white/50 rounded-xl shadow-md">
+      <h1 className="text-3xl font-bold mb-6 text-center text-black">
         Your Learning Progress
       </h1>
 
@@ -119,7 +121,10 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
         <TabsContent value="achievements" className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {achievements.map((achievement) => {
-              const Icon = LucideIcons[achievement.icon] || LucideIcons.Award;
+              const Icon =
+                (LucideIcons[
+                  achievement.icon as keyof typeof LucideIcons
+                ] as React.ComponentType<any>) || LucideIcons.Award;
               const iconColor =
                 achievement.icon === "Award"
                   ? "text-green-500"

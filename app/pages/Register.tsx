@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -112,7 +114,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 I agree to the{" "}
-                <Link to="/terms" className="text-primary hover:underline">
+                <Link href="/terms" className="text-primary hover:underline">
                   terms and conditions
                 </Link>
               </Label>
@@ -125,7 +127,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister }) => {
         <CardFooter>
           <div className="text-sm text-center w-full text-muted-foreground">
             Already have an account?{" "}
-            <Link to="/login" className="text-primary hover:underline">
+            <Link href="/login" className="text-primary hover:underline">
               Sign in
             </Link>
           </div>
