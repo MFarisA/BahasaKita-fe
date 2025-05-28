@@ -99,7 +99,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
           </Link>
         </div>
 
-        <h1 className="text-3xl font-bold mb-6">Profile Settings</h1>
+        <h1 className="text-3xl font-bold mb-6 text-black">Profile Settings</h1>
 
         <Tabs defaultValue="profile" className="w-full">
           <TabsList className="grid w-full grid-cols-3 mb-8">
