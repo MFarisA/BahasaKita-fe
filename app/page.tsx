@@ -11,6 +11,7 @@ const CultureContent = dynamic(() => import("./pages/CultureContent"));
 const CommunityForum = dynamic(() => import("./pages/CommunityForum"));
 const LessonView = dynamic(() => import("./pages/LessonView"));
 const Landingv2 = dynamic(() => import("./pages/Landingv2"));
+const ExerciseComponent = dynamic(() => import("./pages/ExerciseComponent"));
 
 // Main router component
 export default async function Router({
@@ -43,6 +44,8 @@ export default async function Router({
       return <CommunityForum />;
     case "landingv2":
       return <Landingv2 />;
+    case "exercise":
+      return <ExerciseComponent/>
     case "lesson":
       if (!lessonId) {
         return <div>Lesson ID is required</div>;
