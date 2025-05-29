@@ -170,27 +170,27 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                           {achievement.earned && (
                             <Badge
                               variant="outline"
-                              className="bg-primary/10 text-primary border-primary"
+                              className="bg-primary/10 text-indigo-900 border-indigo-900"
                             >
                               Earned
                             </Badge>
                           )}
                         </div>
-                        <CardTitle className="text-md mt-2">
+                        <CardTitle className="text-md mt-2 text-indigo-900">
                           {achievement.title}
                         </CardTitle>
-                        <CardDescription>
+                        <CardDescription className="text-indigo-900">
                           {achievement.description}
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
                         {achievement.earned ? (
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-xs text-muted-foreground text-indigo-900">
                             Earned on {achievement.date}
                           </p>
                         ) : (
                           <div className="flex flex-col">
-                            <div className="flex justify-between text-xs mb-1">
+                            <div className="flex justify-between text-xs mb-1 text-indigo-900">
                               <span>Progress</span>
                               <span>
                                 {achievement.progress}/
@@ -230,11 +230,11 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           <TabsContent value="leaderboard">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center">
+                <CardTitle className="flex items-center text-indigo-900">
                   <Trophy className="h-5 w-5 text-yellow-500 mr-2" />
                   Weekly Leaderboard
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-indigo-900">
                   See how you compare to other learners this week
                 </CardDescription>
               </CardHeader>
@@ -244,11 +244,11 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                     <div
                       key={entry.id}
                       className={`flex items-center justify-between p-3 rounded-lg ${
-                        entry.name === "You" ? "bg-primary/10" : "bg-muted/50"
+                        entry.name === "You" ? "bg-indigo-900/20" : "bg-blue/50"
                       }`}
                     >
                       <div className="flex items-center">
-                        <div className="w-8 text-center font-bold mr-3">
+                        <div className="w-8 text-center font-bold mr-3 text-indigo-900">
                           {entry.rank}
                         </div>
                         <Avatar className="h-10 w-10 mr-3">
@@ -256,9 +256,9 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                           <AvatarFallback>{entry.name.charAt(0)}</AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="font-medium">{entry.name}</p>
+                          <p className="font-medium text-indigo-900">{entry.name}</p>
                           {entry.name === "You" && (
-                            <p className="text-xs text-muted-foreground">
+                            <p className="text-xs text-muted-foreground text-indigo-900">
                               Keep it up!
                             </p>
                           )}
@@ -266,13 +266,13 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                       </div>
                       <div className="flex items-center">
                         <Star className="h-4 w-4 text-yellow-500 mr-1" />
-                        <span className="font-bold">{entry.points}</span>
+                        <span className="font-bold text-indigo-900">{entry.points}</span>
                       </div>
                     </div>
                   ))}
 
                   <div className="flex justify-center mt-4">
-                    <div className="flex items-center text-sm text-muted-foreground">
+                    <div className="flex items-center text-sm text-muted-foreground text-indigo-900">
                       <Users className="h-4 w-4 mr-1" />
                       <span>1,245 learners this week</span>
                     </div>
@@ -286,8 +286,8 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           <TabsContent value="proficiency">
             <Card>
               <CardHeader>
-                <CardTitle>Language Proficiency</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-indigo-900">Language Proficiency</CardTitle>
+                <CardDescription className="text-muted-foreground text-indigo-900">
                   Your current level in each language
                 </CardDescription>
               </CardHeader>
@@ -296,12 +296,12 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                   <div key={index} className="space-y-2">
                     <div className="flex justify-between">
                       <div>
-                        <h4 className="font-medium">{lang.language}</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <h4 className="font-medium text-indigo-900">{lang.language}</h4>
+                        <p className="text-sm text-muted-foreground text-indigo-900">
                           {lang.level}
                         </p>
                       </div>
-                      <Badge variant={lang.progress > 50 ? "default" : "outline"}>
+                      <Badge variant={lang.progress > 50 ? "default" : "outline"} className="text-indigo-900 border-indigo-900">
                         {lang.progress}%
                       </Badge>
                     </div>
@@ -317,14 +317,14 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
             {/* Streak Calendar */}
             <Card className="mt-6">
               <CardHeader>
-                <CardTitle className="flex items-center">
+                <CardTitle className="flex items-center text-indigo-900">
                   <Flame className="h-5 w-5 text-orange-500 mr-2" />
                   Your Learning Streak
                 </CardTitle>
-                <CardDescription>Last 7 days of activity</CardDescription>
+                <CardDescription className="text-indigo-900">Last 7 days of activity</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex justify-between">
+                <div className="flex justify-between text-indigo-900 font-semibold">
                   {streakData.lastWeek.map((day, index) => {
                     const dayNames = ["M", "T", "W", "T", "F", "S", "S"];
                     return (
@@ -344,7 +344,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                   })}
                 </div>
 
-                <div className="mt-6 flex justify-between items-center">
+                <div className="mt-6 flex justify-between items-center text-indigo-900">
                   <div>
                     <p className="text-sm font-medium">Current streak</p>
                     <p className="text-2xl font-bold">

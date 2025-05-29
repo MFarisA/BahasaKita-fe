@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import NavbarHome from "../components/common/NavbarHome";
 import {
   Card,
   CardContent,
@@ -35,6 +36,7 @@ import {
   reminderTimes,
 } from "../data/profileSettingsData";
 import { UserProfile } from "../types/profile";
+import { notificationsData } from "../data/notificationsData";
 
 interface ProfileSettingsProps {
   user?: {
@@ -59,6 +61,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
   const [emailNotifications, setEmailNotifications] = React.useState(true);
   const [pushNotifications, setPushNotifications] = React.useState(true);
   const [twoFactorAuth, setTwoFactorAuth] = React.useState(false);
+  const [activeMenu, setActiveMenu] = useState("Profile Settings");
 
   const handleChange = (field: string, value: string) => {
     setUserData((prev) => ({
@@ -87,20 +90,18 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-indigo-50 p-4 md:p-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center mb-6">
-          <Link
-            href="/"
-            className="flex items-center text-primary hover:text-primary/80"
-          >
-            <ArrowLeft className="h-5 w-5 mr-2" />
-            <span>Back to Dashboard</span>
-          </Link>
-        </div>
+    <div className="min-h-screen bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
+      <NavbarHome
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+        notifications={notificationsData}
+      />
+      <main className="max-w-5xl mx-auto p-8">
+        <h1 className="text-3xl font-bold mb-6 text-indigo-900">
+          Profile Settings
+        </h1>
 
-        <h1 className="text-3xl font-bold mb-6 text-black">Profile Settings</h1>
-
+        {/* Tabs  */}
         <Tabs defaultValue="profile" className="w-full">
           <TabsList className="grid w-full grid-cols-3 mb-8">
             <TabsTrigger value="profile" className="flex items-center gap-2">
@@ -120,114 +121,124 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
             </TabsTrigger>
           </TabsList>
 
+          {/* Personal information */}
           <TabsContent value="profile" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Personal Information</CardTitle>
-                <CardDescription>
-                  Update your personal details and preferences
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="flex flex-col md:flex-row gap-6 items-start">
-                  <div className="flex flex-col items-center space-y-2">
-                    <Avatar className="h-24 w-24 border-2 border-primary">
-                      <AvatarImage src={userData.avatar} alt={userData.name} />
-                      <AvatarFallback>
-                        {userData.name.substring(0, 2).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
-                    <Button variant="outline" size="sm">
-                      Change Avatar
-                    </Button>
-                  </div>
-
-                  <div className="space-y-4 flex-1">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input
-                        id="name"
-                        value={userData.name}
-                        onChange={(e) => handleChange("name", e.target.value)}
-                      />
+            <div className="flex flex-col md:flex-row gap-6">
+              {/* Personal Information Card */}
+              <Card className="flex-1">
+                <CardHeader>
+                  <CardTitle>Personal Information</CardTitle>
+                  <CardDescription>
+                    Update your personal details and preferences
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="flex flex-col md:flex-row gap-6 items-start">
+                    <div className="flex flex-col items-center space-y-2">
+                      <Avatar className="h-24 w-24 border-2 border-primary">
+                        <AvatarImage
+                          src={userData.avatar}
+                          alt={userData.name}
+                        />
+                        <AvatarFallback>
+                          {userData.name.substring(0, 2).toUpperCase()}
+                        </AvatarFallback>
+                      </Avatar>
+                      <Button variant="outline" size="sm" className="text-white hover:bg-slate-500">
+                        Change Avatar
+                      </Button>
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={userData.email}
-                        onChange={(e) => handleChange("email", e.target.value)}
-                      />
+                    <div className="space-y-4 flex-1">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Full Name</Label>
+                        <Input
+                          id="name"
+                          value={userData.name}
+                          onChange={(e) => handleChange("name", e.target.value)}
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email Address</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          value={userData.email}
+                          onChange={(e) =>
+                            handleChange("email", e.target.value)
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="language">Interface Language</Label>
-                  <Select
-                    value={userData.language}
-                    onValueChange={(value) => handleChange("language", value)}
-                  >
-                    <SelectTrigger id="language" className="w-full">
-                      <SelectValue placeholder="Select language" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {interfaceLanguages.map((lang) => (
-                        <SelectItem key={lang.value} value={lang.value}>
-                          {lang.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="space-y-2">
+                    <Label htmlFor="language">Interface Language</Label>
+                    <Select
+                      value={userData.language}
+                      onValueChange={(value) => handleChange("language", value)}
+                    >
+                      <SelectTrigger id="language" className="w-full">
+                        <SelectValue placeholder="Select language" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {interfaceLanguages.map((lang) => (
+                          <SelectItem key={lang.value} value={lang.value}>
+                            {lang.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </CardContent>
+              </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Learning Preferences</CardTitle>
-                <CardDescription>
-                  Customize your learning experience
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="difficulty">Difficulty Level</Label>
-                  <Select defaultValue="intermediate">
-                    <SelectTrigger id="difficulty" className="w-full">
-                      <SelectValue placeholder="Select difficulty" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {difficultyLevels.map((level) => (
-                        <SelectItem key={level.value} value={level.value}>
-                          {level.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+              {/* Learning Preferences Card */}
+              <Card className="flex-1">
+                <CardHeader>
+                  <CardTitle>Learning Preferences</CardTitle>
+                  <CardDescription>
+                    Customize your learning experience
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="difficulty">Difficulty Level</Label>
+                    <Select defaultValue="intermediate">
+                      <SelectTrigger id="difficulty" className="w-full">
+                        <SelectValue placeholder="Select difficulty" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {difficultyLevels.map((level) => (
+                          <SelectItem key={level.value} value={level.value}>
+                            {level.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="daily-goal">
-                    Daily Learning Goal (minutes)
-                  </Label>
-                  <Select defaultValue="15">
-                    <SelectTrigger id="daily-goal" className="w-full">
-                      <SelectValue placeholder="Select daily goal" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {dailyGoals.map((goal) => (
-                        <SelectItem key={goal.value} value={goal.value}>
-                          {goal.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </CardContent>
-            </Card>
+                  <div className="space-y-2">
+                    <Label htmlFor="daily-goal">
+                      Daily Learning Goal (minutes)
+                    </Label>
+                    <Select defaultValue="15">
+                      <SelectTrigger id="daily-goal" className="w-full">
+                        <SelectValue placeholder="Select daily goal" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {dailyGoals.map((goal) => (
+                          <SelectItem key={goal.value} value={goal.value}>
+                            {goal.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="notifications" className="space-y-6">
@@ -300,22 +311,6 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-0.5">
-                    <Label htmlFor="two-factor">
-                      Two-Factor Authentication
-                    </Label>
-                    <p className="text-sm text-muted-foreground">
-                      Add an extra layer of security to your account
-                    </p>
-                  </div>
-                  <Switch
-                    id="two-factor"
-                    checked={twoFactorAuth}
-                    onCheckedChange={setTwoFactorAuth}
-                  />
-                </div>
-
                 <div className="space-y-2">
                   <Label>Change Password</Label>
                   <div className="space-y-4">
@@ -336,7 +331,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
             <span>Save All Changes</span>
           </Button>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
