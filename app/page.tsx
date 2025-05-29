@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import dynamic from "next/dynamic";
 
 // Import all components
@@ -11,6 +10,7 @@ const AIFeatures = dynamic(() => import("./pages/AIFeatures"));
 const CultureContent = dynamic(() => import("./pages/CultureContent"));
 const CommunityForum = dynamic(() => import("./pages/CommunityForum"));
 const LessonView = dynamic(() => import("./pages/LessonView"));
+const Landingv2 = dynamic(() => import("./pages/Landingv2"));
 
 // Main router component
 export default async function Router({
@@ -41,6 +41,8 @@ export default async function Router({
       return <CultureContent />;
     case "community-forum":
       return <CommunityForum />;
+    case "landingv2":
+      return <Landingv2 />;
     case "lesson":
       if (!lessonId) {
         return <div>Lesson ID is required</div>;
