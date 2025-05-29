@@ -21,13 +21,16 @@ import {
   featuresList,
 } from "../data/landingPageData";
 import * as LucideIcons from "lucide-react";
-import Link from 'next/link';
-import { FunctionComponent, SVGProps } from 'react';
+import Link from "next/link";
+import { FunctionComponent, SVGProps } from "react";
 
 // Helper function to safely get Lucide icon component by string name
 type LucideIconComponent = FunctionComponent<SVGProps<SVGSVGElement>>;
 function getLucideIcon(name: string): LucideIconComponent {
-  return (LucideIcons as Record<string, unknown>)[name] as LucideIconComponent || (() => null);
+  return (
+    ((LucideIcons as Record<string, unknown>)[name] as LucideIconComponent) ||
+    (() => null)
+  );
 }
 
 const LandingPage: React.FC = () => {
@@ -36,7 +39,6 @@ const LandingPage: React.FC = () => {
   const UsersIcon = LucideIcons["Users"];
   const ArrowRightIcon = LucideIcons["ArrowRight"];
   const [activeLanguage, setActiveLanguage] = useState(0);
-
 
   const localLanguages = [
     { name: "Bahasa Jawa", flag: "🏛️", region: "Jawa Tengah & Timur" },
@@ -57,7 +59,7 @@ const LandingPage: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-b from-indigo-100 via-purple-50 to-blue-100">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-16 md:pt-20 lg:pt-28">
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-4 md:px-6 py-20">
           <div className="flex flex-col items-center text-center space-y-4">
             <div className="inline-block rounded-full bg-indigo-100 p-2 mb-4">
               <SparklesIcon className="h-6 w-6 text-indigo-600" />
@@ -75,12 +77,12 @@ const LandingPage: React.FC = () => {
               community of learners.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/home">
+              <Link href="/home">
                 <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700">
                   Get Started
                 </Button>
-                </Link>
-              <Link href="/register">
+              </Link>
+              <Link href="/landingv2">
                 <Button
                   size="lg"
                   variant="outline"
@@ -94,46 +96,52 @@ const LandingPage: React.FC = () => {
         </div>
 
         {/* Language Selection */}
-      <section className="py-12 backdrop-blur-lg bg-white/60 border-y border-white/10 mt-20">
-        <div className="container mx-auto px-6">
-          <h3 className="text-2xl font-bold text-center mb-8 bg-indigo-900 bg-clip-text text-transparent">
-            Pilih Bahasa Daerah Favoritmu
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {localLanguages.map((lang, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveLanguage(index)}
-                className={`group p-4 rounded-xl border transition-all  shadow-lg bg-white/80 transform hover:scale-105 ${
-                  activeLanguage === index
-                    ? "bg-black/50 border-transparent shadow-xl"
-                    : "bg-white/10 border-white/20 hover:bg-white/20"
-                }`}
-              >
-                <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">
-                  {lang.flag}
-                </div>
-                <div className="font-semibold text-black text-sm">{lang.name}</div>
-                <div className="text-xs text-gray-800 group-hover:text-gray-300">
-                  {lang.region}
-                </div>
-              </button>
-            ))}
+        <section className="py-12 backdrop-blur-lg bg-white/60 border-y border-white/10 mt-20">
+          <div className="container mx-auto px-6">
+            <h3 className="text-2xl font-bold text-center mb-8 bg-indigo-900 bg-clip-text text-transparent">
+              Pilih Bahasa Daerah Favoritmu
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {localLanguages.map((lang, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveLanguage(index)}
+                  className={`group p-4 rounded-xl border transition-all  shadow-lg bg-white/80 transform hover:scale-105 ${
+                    activeLanguage === index
+                      ? "bg-black/50 border-transparent shadow-xl"
+                      : "bg-white/10 border-white/20 hover:bg-white/20"
+                  }`}
+                >
+                  <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">
+                    {lang.flag}
+                  </div>
+                  <div className="font-semibold text-black text-sm">
+                    {lang.name}
+                  </div>
+                  <div className="text-xs text-gray-800 group-hover:text-gray-300">
+                    {lang.region}
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
         {/* Floating badges */}
         <div className="absolute top-40 left-10 hidden lg:block">
           <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg flex items-center gap-2">
             <AwardIcon className="h-5 w-5 text-yellow-500" />
-            <span className="text-sm text-black font-medium">Earn Achievements</span>
+            <span className="text-sm text-black font-medium">
+              Earn Achievements
+            </span>
           </div>
         </div>
         <div className="absolute top-60 right-10 hidden lg:block">
           <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg flex items-center gap-2">
             <UsersIcon className="h-5 w-5 text-blue-500" />
-            <span className="text-sm text-black font-medium">Join Community</span>
+            <span className="text-sm text-black font-medium">
+              Join Community
+            </span>
           </div>
         </div>
       </section>

@@ -3,40 +3,14 @@
 import React, { useState } from "react";
 import {
   ArrowLeft,
-  BookOpen,
   CheckCircle,
-  ChevronRight,
-  Clock,
   Volume2,
   Bot,
+  Star,
+  Award,
 } from "lucide-react";
-import { Button } from "../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../components/ui/card";
-import { Progress } from "../components/ui/progress";
-import { Separator } from "../components/ui/separator";
-import { Badge } from "../components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import Link from "next/link";
 import ExerciseComponent from "./ExerciseComponent";
-import { ttsService, geminiService } from "../services/aiServices";
-import {
-  unitsData,
-  vocabularyData,
-  examplePhrasesData,
-} from "../data/lessonData";
-import { Unit } from "../types/lesson";
-
-interface LessonViewProps {
-  unitId?: string;
-  lessonId?: string;
-  onBack?: () => void;
-}
 
 const VocabularyItem = ({
   word,
@@ -49,16 +23,16 @@ const VocabularyItem = ({
   const [loading, setLoading] = useState(false);
 
   const handleSpeak = () => {
-    ttsService.speak(word);
+    console.log(`Speaking: ${word}`);
   };
 
   const handleAskAI = async () => {
     setLoading(true);
     setAiResponse("");
-    const prompt = `Jelaskan arti dan penggunaan kata '${word}' dalam bahasa target, serta contoh kalimat.`;
-    const response = await geminiService.generateText(prompt);
-    setAiResponse(response);
-    setLoading(false);
+    setTimeout(() => {
+      setAiResponse(`"${word}" adalah kata yang digunakan untuk ${translation.toLowerCase()}. Contoh kalimat: "${word} is very important in daily conversation."`);
+      setLoading(false);
+    }, 1500);
   };
 
   return (
@@ -68,7 +42,7 @@ const VocabularyItem = ({
         <button
           onClick={handleSpeak}
           title="Dengarkan"
-          className="text-primary hover:text-indigo-600"
+          className="text-blue-500 hover:text-blue-600"
         >
           <Volume2 className="h-4 w-4" />
         </button>
@@ -79,286 +53,237 @@ const VocabularyItem = ({
         >
           <Bot className="h-4 w-4" />
         </button>
-        <span className="ml-auto text-muted-foreground">{translation}</span>
+        <span className="ml-auto text-gray-500">{translation}</span>
       </div>
       {loading && (
         <span className="text-xs text-blue-500">Meminta jawaban AI...</span>
       )}
       {aiResponse && (
-        <div className="text-xs bg-muted/50 p-2 rounded mt-1">{aiResponse}</div>
+        <div className="text-xs bg-gray-50 p-2 rounded mt-1">{aiResponse}</div>
       )}
     </li>
   );
 };
 
-const LessonView = ({
-  unitId = "1",
-  lessonId = "1",
-  onBack = () => {},
-}: LessonViewProps) => {
-  const [activeTab, setActiveTab] = useState("overview");
-  const [showExercise, setShowExercise] = useState(false);
-
-  // Data diimpor dari file data
-  const units: Unit[] = unitsData;
-
-  // Find current unit and lesson
-  const currentUnit = units.find((unit) => unit.id === unitId) || units[0];
-  const currentLesson =
-    currentUnit.lessons.find((lesson) => lesson.id === lessonId) ||
-    currentUnit.lessons[0];
-
-  const handleStartExercise = () => {
-    setShowExercise(true);
-  };
-
-  const handleFinishExercise = () => {
-    setShowExercise(false);
-  };
-
-  if (showExercise) {
-    return (
-      <ExerciseComponent
-        lessonId={currentLesson.id}
-        onComplete={handleFinishExercise}
-      />
-    );
-  }
+// Accept lessonId and unitId as props
+const LessonView = ({ lessonId, unitId }: { lessonId: string; unitId?: string }) => {
+  const lessons = [
+    { id: 1, title: "Greeting 1", completed: true, current: false },
+    { id: 2, title: "Greeting 2", completed: true, current: false },
+    { id: 3, title: "Greeting 3", completed: true, current: false },
+    { id: 4, title: "Good Friend", completed: true, current: false },
+    { id: 5, title: "Boy", completed: true, current: false },
+    { id: 6, title: "CHECKPOINT 1", completed: true, current: false, isCheckpoint: true },
+    { id: 7, title: "Greeting 4", completed: false, current: true },
+    { id: 8, title: "Greeting 5", completed: false, current: false },
+    { id: 9, title: "Open", completed: false, current: false },
+    { id: 10, title: "Atom", completed: false, current: false },
+    { id: 11, title: "Animals", completed: false, current: false },
+    { id: 12, title: "Judgment 1", completed: false, current: false },
+    { id: 13, title: "CHECKPOINT 2", completed: false, current: false, isCheckpoint: true },
+    { id: 14, title: "Friends 1", completed: false, current: false },
+    { id: 15, title: "Fun", completed: false, current: false },
+    { id: 16, title: "Family", completed: false, current: false },
+    { id: 17, title: "Animals 2", completed: false, current: false },
+    { id: 18, title: "Advertising", completed: false, current: false },
+    { id: 19, title: "Sports", completed: false, current: false },
+    { id: 20, title: "Basic", completed: false, current: false },
+  ];
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 w-full min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      {/* Sidebar with unit structure */}
-      <div className="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md border-2 border-blue-100">
-        <div className="flex items-center mb-6">
-          <Button variant="ghost" size="sm" onClick={onBack}>
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Course
-          </Button>
-        </div>
-
-        <h3 className="text-lg font-semibold mb-4">Course Units</h3>
-
-        {units.map((unit) => (
-          <div key={unit.id} className="mb-6">
-            <div className="flex justify-between items-center mb-2">
-              <h4 className="font-medium">{unit.title}</h4>
-              <Badge
-                variant={unit.id === currentUnit.id ? "default" : "outline"}
-              >
-                {unit.progress}%
-              </Badge>
-            </div>
-
-            <Progress value={unit.progress} className="h-1 mb-3" />
-
-            <div className="space-y-2 pl-2">
-              {unit.lessons.map((lesson) => (
-                <div
-                  key={lesson.id}
-                  className={`flex items-center p-2 rounded-md cursor-pointer transition-all duration-200 ${
-                    lesson.id === currentLesson.id
-                      ? "bg-blue-100 border-l-4 border-blue-500"
-                      : "hover:bg-blue-50 border-l-4 border-transparent"
-                  }`}
-                >
-                  {lesson.completed ? (
-                    <div className="relative">
-                      <CheckCircle className="h-5 w-5 mr-2 text-blue-500 drop-shadow-sm" />
-                      <span className="absolute -top-1 -right-1 h-2 w-2 bg-yellow-400 rounded-full animate-pulse"></span>
-                    </div>
-                  ) : (
-                    <div className="h-4 w-4 mr-2 rounded-full border border-muted-foreground flex items-center justify-center">
-                      {lesson.progress > 0 && (
-                        <div className="h-2 w-2 rounded-full bg-primary" />
-                      )}
-                    </div>
-                  )}
-                  <span className="text-sm">{lesson.title}</span>
-                </div>
-              ))}
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200 px-4 py-3">
+        <div className="flex items-center justify-between max-w-6xl mx-auto">
+          <div className="flex items-center gap-4">
+            <a href="/home" className="p-2 hover:bg-gray-100 rounded-lg">
+              <ArrowLeft className="h-5 w-5 text-black" />
+            </a>
+            <div>
+              <h1 className="text-xl text-black font-semibold">English Course</h1>
+              <p className="text-sm text-gray-500">Beginner Level</p>
             </div>
           </div>
-        ))}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                <span className="text-orange-600 font-bold text-sm">0</span>
+              </div>
+              <span className="text-sm text-gray-600">XP</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Star className="h-5 w-5 text-yellow-500 fill-current" />
+              <span className="text-sm text-gray-600">0</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Main content area */}
-      <div className="flex-1 p-4">
-        <Card className="w-full border-2 border-blue-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardHeader>
-            <div className="flex justify-between items-center">
-              <div>
-                <CardTitle className="text-2xl">
-                  {currentLesson.title}
-                </CardTitle>
-                <CardDescription className="mt-2">
-                  {currentLesson.description}
-                </CardDescription>
+      <div className="flex max-w-6xl mx-auto">
+        {/* Main lesson path */}
+        <div className="flex-1 p-8 relative">
+          <div className="relative max-w-md mx-auto">
+            {lessons.map((lesson, index) => {
+              const isLeft = index % 2 === 0;
+              const yPosition = index * 120;
+              
+              return (
+                <div key={lesson.id} className="relative mb-8">
+                  {/* Connecting line */}
+                  {index > 0 && (
+                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                      <svg width="200" height="64" className="overflow-visible">
+                        <path
+                          d={`M 100 0 Q ${isLeft ? 50 : 150} 32 100 64`}
+                          stroke="gray"
+                          strokeWidth="3"
+                          fill="none"
+                          strokeDasharray={lesson.completed ? "0" : "5,5"}
+                        />
+                      </svg>
+                    </div>
+                  )}
+                  
+                  <div className={`flex items-center gap-6 ${isLeft ? '' : 'flex-row-reverse'}`}>
+                    {/* Lesson circle */}
+                    <div className="relative flex-shrink-0">
+                      <Link
+                        href={`/lesson?lessonId=${lesson.id}${unitId ? `&unitId=${unitId}` : ''}`}
+                        scroll={false}
+                        className="block"
+                      >
+                        <div
+                          className={`w-16 h-16 rounded-full flex items-center justify-center border-4 border-white shadow-lg cursor-pointer transition-transform hover:scale-105 ${
+                            lesson.current
+                              ? 'bg-blue-500 ring-4 ring-blue-200'
+                              : lesson.completed
+                              ? lesson.isCheckpoint
+                                ? 'bg-yellow-500'
+                                : 'bg-green-500'
+                              : 'bg-gray-300'
+                          }`}
+                        >
+                          {lesson.completed && !lesson.isCheckpoint && (
+                            <CheckCircle className="h-8 w-8 text-white" />
+                          )}
+                          {lesson.isCheckpoint && (
+                            <Award className="h-8 w-8 text-white" />
+                          )}
+                          {lesson.current && (
+                            <div className="w-6 h-6 bg-white rounded-full" />
+                          )}
+                          {!lesson.completed && !lesson.current && !lesson.isCheckpoint && (
+                            <div className="w-6 h-6 bg-gray-500 rounded-full" />
+                          )}
+                        </div>
+                      </Link>
+                    </div>
+                    {/* Lesson card */}
+                    <div className={`bg-white rounded-xl shadow-md mt-8 p-4 min-w-48 border-2 ${
+                      lesson.current ? 'border-blue-200' : 'border-gray-100'
+                    } ${isLeft ? 'text-left' : 'text-right'}`}>
+                      <h3 className={`font-semibold text-gray-800 ${lesson.isCheckpoint ? 'text-yellow-600' : ''}`}>
+                        {lesson.title}
+                      </h3>
+                      <p className="text-sm text-gray-500 mt-1">
+                        {lesson.isCheckpoint 
+                          ? 'Checkpoint' 
+                          : lesson.completed 
+                          ? 'Completed' 
+                          : lesson.current
+                          ? 'Current lesson'
+                          : 'Not started'
+                        }
+                      </p>
+                      {lesson.current && (
+                        <button className="mt-3 bg-blue-500 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">
+                          Continue
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right sidebar */}
+        <div className="w-80 bg-white border-l border-gray-200 p-6">
+          <div className="space-y-6">
+            {/* Progress stats */}
+            <div className="text-center">
+              <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-3xl font-bold text-orange-600">0</span>
               </div>
-              <div className="flex items-center text-muted-foreground">
-                <Clock className="h-4 w-4 mr-1" />
-                <span className="text-sm">{currentLesson.duration} mins</span>
+              <p className="text-lg font-semibold text-gray-800">Day streak</p>
+              <p className="text-sm text-gray-500">Keep it up!</p>
+            </div>
+
+            {/* XP Progress */}
+            <div className="bg-gray-50 rounded-lg p-4">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-700">Daily Goal</span>
+                <span className="text-sm text-gray-500">0/20 XP</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="bg-green-500 h-2 rounded-full" style={{ width: '0%' }}></div>
               </div>
             </div>
-          </CardHeader>
 
-          <CardContent>
-            <Tabs
-              value={activeTab}
-              onValueChange={setActiveTab}
-              className="w-full"
-            >
-              <TabsList className="grid w-full grid-cols-3 mb-6 bg-gray-100 p-1 rounded-lg">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="content">Lesson Content</TabsTrigger>
-                <TabsTrigger value="exercises">Exercises</TabsTrigger>
-              </TabsList>
+            {/* Quick stats */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="text-center p-4 bg-blue-50 rounded-lg">
+                <div className="text-2xl font-bold text-blue-600">5</div>
+                <div className="text-xs text-gray-600 mt-1">Completed</div>
+              </div>
+              <div className="text-center p-4 bg-green-50 rounded-lg">
+                <div className="text-2xl font-bold text-green-600">0</div>
+                <div className="text-xs text-gray-600 mt-1">Total XP</div>
+              </div>
+            </div>
 
-              {/* tabs Overview */}
-              <TabsContent value="overview" className="space-y-4">
-                <div className="flex items-center space-x-2 mb-4">
-                  <BookOpen className="h-5 w-5 text-primary" />
-                  <h3 className="font-medium">Lesson Progress</h3>
-                </div>
+            {/* Current lesson info */}
+            <div className="border border-blue-200 bg-blue-50 rounded-lg p-4">
+              <h3 className="font-semibold text-blue-800 mb-2">Current Lesson</h3>
+              <p className="text-sm text-blue-700 mb-3">Greeting 4</p>
+              <p className="text-xs text-blue-600 mb-3">Learn basic greeting expressions and how to respond appropriately.</p>
+              <button className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors font-medium">
+                Start Lesson
+              </button>
+            </div>
 
-                <Progress value={currentLesson.progress} className="mb-2" />
-                <p className="text-sm text-muted-foreground">
-                  {currentLesson.progress}% complete
-                </p>
-
-                <Separator className="my-6" />
-
-                <div className="space-y-4">
-                  <h3 className="font-medium">What you'll learn</h3>
-                  <ul className="list-disc list-inside space-y-2 text-sm">
-                    <li>
-                      Key vocabulary related to{" "}
-                      {currentLesson.title.toLowerCase()}
-                    </li>
-                    <li>Essential grammar structures for this topic</li>
-                    <li>Cultural context and practical usage examples</li>
-                    <li>Pronunciation tips and practice exercises</li>
-                  </ul>
-                </div>
-              </TabsContent>
-
-              {/* tabs Lesson Content */}
-              <TabsContent value="content" className="space-y-4">
-                <div className="bg-muted/30 p-6 rounded-lg">
-                  <h3 className="font-medium mb-4">Lesson Materials</h3>
-                  <p className="text-sm mb-4">
-                    This lesson introduces key vocabulary and phrases for{" "}
-                    {currentLesson.title.toLowerCase()}. Follow along with the
-                    examples and practice your pronunciation.
-                  </p>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <Card className="border-2 border-blue-100 shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                      <CardHeader className="pb-2 bg-gradient-to-r from-blue-50 to-green-50 border-b border-blue-100">
-                        <CardTitle className="text-lg flex items-center gap-2">
-                          <span className="text-xl">📚</span> Vocabulary
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2 text-sm">
-                          {vocabularyData.map((item) => (
-                            <VocabularyItem
-                              key={item.word}
-                              word={item.word}
-                              translation={item.translation}
-                            />
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-
-                    <Card className="border-2 border-blue-100 shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                      <CardHeader className="pb-2 bg-gradient-to-r from-blue-50 to-green-50 border-b border-blue-100">
-                        <CardTitle className="text-lg flex items-center gap-2">
-                          <span className="text-xl">💬</span> Example Phrases
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2 text-sm">
-                          {examplePhrasesData.map((item) => (
-                            <VocabularyItem
-                              key={item.word}
-                              word={item.word}
-                              translation={item.translation}
-                            />
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
+            {/* Achievements */}
+            <div className="border rounded-lg p-4">
+              <h3 className="font-semibold mb-3 text-gray-800">Recent Achievements</h3>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 p-2 bg-green-50 rounded-lg">
+                  <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <div>
+                    <div className="text-sm font-medium text-green-800">First lesson completed</div>
+                    <div className="text-xs text-green-600">+10 XP</div>
                   </div>
                 </div>
-              </TabsContent>
-
-              {/* tabs Exercises */}
-              <TabsContent value="exercises" className="space-y-4">
-                <div className="bg-muted/30 p-6 rounded-lg">
-                  <h3 className="font-medium mb-2">Practice Exercises</h3>
-                  <p className="text-sm mb-6">
-                    Complete these exercises to test your understanding of the
-                    lesson material. You'll receive immediate feedback on your
-                    answers.
-                  </p>
-
-                  <div className="space-y-4">
-                    <Card className="border-2 border-blue-100 shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                      <CardHeader className="bg-gradient-to-r from-blue-50 to-green-50 border-b border-blue-100">
-                        <CardTitle className="text-lg flex items-center gap-2">
-                          <span className="text-xl">❓</span> Multiple Choice
-                          Questions
-                        </CardTitle>
-                        <CardDescription>
-                          5 questions • Estimated time: 10 minutes
-                        </CardDescription>
-                      </CardHeader>
-                      <CardFooter>
-                        <Button
-                          onClick={handleStartExercise}
-                          className="w-full sm:w-auto bg-blue-500 hover:bg-gray-600 text-white font-bold py-2 px-6 mt-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-                        >
-                          Start Exercise
-                          <ChevronRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </CardFooter>
-                    </Card>
-
-                    <Card className="border-2 border-blue-100 shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                      <CardHeader className="bg-gradient-to-r from-blue-50 to-green-50 border-b border-blue-100">
-                        <CardTitle className="text-lg flex items-center gap-2">
-                          <span className="text-xl">🔄</span> Matching Exercise
-                        </CardTitle>
-                        <CardDescription>
-                          8 pairs • Estimated time: 5 minutes
-                        </CardDescription>
-                      </CardHeader>
-                      <CardFooter>
-                        <Button variant="outline" className="w-full sm:w-auto mt-4">
-                          Start Exercise
-                          <ChevronRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </CardFooter>
-                    </Card>
+                <div className="flex items-center gap-3 p-2 bg-yellow-50 rounded-lg">
+                  <Award className="h-5 w-5 text-yellow-500 flex-shrink-0" />
+                  <div>
+                    <div className="text-sm font-medium text-yellow-800">Checkpoint reached</div>
+                    <div className="text-xs text-yellow-600">+50 XP</div>
                   </div>
                 </div>
-              </TabsContent>
-            </Tabs>
-          </CardContent>
+              </div>
+            </div>
 
-          <CardFooter className="flex justify-between">
-            <Button
-              variant="outline"
-              className="border-2 border-blue-300 hover:bg-blue-50 font-bold"
-            >
-              Previous Lesson
-            </Button>
-            <Button className="bg-blue-500 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
-              Next Lesson
-            </Button>
-          </CardFooter>
-        </Card>
+            {/* Shop/Premium */}
+            <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg p-4">
+              <h3 className="font-semibold text-purple-800 mb-2">Go Premium</h3>
+              <p className="text-sm text-purple-700 mb-3">Unlock unlimited hearts and remove ads</p>
+              <button className="w-full bg-purple-500 text-white py-2 px-4 rounded-lg hover:bg-purple-600 transition-colors text-sm font-medium">
+                Try Free
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
