@@ -30,7 +30,9 @@ const VocabularyItem = ({
     setLoading(true);
     setAiResponse("");
     setTimeout(() => {
-      setAiResponse(`"${word}" adalah kata yang digunakan untuk ${translation.toLowerCase()}. Contoh kalimat: "${word} is very important in daily conversation."`);
+      setAiResponse(
+        `"${word}" adalah kata yang digunakan untuk ${translation.toLowerCase()}. Contoh kalimat: "${word} is very important in daily conversation."`
+      );
       setLoading(false);
     }, 1500);
   };
@@ -66,21 +68,39 @@ const VocabularyItem = ({
 };
 
 // Accept lessonId and unitId as props
-const LessonView = ({ lessonId, unitId }: { lessonId: string; unitId?: string }) => {
+const LessonView = ({
+  lessonId,
+  unitId,
+}: {
+  lessonId: string;
+  unitId?: string;
+}) => {
   const lessons = [
     { id: 1, title: "Greeting 1", completed: true, current: false },
     { id: 2, title: "Greeting 2", completed: true, current: false },
     { id: 3, title: "Greeting 3", completed: true, current: false },
     { id: 4, title: "Good Friend", completed: true, current: false },
     { id: 5, title: "Boy", completed: true, current: false },
-    { id: 6, title: "CHECKPOINT 1", completed: true, current: false, isCheckpoint: true },
+    {
+      id: 6,
+      title: "CHECKPOINT 1",
+      completed: true,
+      current: false,
+      isCheckpoint: true,
+    },
     { id: 7, title: "Greeting 4", completed: false, current: true },
     { id: 8, title: "Greeting 5", completed: false, current: false },
     { id: 9, title: "Open", completed: false, current: false },
     { id: 10, title: "Atom", completed: false, current: false },
     { id: 11, title: "Animals", completed: false, current: false },
     { id: 12, title: "Judgment 1", completed: false, current: false },
-    { id: 13, title: "CHECKPOINT 2", completed: false, current: false, isCheckpoint: true },
+    {
+      id: 13,
+      title: "CHECKPOINT 2",
+      completed: false,
+      current: false,
+      isCheckpoint: true,
+    },
     { id: 14, title: "Friends 1", completed: false, current: false },
     { id: 15, title: "Fun", completed: false, current: false },
     { id: 16, title: "Family", completed: false, current: false },
@@ -91,33 +111,8 @@ const LessonView = ({ lessonId, unitId }: { lessonId: string; unitId?: string })
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-4 py-3">
-        <div className="flex items-center justify-between max-w-6xl mx-auto">
-          <div className="flex items-center gap-4">
-            <a href="/home" className="p-2 hover:bg-gray-100 rounded-lg">
-              <ArrowLeft className="h-5 w-5 text-black" />
-            </a>
-            <div>
-              <h1 className="text-xl text-black font-semibold">English Course</h1>
-              <p className="text-sm text-gray-500">Beginner Level</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
-                <span className="text-orange-600 font-bold text-sm">0</span>
-              </div>
-              <span className="text-sm text-gray-600">XP</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-yellow-500 fill-current" />
-              <span className="text-sm text-gray-600">0</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen">
+      
 
       <div className="flex max-w-6xl mx-auto">
         {/* Main lesson path */}
@@ -126,7 +121,7 @@ const LessonView = ({ lessonId, unitId }: { lessonId: string; unitId?: string })
             {lessons.map((lesson, index) => {
               const isLeft = index % 2 === 0;
               const yPosition = index * 120;
-              
+
               return (
                 <div key={lesson.id} className="relative mb-8">
                   {/* Connecting line */}
@@ -143,24 +138,30 @@ const LessonView = ({ lessonId, unitId }: { lessonId: string; unitId?: string })
                       </svg>
                     </div>
                   )}
-                  
-                  <div className={`flex items-center gap-6 ${isLeft ? '' : 'flex-row-reverse'}`}>
+
+                  <div
+                    className={`flex items-center gap-6 ${
+                      isLeft ? "" : "flex-row-reverse"
+                    }`}
+                  >
                     {/* Lesson circle */}
                     <div className="relative flex-shrink-0">
                       <Link
-                        href={`/lesson?lessonId=${lesson.id}${unitId ? `&unitId=${unitId}` : ''}`}
+                        href={`/lesson?lessonId=${lesson.id}${
+                          unitId ? `&unitId=${unitId}` : ""
+                        }`}
                         scroll={false}
                         className="block"
                       >
                         <div
                           className={`w-16 h-16 rounded-full flex items-center justify-center border-4 border-white shadow-lg cursor-pointer transition-transform hover:scale-105 ${
                             lesson.current
-                              ? 'bg-blue-500 ring-4 ring-blue-200'
+                              ? "bg-blue-500 ring-4 ring-blue-200"
                               : lesson.completed
                               ? lesson.isCheckpoint
-                                ? 'bg-yellow-500'
-                                : 'bg-green-500'
-                              : 'bg-gray-300'
+                                ? "bg-yellow-500"
+                                : "bg-green-500"
+                              : "bg-gray-300"
                           }`}
                         >
                           {lesson.completed && !lesson.isCheckpoint && (
@@ -172,28 +173,35 @@ const LessonView = ({ lessonId, unitId }: { lessonId: string; unitId?: string })
                           {lesson.current && (
                             <div className="w-6 h-6 bg-white rounded-full" />
                           )}
-                          {!lesson.completed && !lesson.current && !lesson.isCheckpoint && (
-                            <div className="w-6 h-6 bg-gray-500 rounded-full" />
-                          )}
+                          {!lesson.completed &&
+                            !lesson.current &&
+                            !lesson.isCheckpoint && (
+                              <div className="w-6 h-6 bg-gray-500 rounded-full" />
+                            )}
                         </div>
                       </Link>
                     </div>
                     {/* Lesson card */}
-                    <div className={`bg-white rounded-xl shadow-md mt-8 p-4 min-w-48 border-2 ${
-                      lesson.current ? 'border-blue-200' : 'border-gray-100'
-                    } ${isLeft ? 'text-left' : 'text-right'}`}>
-                      <h3 className={`font-semibold text-gray-800 ${lesson.isCheckpoint ? 'text-yellow-600' : ''}`}>
+                    <div
+                      className={`bg-white rounded-xl shadow-md mt-8 p-4 min-w-48 border-2 ${
+                        lesson.current ? "border-blue-200" : "border-gray-100"
+                      } ${isLeft ? "text-left" : "text-right"}`}
+                    >
+                      <h3
+                        className={`font-semibold text-gray-800 ${
+                          lesson.isCheckpoint ? "text-yellow-600" : ""
+                        }`}
+                      >
                         {lesson.title}
                       </h3>
                       <p className="text-sm text-gray-500 mt-1">
-                        {lesson.isCheckpoint 
-                          ? 'Checkpoint' 
-                          : lesson.completed 
-                          ? 'Completed' 
+                        {lesson.isCheckpoint
+                          ? "Checkpoint"
+                          : lesson.completed
+                          ? "Completed"
                           : lesson.current
-                          ? 'Current lesson'
-                          : 'Not started'
-                        }
+                          ? "Current lesson"
+                          : "Not started"}
                       </p>
                       {lesson.current && (
                         <button className="mt-3 bg-blue-500 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">
@@ -223,11 +231,16 @@ const LessonView = ({ lessonId, unitId }: { lessonId: string; unitId?: string })
             {/* XP Progress */}
             <div className="bg-gray-50 rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-700">Daily Goal</span>
+                <span className="text-sm font-medium text-gray-700">
+                  Daily Goal
+                </span>
                 <span className="text-sm text-gray-500">0/20 XP</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
-                <div className="bg-green-500 h-2 rounded-full" style={{ width: '0%' }}></div>
+                <div
+                  className="bg-green-500 h-2 rounded-full"
+                  style={{ width: "0%" }}
+                ></div>
               </div>
             </div>
 
@@ -245,9 +258,14 @@ const LessonView = ({ lessonId, unitId }: { lessonId: string; unitId?: string })
 
             {/* Current lesson info */}
             <div className="border border-blue-200 bg-blue-50 rounded-lg p-4">
-              <h3 className="font-semibold text-blue-800 mb-2">Current Lesson</h3>
+              <h3 className="font-semibold text-blue-800 mb-2">
+                Current Lesson
+              </h3>
               <p className="text-sm text-blue-700 mb-3">Greeting 4</p>
-              <p className="text-xs text-blue-600 mb-3">Learn basic greeting expressions and how to respond appropriately.</p>
+              <p className="text-xs text-blue-600 mb-3">
+                Learn basic greeting expressions and how to respond
+                appropriately.
+              </p>
               <button className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors font-medium">
                 Start Lesson
               </button>
@@ -255,19 +273,25 @@ const LessonView = ({ lessonId, unitId }: { lessonId: string; unitId?: string })
 
             {/* Achievements */}
             <div className="border rounded-lg p-4">
-              <h3 className="font-semibold mb-3 text-gray-800">Recent Achievements</h3>
+              <h3 className="font-semibold mb-3 text-gray-800">
+                Recent Achievements
+              </h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3 p-2 bg-green-50 rounded-lg">
                   <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
                   <div>
-                    <div className="text-sm font-medium text-green-800">First lesson completed</div>
+                    <div className="text-sm font-medium text-green-800">
+                      First lesson completed
+                    </div>
                     <div className="text-xs text-green-600">+10 XP</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-2 bg-yellow-50 rounded-lg">
                   <Award className="h-5 w-5 text-yellow-500 flex-shrink-0" />
                   <div>
-                    <div className="text-sm font-medium text-yellow-800">Checkpoint reached</div>
+                    <div className="text-sm font-medium text-yellow-800">
+                      Checkpoint reached
+                    </div>
                     <div className="text-xs text-yellow-600">+50 XP</div>
                   </div>
                 </div>
@@ -277,7 +301,9 @@ const LessonView = ({ lessonId, unitId }: { lessonId: string; unitId?: string })
             {/* Shop/Premium */}
             <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg p-4">
               <h3 className="font-semibold text-purple-800 mb-2">Go Premium</h3>
-              <p className="text-sm text-purple-700 mb-3">Unlock unlimited hearts and remove ads</p>
+              <p className="text-sm text-purple-700 mb-3">
+                Unlock unlimited hearts and remove ads
+              </p>
               <button className="w-full bg-purple-500 text-white py-2 px-4 rounded-lg hover:bg-purple-600 transition-colors text-sm font-medium">
                 Try Free
               </button>

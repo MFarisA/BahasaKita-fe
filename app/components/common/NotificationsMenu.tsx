@@ -27,16 +27,16 @@ const NotificationsMenu: React.FC<NotificationsMenuProps> = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="relative">
+        <Button variant="outline" size="icon" className="relative bg-indigo-900 border-none">
           <Bell className="h-5 w-5" />
           {unreadNotifications > 0 && (
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
               {unreadNotifications}
             </span>
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-80 bg-black/80">
+      <DropdownMenuContent align="end" className="w-80 bg-indigo-900 border-none">
         <div className="p-2 font-medium border-b">Notifications</div>
         <div className="max-h-80 overflow-auto">
           {notifications.map((notification) => (
