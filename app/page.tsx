@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import ProgressDashboard from "./pages/ProgressDashboard";
 
 // Import all components
 const LandingPage = dynamic(() => import("./pages/LandingPage"));
@@ -44,6 +45,8 @@ export default async function Router({
       return <CultureContent />;
     case "community-forum":
       return <CommunityForum />;
+     case "progress-dashboard":
+      return <ProgressDashboard />;
     case "exercise":
       return <ExerciseComponent />;
     case "lesson":

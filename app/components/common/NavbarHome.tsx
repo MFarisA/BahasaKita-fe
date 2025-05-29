@@ -44,7 +44,13 @@ const NavbarHome: React.FC<NavbarProps> = ({
       <div className="flex items-center gap-10">
         {menus.map((menu) => (
           <Link
-            href="#"
+            href={
+              menu.name === "My Progress"
+                ? "/?route=progress-dashboard"
+                : menu.name === "Lessons"
+                ? "/?route=home"
+                : "#"
+            }
             key={menu.name}
             className={`text-md text-indigo-900 ${
               activeMenu === menu.name ? "font-bold" : "font-normal"
