@@ -112,8 +112,6 @@ const LessonView = ({
 
   return (
     <div className="min-h-screen">
-      
-
       <div className="flex max-w-6xl mx-auto">
         {/* Main lesson path */}
         <div className="flex-1 p-8 relative">
@@ -217,7 +215,7 @@ const LessonView = ({
         </div>
 
         {/* Right sidebar */}
-        <div className="w-80 bg-white border-l border-gray-200 p-6">
+        <div className="w-80 h-full bg-white border-l border-gray-200 p-6 rounded-xl shadow-md">
           <div className="space-y-6">
             {/* Progress stats */}
             <div className="text-center">
@@ -296,17 +294,6 @@ const LessonView = ({
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Shop/Premium */}
-            <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg p-4">
-              <h3 className="font-semibold text-purple-800 mb-2">Go Premium</h3>
-              <p className="text-sm text-purple-700 mb-3">
-                Unlock unlimited hearts and remove ads
-              </p>
-              <button className="w-full bg-purple-500 text-white py-2 px-4 rounded-lg hover:bg-purple-600 transition-colors text-sm font-medium">
-                Try Free
-              </button>
             </div>
           </div>
         </div>
