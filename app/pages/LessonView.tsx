@@ -112,9 +112,9 @@ const LessonView = ({
 
   return (
     <div className="min-h-screen">
-      <div className="flex max-w-6xl mx-auto">
+      <div className="flex flex-col lg:flex-row max-w-6xl mx-auto gap-6">
         {/* Main lesson path */}
-        <div className="flex-1 p-8 relative">
+        <div className="flex-1 p-4 md:p-8 relative">
           <div className="relative max-w-md mx-auto">
             {lessons.map((lesson, index) => {
               const isLeft = index % 2 === 0;
@@ -213,7 +213,7 @@ const LessonView = ({
         </div>
 
         {/* Right sidebar */}
-        <div className="w-80 h-full bg-white border-l border-gray-200 p-6 rounded-xl shadow-md">
+        <div className="w-full lg:w-80 h-full bg-white border-l border-gray-200 p-4 md:p-6 rounded-xl shadow-md mt-6 lg:mt-0">
           <div className="space-y-6">
             {/* Progress stats */}
             <div className="text-center">
