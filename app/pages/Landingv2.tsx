@@ -42,12 +42,48 @@ const Landingv2: React.FC = () => {
   const [activeLanguage, setActiveLanguage] = useState(0);
 
   const localLanguages = [
-    { name: "Bahasa Jawa", flag: "🏛️", region: "Jawa Tengah & Timur" },
-    { name: "Bahasa Sunda", flag: "🏔️", region: "Jawa Barat" },
-    { name: "Bahasa Bali", flag: "🏝️", region: "Bali" },
-    { name: "Bahasa Batak", flag: "🏞️", region: "Sumatera Utara" },
-    { name: "Bahasa Minang", flag: "🏔️", region: "Sumatera Barat" },
-    { name: "Bahasa Betawi", flag: "🏙️", region: "Jakarta" },
+    {
+      name: "Bahasa Jawa",
+      flag: "🏛️",
+      region: "Jawa Tengah & Jawa Timur",
+      description:
+        "Bahasa dengan penutur terbanyak di Indonesia. Memiliki tingkatan tutur (undha-usuk basa) yang kompleks dan kaya akan sastra klasik serta filosofi. Digunakan di Jawa Tengah, DI Yogyakarta, dan Jawa Timur.",
+    },
+    {
+      name: "Bahasa Sunda",
+      flag: "🏔️",
+      region: "Jawa Barat",
+      description:
+        "Bahasa daerah terbesar kedua di Indonesia, dikenal dengan melodi dan intonasinya yang khas. Dituturkan di sebagian besar Jawa Barat dan Banten, serta erat kaitannya dengan seni pertunjukan.",
+    },
+    {
+      name: "Bahasa Bali",
+      flag: "🏝️",
+      region: "Bali",
+      description:
+        "Bahasa yang erat kaitannya dengan agama Hindu Dharma dan upacara adat di Bali. Memiliki aksara sendiri (Aksara Bali) dan kekayaan tradisi sastra. Dituturkan di Pulau Bali, sebagian Lombok, dan Jawa Timur.",
+    },
+    {
+      name: "Bahasa Batak",
+      flag: "🏞️",
+      region: "Sumatera Utara",
+      description:
+        "Rumpun bahasa dengan beberapa dialek (Toba, Karo, Simalungun, dll.). Dikenal dengan karakter bicara yang lugas dan kuat, serta sistem kekerabatan marga yang kental di Sumatera Utara.",
+    },
+    {
+      name: "Bahasa Minang",
+      flag: "🏔️",
+      region: "Sumatera Barat",
+      description:
+        "Bahasa yang memiliki kekhasan dalam pengucapan dan intonasi, sangat terkait dengan sistem matrilineal dan adat istiadat Minangkabau yang unik. Dituturkan di Sumatera Barat.",
+    },
+    {
+      name: "Bahasa Betawi",
+      flag: "🏙️",
+      region: "Jakarta",
+      description:
+        "Bahasa kreol perpaduan Melayu, Jawa, Sunda, Arab, Tionghoa, dan Belanda. Dikenal dengan gaya bicara santai, lugas, dan humor. Merupakan identitas budaya asli masyarakat Jakarta yang multietnis.",
+    },
   ];
 
   return (
@@ -171,7 +207,7 @@ const Landingv2: React.FC = () => {
       </div>
 
       {/* about us */}
-      <section className="py-16 md:py-40">
+      <section className="py-16 md:py-44">
         <div className="container mx-auto">
           <div className=" flex flex-col items-center text-center">
             <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
@@ -182,14 +218,14 @@ const Landingv2: React.FC = () => {
               <br />
               <span>
                 Mastery! Unlock the world of{" "}
-                <span className="text-yellow-400">languages</span> where
+                <span className="text-yellow-500">languages</span> where
               </span>
               <br />
               every word opens a new door to cultural
               <br />
               <span>
                 {" "}
-                <span className="text-yellow-400">richness</span> and global
+                <span className="text-yellow-500">richness</span> and global
                 connections.
               </span>
             </h1>
@@ -228,7 +264,7 @@ const Landingv2: React.FC = () => {
 
       <section>
         <div className="bg-[url('/images/path.svg')] bg-cover bg-top bg-no-repeat">
-          <div className="container mx-auto px-4 md:px-6 py-16 lg:pt-60">
+          <div className="container mx-auto px-4 md:px-6 py-16 lg:pt-56">
             <div className=" flex flex-col items-center text-center">
               <h2 className="text-2xl font-semibold text-white mb-5">
                 - Pilihan Bahasa -
@@ -242,23 +278,28 @@ const Landingv2: React.FC = () => {
           </div>
         </div>
         <div className="bg-[url('/images/path2.svg')] bg-cover bg-bottom bg-no-repeat">
-          <div className="container mx-auto px-4 md:px-6 py-16 lg:pb-60">
+          <div className="container mx-auto px-4 md:px-6 lg:pb-56">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {features.map((feature) => {
-                const Icon = getLucideIcon(feature.icon);
+              {localLanguages.map((feature, index) => {
                 return (
                   <Card
-                    key={feature.title}
-                    className="bg-white/80 backdrop-blur-sm border-none shadow-md hover:shadow-lg transition-shadow"
+                    key={index}
+                    className="bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow"
                   >
                     <CardHeader>
-                      <div className={feature.iconClass}>
-                        <Icon className={`h-6 w-6 ${feature.iconColor}`} />
-                      </div>
-                      <CardTitle>{feature.title}</CardTitle>
+                      <CardTitle className="lg:text-2xl lg:font-bold">
+                        {feature.name}
+                      </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-slate-600">{feature.description}</p>
+                      <p className="text-slate-600 pb-4">
+                        {feature.description}
+                      </p>
+                      <Button size={"lg"} className="bg-yellow-500">
+                        <div className="text-md font-semibold">
+                          Mulai Belajar
+                        </div>
+                      </Button>
                     </CardContent>
                   </Card>
                 );
@@ -266,6 +307,166 @@ const Landingv2: React.FC = () => {
             </div>
           </div>
         </div>
+      </section>
+      {/* cara kerja */}
+      <section>
+        <div className="container mx-auto px-4 md:px-6 py-16 lg:py-[180px]">
+          <div className=" flex flex-col items-center text-center">
+            <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
+              - Cara Kerja -
+            </h2>
+            <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-indigo-900">
+              Embark on your language learning <br />
+              journey with Bahasa Kita
+            </h1>
+          </div>
+          <div className="">
+            <div className="bg-[url('/images/Ellipse1.svg')] bg-no-repeat bg-center bg-contain">
+              <section className="mt-28">
+                <div className="grid grid-cols-4 w-full">
+                  <div className="col-span-2">
+                    <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
+                      <CardHeader className="text-center">
+                        <CardTitle className="lg:text-5xl lg:font-semibold">
+                          Sign Up For Free
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="text-center">
+                        <p className="text-slate-600 pb-4">
+                          Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Labore nam deserunt quisquam temporibus, maxime
+                          recusandae? Animi vitae veniam ab molestias nesciunt,
+                          quo omnis! Ea sapiente voluptatem quos itaque minima
+                          quasi.
+                        </p>
+                        <Button size={"lg"} className="bg-yellow-500">
+                          <div className="text-md font-semibold">
+                            Mulai Belajar
+                          </div>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  <div className="absolute top-[3600px] right-0 hidden lg:block">
+                    <Image
+                      src="/images/rocket.svg"
+                      alt="Cara Kerja"
+                      width={300}
+                      height={400}
+                    ></Image>
+                  </div>
+                </div>
+              </section>
+              <section className="mt-80">
+                <div className="grid grid-cols-4 w-full">
+                  <div className="absolute top-[4300px] left-10 hidden lg:block">
+                    <Image
+                      src="/images/cloud.svg"
+                      alt="Cara Kerja"
+                      width={456}
+                      height={307.73}
+                    ></Image>
+                  </div>
+                  <div className="col-start-3 col-span-2">
+                    <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
+                      <CardHeader className="text-center">
+                        <CardTitle className="lg:text-5xl lg:font-semibold">
+                          Sign Up For Free
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="text-center">
+                        <p className="text-slate-600 pb-4">
+                          Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Labore nam deserunt quisquam temporibus, maxime
+                          recusandae? Animi vitae veniam ab molestias nesciunt,
+                          quo omnis! Ea sapiente voluptatem quos itaque minima
+                          quasi.
+                        </p>
+                        <Button size={"lg"} className="bg-yellow-500">
+                          <div className="text-md font-semibold">
+                            Mulai Belajar
+                          </div>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              </section>
+              <section className="mt-80">
+                <div className="grid grid-cols-4 w-full">
+                  <div className="col-span-2">
+                    <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
+                      <CardHeader className="text-center">
+                        <CardTitle className="lg:text-5xl lg:font-semibold">
+                          Sign Up For Free
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="text-center">
+                        <p className="text-slate-600 pb-4">
+                          Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Labore nam deserunt quisquam temporibus, maxime
+                          recusandae? Animi vitae veniam ab molestias nesciunt,
+                          quo omnis! Ea sapiente voluptatem quos itaque minima
+                          quasi.
+                        </p>
+                        <Button size={"lg"} className="bg-yellow-500">
+                          <div className="text-md font-semibold">
+                            Mulai Belajar
+                          </div>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                    <div className="absolute top-[5100px] right-0 hidden lg:block">
+                    <Image
+                      src="/images/suncloud.svg"
+                      alt="Cara Kerja"
+                      width={300}
+                      height={400}
+                    ></Image>
+                  </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+        <section>
+          <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-16 p-8 lg:p-12 max-w-6xl mx-auto">
+            <div className="flex-shrink-0">
+              <div className="relative w-32 h-32 lg:w-40 lg:h-40">
+                <div className="absolute top-0 left-0 w-12 h-12 lg:w-16 lg:h-16 bg-black rounded-sm"></div>
+                <div className="absolute top-0 right-0 w-12 h-12 lg:w-16 lg:h-16 bg-black rounded-sm"></div>
+
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 lg:w-16 lg:h-16 bg-black rounded-sm"></div>
+                <div className="absolute top-1/2 right-0 w-8 h-8 lg:w-12 lg:h-12 bg-black rounded-sm"></div>
+
+                <div className="absolute bottom-0 left-0 w-12 h-12 lg:w-16 lg:h-16 bg-black rounded-sm"></div>
+                <div className="absolute bottom-0 right-0 w-12 h-12 lg:w-16 lg:h-16 bg-black rounded-sm"></div>
+              </div>
+            </div>
+
+            <div className="flex-1 space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="h-px bg-purple-400 w-12"></div>
+                <span className="text-purple-400 font-medium text-sm tracking-wider uppercase">
+                  Testimonial
+                </span>
+                <div className="h-px bg-purple-400 w-12"></div>
+              </div>
+
+              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+                Voices of Success What Learners Love About Leranis
+              </h2>
+
+              <blockquote className="text-lg lg:text-xl text-gray-600 italic leading-relaxed">
+                "I can't express how grateful I am to Leranis for making
+                language learning such a delightful experience. The interactive
+                lessons, personalized feedback, and engaging native speakers
+                have transformed my journey."
+              </blockquote>
+            </div>
+          </div>
+        </section>
       </section>
     </div>
   );

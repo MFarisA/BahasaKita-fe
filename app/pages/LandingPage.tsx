@@ -213,6 +213,7 @@ const LandingPage: React.FC = () => {
               const Icon = getLucideIcon(ef.icon);
               return (
                 <TabsContent
+
                   key={ef.value}
                   value={ef.value}
                   className="border rounded-lg p-6 bg-white/80 shadow-md"
