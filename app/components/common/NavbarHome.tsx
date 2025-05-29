@@ -56,6 +56,18 @@ const NavbarHome: React.FC<NavbarProps> = ({
         ))}
       </div>
       <div className="flex items-center gap-4">
+        {/* Language Button */}
+        <button
+          className="flex items-center gap-2 px-3 py-1 rounded-lg border border-indigo-300 bg-white text-indigo-900 hover:bg-indigo-50 transition"
+        >
+          <Image
+            src="/images/indonesia.png"
+            alt=""
+            width={24}
+            height={16}       
+          />
+          <span className="font-medium">Language</span>
+        </button>
         <NotificationsMenu notifications={notifications} />
         <SettingsMenu />
       </div>

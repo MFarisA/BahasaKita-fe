@@ -145,9 +145,7 @@ const LessonView = ({
                     {/* Lesson circle */}
                     <div className="relative flex-shrink-0">
                       <Link
-                        href={`/lesson?lessonId=${lesson.id}${
-                          unitId ? `&unitId=${unitId}` : ""
-                        }`}
+                        href={`/?route=exercise&lessonId=${lesson.id}${unitId ? `&unitId=${unitId}` : ""}`}
                         scroll={false}
                         className="block"
                       >

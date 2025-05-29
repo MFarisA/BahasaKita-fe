@@ -37,12 +37,11 @@ const NotificationsMenu: React.FC<NotificationsMenuProps> = ({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-80 bg-indigo-900 border-none">
-        <div className="p-2 font-medium border-b">Notifications</div>
         <div className="max-h-80 overflow-auto">
           {notifications.map((notification) => (
             <DropdownMenuItem
               key={notification.id}
-              className="p-3 cursor-pointer hover:bg-slate-50"
+              className="p-3 cursor-pointer hover:bg-indigo-800"
             >
               <div className="flex gap-3 items-start">
                 <div className="mt-1">
@@ -57,7 +56,7 @@ const NotificationsMenu: React.FC<NotificationsMenuProps> = ({
                   )}
                 </div>
                 <div>
-                  <div className="font-medium flex items-center gap-2">
+                  <div className="font-normal flex items-center gap-2">
                     {notification.title}
                     {!notification.read && (
                       <span className="h-2 w-2 rounded-full bg-blue-500"></span>
@@ -71,8 +70,8 @@ const NotificationsMenu: React.FC<NotificationsMenuProps> = ({
             </DropdownMenuItem>
           ))}
         </div>
-        <div className="p-2 border-t">
-          <Button variant="ghost" size="sm" className="w-full">
+        <div className="p-2 mt-2 text-center">
+          <Button variant="ghost" size="sm" className="w-30 bg-white text-indigo-900 hover:bg-indigo-100">
             View all notifications
           </Button>
         </div>

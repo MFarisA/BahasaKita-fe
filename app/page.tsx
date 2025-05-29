@@ -20,13 +20,15 @@ export default async function Router({
   searchParams: Promise<{ route?: string; lessonId?: string; unitId?: string }>;
 }) {
   const params = await searchParams;
-  const route = params.route || "landing";
+  const route = params.route || "";
   const lessonId = params.lessonId;
   const unitId = params.unitId;
 
   // Route mapping
   switch (route) {
     case "":
+      return <Landingv2 />;
+    case "landing":
       return <LandingPage />;
     case "home":
       return <Home />;
@@ -42,10 +44,8 @@ export default async function Router({
       return <CultureContent />;
     case "community-forum":
       return <CommunityForum />;
-    case "landingv2":
-      return <Landingv2 />;
     case "exercise":
-      return <ExerciseComponent/>
+      return <ExerciseComponent />;
     case "lesson":
       if (!lessonId) {
         return <div>Lesson ID is required</div>;

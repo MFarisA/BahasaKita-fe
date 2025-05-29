@@ -216,11 +216,14 @@ const ExerciseComponent = () => {
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-gray-100 rounded-lg">
+            <div className="flex items-center gap-4">
+            <button
+              className="p-2 hover:bg-gray-100 rounded-lg"
+              onClick={() => window.history.back()}
+            >
               <X className="h-6 w-6 text-gray-600" />
             </button>
-          </div>
+            </div>
           <div className="flex-1 bg-gray-200 rounded-full h-3 max-w-xs relative overflow-hidden">
               <div 
                 className="bg-black h-3 rounded-full transition-all duration-500 ease-out"
