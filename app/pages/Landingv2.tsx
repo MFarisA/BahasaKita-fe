@@ -97,27 +97,27 @@ const Landingv2: React.FC = () => {
     <div className="min-h-screen">
       <div className="bg-[url('/images/union.svg')] bg-contain bg-top bg-no-repeat">
         <section
-          className={`sticky top-0 z-50  ${
+          className={`sticky top-0 z-50 ${
             scrolled
-              ? "bg-white/90 shadow backdrop-blur-md "
+              ? "bg-white/90 shadow backdrop-blur-md"
               : "bg-transparent text-white"
           }`}
         >
-          <div className="container mx-auto px-4 md:px-6 py-6 lg:pt-10  ">
+          <div className="container mx-auto px-4 md:px-6 py-4 lg:py-6">
             <div className="flex justify-between items-center">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 md:gap-4">
                 <Image
                   src="/images/logo.svg"
                   alt="Logo"
-                  width={85.82}
-                  height={56}
+                  width={60}
+                  height={40}
+                  className="md:w-[85.82px] md:h-[56px]"
                 />
-
-                <h2 className="text-2xl font-bold text-indigo-900 ">
+                <h2 className="text-xl md:text-2xl font-bold text-indigo-900">
                   Bahasa Kita
                 </h2>
               </div>
-              <div className="flex items-center gap-10">
+              <div className="hidden lg:flex items-center gap-6 xl:gap-10">
                 <Link href="" className="text-md font-normal text-indigo-900">
                   Beranda
                 </Link>
@@ -134,39 +134,42 @@ const Landingv2: React.FC = () => {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="bg-indigo-700 border-0 hover:bg-indigo-600"
+                    className="bg-indigo-700 border-0 hover:bg-indigo-600 text-white"
                   >
                     Registrasi / Masuk
                   </Button>
-                </Link>{" "}
+                </Link>
+              </div>
+              {/* Mobile menu button (Hamburger icon) - you'd typically add a state to control its visibility */}
+              <div className="lg:hidden">
+                <Button variant="ghost" size="icon">
+                  <LucideIcons.Menu className="h-6 w-6 text-indigo-900" />
+                </Button>
               </div>
             </div>
           </div>
         </section>
-        {/* navbar */}
         {/* Hero Section */}
-        <section className="relative pt-16 md:pt-20 lg:pt-32">
+        <section className="relative pt-16 md:pt-20 lg:pt-32 pb-12 md:pb-24">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="space-y-8 lg:space-y-12 text-white">
-              <div className=" flex flex-col items-center text-center">
-                <h1 className="text-4xl md:text-5xl lg:text-8xl font-semibold tracking-tight text-indigo-900 mb-8">
-                  Become the Hero of Your
-                  <br />
-                  <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                    Language Journey!
-                  </span>
-                </h1>
-                <p className="max-w-[700px] text-lg md:text-xl text-slate-700">
-                  Master new languages through fun, interactive lessons and
-                  games. Track your progress, earn rewards, and connect with a
-                  global community of learners.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="space-y-6 lg:space-y-10 text-white text-center">
+              <h1 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-semibold tracking-tight text-indigo-900 mb-4 md:mb-8">
+                Become the Hero of Your
+                <br />
+                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                  Language Journey!
+                </span>
+              </h1>
+              <p className="max-w-[700px] mx-auto text-base md:text-lg text-slate-700">
+                Master new languages through fun, interactive lessons and games.
+                Track your progress, earn rewards, and connect with a global
+                community of learners.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                 <Link href="/home">
                   <Button
                     size="lg"
-                    className="bg-indigo-700 hover:bg-indigo-600 transition-transform hover:scale-110 text-xl font-semibold "
+                    className="bg-indigo-700 hover:bg-indigo-600 transition-transform hover:scale-105 text-lg md:text-xl font-semibold w-full sm:w-auto"
                   >
                     Get Started
                   </Button>
@@ -176,19 +179,19 @@ const Landingv2: React.FC = () => {
           </div>
 
           {/* daftar bahasa local */}
-          <section className="py-12 backdrop-blur-lg bg-indigo-700 border-y border-white/10 mt-32">
-            <div className="container mx-auto px-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <section className="py-8 md:py-12 backdrop-blur-lg bg-indigo-700 border-y border-white/10 mt-16 md:mt-24 lg:mt-32">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {localLanguages.map((lang, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveLanguage(index)}
-                    className={`group p-4 rounded-xl border transition-all  shadow-lg bg-white transform hover:scale-105`}
+                    className={`group p-3 sm:p-4 rounded-xl border transition-all shadow-lg bg-white transform hover:scale-105`}
                   >
-                    <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">
+                    <div className="text-2xl sm:text-3xl mb-1 sm:mb-2 group-hover:scale-110 transition-transform">
                       {lang.flag}
                     </div>
-                    <div className="font-semibold text-black text-sm">
+                    <div className="font-semibold text-black text-sm sm:text-base">
                       {lang.name}
                     </div>
                     <div className="text-xs text-gray-800 group-hover:text-indigo-600">
@@ -199,51 +202,51 @@ const Landingv2: React.FC = () => {
               </div>
             </div>
           </section>
-          {/* floatig asset hero */}
-          <div className="absolute top-80 left-0 hidden lg:block">
-            <div>
-              <Image
-                src="/images/main.svg"
-                alt="Hero Asset"
-                width={250}
-                height={150}
-              ></Image>
-            </div>
+          {/* floating asset hero */}
+          <div className="absolute top-20 left-0 hidden lg:block xl:top-80">
+            <Image
+              src="/images/main.svg"
+              alt="Hero Asset"
+              width={200}
+              height={120}
+              className="xl:w-[250px] xl:h-[150px]"
+            ></Image>
           </div>
-          <div className="absolute top-8 right-0 hidden lg:block">
+          <div className="absolute top-0 right-0 hidden lg:block xl:top-8">
             <Image
               src="/images/main-1.svg"
               alt="Hero Asset"
-              width={200}
-              height={100}
+              width={150}
+              height={80}
+              className="xl:w-[200px] xl:h-[100px]"
             ></Image>
           </div>
         </section>
 
         {/* about us */}
-        <section className="py-16 md:py-44">
-          <div className="container mx-auto">
-            <div className=" flex flex-col items-center text-center">
-              <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
+        <section className="py-16 md:py-24 lg:py-44 relative">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="flex flex-col items-center text-center">
+              <h2 className="text-xl md:text-2xl font-semibold text-indigo-500 mb-3 md:mb-5">
                 - Apa itu bahasa kita? -
               </h2>
-              <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-indigo-900">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl/normal font-semibold text-indigo-900">
                 Bahasa Kita is Your Gateway to Language
-                <br />
+                <br className="hidden md:block" />
                 <span>
                   Mastery! Unlock the world of{" "}
                   <span className="text-yellow-500">languages</span> where
                 </span>
-                <br />
+                <br className="hidden md:block" />
                 every word opens a new door to cultural
-                <br />
+                <br className="hidden md:block" />
                 <span>
                   {" "}
                   <span className="text-yellow-500">richness</span> and global
                   connections.
                 </span>
               </h1>
-              <p className="text-md max-w-[900px] leading-tight text-gray-700 pt-10">
+              <p className="text-sm md:text-base max-w-[900px] leading-relaxed text-gray-700 pt-6 md:pt-10">
                 Lorem ipsum dolor sit amet consectetur. Vitae accumsan orci nunc
                 interdum justo vulputate. Iaculis euismod convallis nibh magna
                 pulvinar quis ut. Tortor consectetur dolor elit nullam metus
@@ -255,23 +258,23 @@ const Landingv2: React.FC = () => {
               </p>
             </div>
           </div>
-          {/* floatig asset hero */}
-          <div className="absolute top-[1500px] left-16 hidden lg:block">
-            <div>
-              <Image
-                src="/images/Back to School Doodle Illustration-16.svg"
-                alt="Hero Asset"
-                width={200}
-                height={210}
-              ></Image>
-            </div>
+          {/* floating asset about us */}
+          <div className="absolute bottom-0 left-0 hidden lg:block">
+            <Image
+              src="/images/Back to School Doodle Illustration-16.svg"
+              alt="Hero Asset"
+              width={150}
+              height={160}
+              className="xl:w-[200px] xl:h-[210px]"
+            ></Image>
           </div>
           <div className="absolute top-[1350px] right-0 hidden lg:block">
             <Image
               src="/images/main2.svg"
               alt="Hero Asset"
-              width={300}
-              height={100}
+              width={250}
+              height={80}
+              className="xl:w-[300px] xl:h-[100px]"
             ></Image>
           </div>
         </section>
@@ -279,39 +282,39 @@ const Landingv2: React.FC = () => {
         <section>
           <div className="bg-[url('/images/grid.svg')] bg-cover bg-center bg-no-repeat">
             <div className="bg-[url('/images/path.svg')] bg-cover bg-top bg-no-repeat">
-              <div className="container mx-auto px-4 md:px-6 py-16 lg:pt-56">
-                <div className=" flex flex-col items-center text-center">
-                  <h2 className="text-2xl font-semibold text-white mb-5">
+              <div className="container mx-auto px-4 md:px-6 py-12 lg:pt-40 xl:pt-56">
+                <div className="flex flex-col items-center text-center">
+                  <h2 className="text-xl md:text-2xl font-semibold text-white mb-3 md:mb-5">
                     - Pilihan Bahasa -
                   </h2>
-                  <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-white">
+                  <h1 className="text-2xl md:text-4xl lg:text-5xl/normal font-semibold text-white">
                     Embark on Your Language Odyssey
-                    <br />
+                    <br className="hidden md:block" />
                     Explore Our Learning Pathway
                   </h1>
                 </div>
               </div>
             </div>
-            <div className="bg-[url('/images/path2.svg')] bg-cover bg-bottom bg-no-repeat">
-              <div className="container mx-auto px-4 md:px-6 lg:pb-56">
+            <div className="bg-[url('/images/path2.svg')] bg-cover bg-bottom bg-no-repeat pt-12 md:pt-24 lg:pt-0">
+              <div className="container mx-auto px-4 md:px-6 lg:pb-40 xl:pb-56">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {localLanguages.map((feature, index) => {
                     return (
                       <Card
                         key={index}
-                        className="bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow"
+                        className="bg-white/90 backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow"
                       >
                         <CardHeader>
-                          <CardTitle className="lg:text-2xl lg:font-bold">
+                          <CardTitle className="text-xl lg:text-2xl font-bold">
                             {feature.name}
                           </CardTitle>
                         </CardHeader>
                         <CardContent>
-                          <p className="text-slate-600 pb-4">
+                          <p className="text-slate-600 pb-4 text-sm md:text-base">
                             {feature.description}
                           </p>
-                          <Button size={"lg"} className="bg-yellow-500">
-                            <div className="text-md font-semibold">
+                          <Button size={"lg"} className="bg-yellow-500 text-white hover:bg-yellow-600">
+                            <div className="text-base font-semibold">
                               Mulai Belajar
                             </div>
                           </Button>
@@ -325,149 +328,152 @@ const Landingv2: React.FC = () => {
           </div>
         </section>
         {/* cara kerja */}
-        <section>
+        <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
-            <div className=" flex flex-col items-center text-center">
-              <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
+            <div className="flex flex-col items-center text-center mb-12 md:mb-20">
+              <h2 className="text-xl md:text-2xl font-semibold text-indigo-500 mb-3 md:mb-5">
                 - Cara Kerja -
               </h2>
-              <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-indigo-900">
-                Embark on your language learning <br />
+              <h1 className="text-2xl md:text-4xl lg:text-5xl/normal font-semibold text-indigo-900">
+                Embark on your language learning <br className="hidden md:block" />
                 journey with Bahasa Kita
               </h1>
             </div>
-            <div className="">
-              <div className="bg-[url('/images/Ellipse1.svg')] bg-no-repeat bg-center bg-contain">
-                <section className="mt-28">
-                  <div className="grid grid-cols-4 w-full">
-                    <div className="col-span-2">
-                      <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
-                        <CardHeader className="text-center">
-                          <CardTitle className="lg:text-5xl lg:font-semibold">
-                            Sign Up For Free
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent className="text-center">
-                          <p className="text-slate-600 pb-4">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing
-                            elit. Labore nam deserunt quisquam temporibus,
-                            maxime recusandae? Animi vitae veniam ab molestias
-                            nesciunt, quo omnis! Ea sapiente voluptatem quos
-                            itaque minima quasi.
-                          </p>
-                          <Button size={"lg"} className="bg-yellow-500">
-                            <div className="text-md font-semibold">
-                              Mulai Belajar
-                            </div>
-                          </Button>
-                        </CardContent>
-                      </Card>
-                    </div>
-                    <div className="absolute top-[3600px] right-0 hidden lg:block">
-                      <Image
-                        src="/images/rocket.svg"
-                        alt="Cara Kerja"
-                        width={300}
-                        height={400}
-                      ></Image>
-                    </div>
+            <div className="relative">
+              {/* Ellipse background for larger screens */}
+              <div className="hidden lg:block absolute inset-0 bg-[url('/images/Ellipse1.svg')] bg-no-repeat bg-center bg-contain opacity-50"></div>
+
+              <section className="mt-12 md:mt-20 lg:mt-28 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                  <div className="lg:col-span-1">
+                    <Card className="flex flex-col justify-center bg-white/90 backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow p-6 h-auto min-h-[250px] md:min-h-[300px] lg:min-h-[384px]">
+                      <CardHeader className="text-center">
+                        <CardTitle className="text-3xl md:text-4xl lg:text-5xl font-semibold">
+                          Sign Up For Free
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="text-center">
+                        <p className="text-slate-600 pb-4 text-sm md:text-base">
+                          Lorem, ipsum dolor sit amet consectetur adipisicing
+                          elit. Labore nam deserunt quisquam temporibus, maxime
+                          recusandae? Animi vitae veniam ab molestias nesciunt,
+                          quo omnis! Ea sapiente voluptatem quos itaque minima
+                          quasi.
+                        </p>
+                        <Button size={"lg"} className="bg-yellow-500 text-white hover:bg-yellow-600">
+                          <div className="text-base font-semibold">
+                            Mulai Belajar
+                          </div>
+                        </Button>
+                      </CardContent>
+                    </Card>
                   </div>
-                </section>
-                <section className="mt-80">
-                  <div className="grid grid-cols-4 w-full">
-                    <div className="absolute top-[4300px] left-10 hidden lg:block">
-                      <Image
-                        src="/images/cloud.svg"
-                        alt="Cara Kerja"
-                        width={456}
-                        height={307.73}
-                      ></Image>
-                    </div>
-                    <div className="col-start-3 col-span-2">
-                      <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
-                        <CardHeader className="text-center">
-                          <CardTitle className="lg:text-5xl lg:font-semibold">
-                            Sign Up For Free
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent className="text-center">
-                          <p className="text-slate-600 pb-4">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing
-                            elit. Labore nam deserunt quisquam temporibus,
-                            maxime recusandae? Animi vitae veniam ab molestias
-                            nesciunt, quo omnis! Ea sapiente voluptatem quos
-                            itaque minima quasi.
-                          </p>
-                          <Button size={"lg"} className="bg-yellow-500">
-                            <div className="text-md font-semibold">
-                              Mulai Belajar
-                            </div>
-                          </Button>
-                        </CardContent>
-                      </Card>
-                    </div>
+                  <div className="hidden lg:flex justify-center items-center lg:col-span-1">
+                    <Image
+                      src="/images/rocket.svg"
+                      alt="Cara Kerja"
+                      width={250}
+                      height={350}
+                      className="object-contain"
+                    ></Image>
                   </div>
-                </section>
-                <section className="mt-80">
-                  <div className="grid grid-cols-4 w-full">
-                    <div className="col-span-2">
-                      <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
-                        <CardHeader className="text-center">
-                          <CardTitle className="lg:text-5xl lg:font-semibold">
-                            Sign Up For Free
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent className="text-center">
-                          <p className="text-slate-600 pb-4">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing
-                            elit. Labore nam deserunt quisquam temporibus,
-                            maxime recusandae? Animi vitae veniam ab molestias
-                            nesciunt, quo omnis! Ea sapiente voluptatem quos
-                            itaque minima quasi.
-                          </p>
-                          <Button size={"lg"} className="bg-yellow-500">
-                            <div className="text-md font-semibold">
-                              Mulai Belajar
-                            </div>
-                          </Button>
-                        </CardContent>
-                      </Card>
-                      <div className="absolute top-[5050px] right-0 hidden lg:block">
-                        <Image
-                          src="/images/suncloud.svg"
-                          alt="Cara Kerja"
-                          width={300}
-                          height={400}
-                        ></Image>
-                      </div>
-                    </div>
+                </div>
+              </section>
+
+              <section className="mt-16 md:mt-24 lg:mt-48 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                  <div className="hidden lg:flex justify-center items-center lg:col-span-1">
+                    <Image
+                      src="/images/cloud.svg"
+                      alt="Cara Kerja"
+                      width={350}
+                      height={250}
+                      className="object-contain"
+                    ></Image>
                   </div>
-                </section>
-              </div>
+                  <div className="lg:col-span-1">
+                    <Card className="flex flex-col justify-center bg-white/90 backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow p-6 h-auto min-h-[250px] md:min-h-[300px] lg:min-h-[384px]">
+                      <CardHeader className="text-center">
+                        <CardTitle className="text-3xl md:text-4xl lg:text-5xl font-semibold">
+                          Engage & Learn
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="text-center">
+                        <p className="text-slate-600 pb-4 text-sm md:text-base">
+                          Dive into interactive lessons, challenging quizzes,
+                          and fun games designed to make learning engaging and
+                          effective. Practice pronunciation and expand your
+                          vocabulary effortlessly.
+                        </p>
+                        <Button size={"lg"} className="bg-yellow-500 text-white hover:bg-yellow-600">
+                          <div className="text-base font-semibold">
+                            Mulai Belajar
+                          </div>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              </section>
+
+              <section className="mt-16 md:mt-24 lg:mt-48 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                  <div className="lg:col-span-1">
+                    <Card className="flex flex-col justify-center bg-white/90 backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow p-6 h-auto min-h-[250px] md:min-h-[300px] lg:min-h-[384px]">
+                      <CardHeader className="text-center">
+                        <CardTitle className="text-3xl md:text-4xl lg:text-5xl font-semibold">
+                          Track & Master
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="text-center">
+                        <p className="text-slate-600 pb-4 text-sm md:text-base">
+                          Monitor your progress with detailed analytics, earn
+                          rewards, and achieve fluency at your own pace.
+                          Master new languages one lesson at a time.
+                        </p>
+                        <Button size={"lg"} className="bg-yellow-500 text-white hover:bg-yellow-600">
+                          <div className="text-base font-semibold">
+                            Mulai Belajar
+                          </div>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  <div className="hidden lg:flex justify-center items-center lg:col-span-1">
+                    <Image
+                      src="/images/suncloud.svg"
+                      alt="Cara Kerja"
+                      width={250}
+                      height={350}
+                      className="object-contain"
+                    ></Image>
+                  </div>
+                </div>
+              </section>
             </div>
           </div>
-          <section>
-            <div className="container mx-auto px-4 md:px-6 py-44">
-              <div className="flex items-center gap-24">
-                <div>
+          <section className="py-16 md:py-24 lg:py-44">
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-24">
+                <div className="w-full lg:w-1/2 flex justify-center">
                   <Image
                     src="/images/Mask group.png"
                     alt="testimoni "
-                    width={566}
-                    height={503}
-                    objectFit="fit"
+                    width={400}
+                    height={350}
+                    className="object-contain lg:w-[566px] lg:h-[503px]"
                   ></Image>
                 </div>
-                <div className="flex flex-col justify-center items-start gap-9">
+                <div className="w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start gap-6 text-center lg:text-left">
                   <div>
-                    <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
+                    <h2 className="text-xl md:text-2xl font-semibold text-indigo-500 mb-3 md:mb-5">
                       - Testimoni -
                     </h2>
-                    <h1 className="text-2xl max-w-[900px] md:text-3xl lg:text-6xl/normal font-semibold text-indigo-900 mb-4">
+                    <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl/normal font-semibold text-indigo-900 mb-4">
                       Voices of Success What Learners Love About Leranis
                     </h1>
                   </div>
-                  <p className="text-2xl max-w-[700px] leading-normal text-gray-700">
+                  <p className="text-base md:text-lg lg:text-xl xl:text-2xl max-w-[700px] leading-normal text-gray-700">
                     I can't express how grateful I am to Leranis for making
                     language learning such a delightful experience. The
                     interactive lessons, personalized feedback, and engaging
@@ -480,53 +486,54 @@ const Landingv2: React.FC = () => {
         </section>
         {/* footer */}
         <footer className="bg-[#191919] text-white py-12">
-          <div>
-            <div className="container mx-auto px-4 md:px-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="flex flex-col items-center md:items-start gap-5">
-                  <div className="flex items-center gap-5">
-                    <Image
-                      src="/images/logo.svg"
-                      alt="Bahasa Kita Logo"
-                      width={85.82}
-                      height={56}
-                    ></Image>
-                    <h3 className="text-xl font-bold">Bahasa Kita</h3>
-                  </div>
-                  <p className="text-white">
-                    Making language learning fun, engaging, and effective
-                    through gamification.
-                  </p>
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+              <div className="flex flex-col items-center md:items-start gap-4">
+                <div className="flex items-center gap-3">
+                  <Image
+                    src="/images/logo.svg"
+                    alt="Bahasa Kita Logo"
+                    width={70}
+                    height={45}
+                    className="md:w-[85.82px] md:h-[56px]"
+                  ></Image>
+                  <h3 className="text-lg md:text-xl font-bold">Bahasa Kita</h3>
                 </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-                  <ul className="space-y-2">
-                    {quickLinks.map((link) => (
-                      <li key={link.to}>
-                        <Link
-                          href={link.to}
-                          className="text-white hover:scale-105 transition-transform"
-                        >
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-4">Features</h4>
-                  <ul className="space-y-2">
-                    {featuresList.map((item) => (
-                      <li key={item}>
-                        <span className="text-white">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <p className="text-white text-sm md:text-base">
+                  Making language learning fun, engaging, and effective through
+                  gamification.
+                </p>
               </div>
-              <div className="border-t border-indigo-800 mt-8 pt-8 text-center text-indigo-200">
-                <p>© 2025 Bahasa Kita. All rights reserved.</p>
+              <div>
+                <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+                <ul className="space-y-2">
+                  {quickLinks.map((link) => (
+                    <li key={link.to}>
+                      <Link
+                        href={link.to}
+                        className="text-white hover:text-indigo-300 transition-colors text-sm md:text-base"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
+              <div>
+                <h4 className="text-lg font-semibold mb-4">Features</h4>
+                <ul className="space-y-2">
+                  {featuresList.map((item) => (
+                    <li key={item}>
+                      <span className="text-white text-sm md:text-base">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="border-t border-indigo-800 mt-8 pt-8 text-center text-indigo-200 text-sm">
+              <p>© 2025 Bahasa Kita. All rights reserved.</p>
             </div>
           </div>
         </footer>
