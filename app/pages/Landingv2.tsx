@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../components/ui/button";
 import {
   Card,
@@ -40,6 +40,13 @@ const Landingv2: React.FC = () => {
   const UsersIcon = LucideIcons["Users"];
   const ArrowRightIcon = LucideIcons["ArrowRight"];
   const [activeLanguage, setActiveLanguage] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const localLanguages = [
     {
@@ -89,48 +96,54 @@ const Landingv2: React.FC = () => {
   return (
     <div className="min-h-screen">
       <div className="bg-[url('/images/union.svg')] bg-contain bg-top bg-no-repeat">
-      <section className="sticky top-0 z-50 bg-white/0 backdrop-blur-md">
-        <div className="container mx-auto px-4 md:px-6 py-6 lg:pt-10  ">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4">
-              <Image
-                src="/images/logo.svg"
-                alt="Logo"
-                width={85.82}
-                height={56}
-              />
+        <section
+          className={`sticky top-0 z-50  ${
+            scrolled
+              ? "bg-white/90 shadow backdrop-blur-md "
+              : "bg-transparent text-white"
+          }`}
+        >
+          <div className="container mx-auto px-4 md:px-6 py-6 lg:pt-10  ">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-4">
+                <Image
+                  src="/images/logo.svg"
+                  alt="Logo"
+                  width={85.82}
+                  height={56}
+                />
 
-              <h2 className="text-2xl font-bold text-indigo-900 ">
-                Bahasa Kita
-              </h2>
-            </div>
-            <div className="flex items-center gap-10">
-              <Link href="" className="text-md font-normal text-indigo-900">
-                Beranda
-              </Link>
-              <Link href="" className="text-md font-normal text-indigo-900">
-                Tentang Kita
-              </Link>
-              <Link href="" className="text-md font-normal text-indigo-900">
-                Bahasa
-              </Link>
-              <Link href="" className="text-md font-normal text-indigo-900">
-                Community
-              </Link>
-              <Link href="/register">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="bg-indigo-700 border-0 hover:bg-indigo-600"
-                >
-                  Registrasi / Masuk
-                </Button>
-              </Link>{" "}
+                <h2 className="text-2xl font-bold text-indigo-900 ">
+                  Bahasa Kita
+                </h2>
+              </div>
+              <div className="flex items-center gap-10">
+                <Link href="" className="text-md font-normal text-indigo-900">
+                  Beranda
+                </Link>
+                <Link href="" className="text-md font-normal text-indigo-900">
+                  Tentang Kita
+                </Link>
+                <Link href="" className="text-md font-normal text-indigo-900">
+                  Bahasa
+                </Link>
+                <Link href="" className="text-md font-normal text-indigo-900">
+                  Community
+                </Link>
+                <Link href="/register">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="bg-indigo-700 border-0 hover:bg-indigo-600"
+                  >
+                    Registrasi / Masuk
+                  </Button>
+                </Link>{" "}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      {/* navbar */}
+        </section>
+        {/* navbar */}
         {/* Hero Section */}
         <section className="relative pt-16 md:pt-20 lg:pt-32">
           <div className="container mx-auto px-4 md:px-6">
@@ -313,7 +326,7 @@ const Landingv2: React.FC = () => {
         </section>
         {/* cara kerja */}
         <section>
-          <div className="container mx-auto px-4 md:px-6 py-16 lg:py-[180px]">
+          <div className="container mx-auto px-4 md:px-6">
             <div className=" flex flex-col items-center text-center">
               <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
                 - Cara Kerja -
@@ -419,7 +432,7 @@ const Landingv2: React.FC = () => {
                           </Button>
                         </CardContent>
                       </Card>
-                      <div className="absolute top-[5100px] right-0 hidden lg:block">
+                      <div className="absolute top-[5050px] right-0 hidden lg:block">
                         <Image
                           src="/images/suncloud.svg"
                           alt="Cara Kerja"
@@ -434,7 +447,7 @@ const Landingv2: React.FC = () => {
             </div>
           </div>
           <section>
-            <div className="container mx-auto px-4 md:px-6 py-16">
+            <div className="container mx-auto px-4 md:px-6 py-44">
               <div className="flex items-center gap-24">
                 <div>
                   <Image
@@ -465,6 +478,58 @@ const Landingv2: React.FC = () => {
             </div>
           </section>
         </section>
+        {/* footer */}
+        <footer className="bg-[#191919] text-white py-12">
+          <div>
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="flex flex-col items-center md:items-start gap-5">
+                  <div className="flex items-center gap-5">
+                    <Image
+                      src="/images/logo.svg"
+                      alt="Bahasa Kita Logo"
+                      width={85.82}
+                      height={56}
+                    ></Image>
+                    <h3 className="text-xl font-bold">Bahasa Kita</h3>
+                  </div>
+                  <p className="text-white">
+                    Making language learning fun, engaging, and effective
+                    through gamification.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+                  <ul className="space-y-2">
+                    {quickLinks.map((link) => (
+                      <li key={link.to}>
+                        <Link
+                          href={link.to}
+                          className="text-white hover:scale-105 transition-transform"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-4">Features</h4>
+                  <ul className="space-y-2">
+                    {featuresList.map((item) => (
+                      <li key={item}>
+                        <span className="text-white">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="border-t border-indigo-800 mt-8 pt-8 text-center text-indigo-200">
+                <p>© 2025 Bahasa Kita. All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );
