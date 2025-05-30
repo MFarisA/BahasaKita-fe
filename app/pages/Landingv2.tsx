@@ -88,9 +88,9 @@ const Landingv2: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      {/* navbar */}
-      <div className="bg-[url('/images/union.svg')] bg-cover bg-center bg-no-repeat">
-        <section className="container mx-auto px-4 md:px-6 py-6 lg:pt-10">
+      <div className="bg-[url('/images/union.svg')] bg-contain bg-top bg-no-repeat">
+      <section className="sticky top-0 z-50 bg-white/0 backdrop-blur-md">
+        <div className="container mx-auto px-4 md:px-6 py-6 lg:pt-10  ">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
               <Image
@@ -128,7 +128,9 @@ const Landingv2: React.FC = () => {
               </Link>{" "}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+      {/* navbar */}
         {/* Hero Section */}
         <section className="relative pt-16 md:pt-20 lg:pt-32">
           <div className="container mx-auto px-4 md:px-6">
@@ -204,266 +206,266 @@ const Landingv2: React.FC = () => {
             ></Image>
           </div>
         </section>
-      </div>
 
-      {/* about us */}
-      <section className="py-16 md:py-44">
-        <div className="container mx-auto">
-          <div className=" flex flex-col items-center text-center">
-            <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
-              - Apa itu bahasa kita? -
-            </h2>
-            <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-indigo-900">
-              Bahasa Kita is Your Gateway to Language
-              <br />
-              <span>
-                Mastery! Unlock the world of{" "}
-                <span className="text-yellow-500">languages</span> where
-              </span>
-              <br />
-              every word opens a new door to cultural
-              <br />
-              <span>
-                {" "}
-                <span className="text-yellow-500">richness</span> and global
-                connections.
-              </span>
-            </h1>
-            <p className="text-md max-w-[900px] leading-tight text-gray-700 pt-10">
-              Lorem ipsum dolor sit amet consectetur. Vitae accumsan orci nunc
-              interdum justo vulputate. Iaculis euismod convallis nibh magna
-              pulvinar quis ut. Tortor consectetur dolor elit nullam metus duis.
-              Sed morbi dui malesuada ut luctus morbi. Eget nulla viverra nisl
-              non nunc malesuada consectetur.Feugiat ut scelerisque fames
-              ultricies sit. Urna malesuada mollis in cursus tellus enim
-              elementum felis faucibus. Lobortis nulla velit malesuada tellus.
-              Commodo aliquet nullam amet eros quam.
-            </p>
+        {/* about us */}
+        <section className="py-16 md:py-44">
+          <div className="container mx-auto">
+            <div className=" flex flex-col items-center text-center">
+              <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
+                - Apa itu bahasa kita? -
+              </h2>
+              <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-indigo-900">
+                Bahasa Kita is Your Gateway to Language
+                <br />
+                <span>
+                  Mastery! Unlock the world of{" "}
+                  <span className="text-yellow-500">languages</span> where
+                </span>
+                <br />
+                every word opens a new door to cultural
+                <br />
+                <span>
+                  {" "}
+                  <span className="text-yellow-500">richness</span> and global
+                  connections.
+                </span>
+              </h1>
+              <p className="text-md max-w-[900px] leading-tight text-gray-700 pt-10">
+                Lorem ipsum dolor sit amet consectetur. Vitae accumsan orci nunc
+                interdum justo vulputate. Iaculis euismod convallis nibh magna
+                pulvinar quis ut. Tortor consectetur dolor elit nullam metus
+                duis. Sed morbi dui malesuada ut luctus morbi. Eget nulla
+                viverra nisl non nunc malesuada consectetur.Feugiat ut
+                scelerisque fames ultricies sit. Urna malesuada mollis in cursus
+                tellus enim elementum felis faucibus. Lobortis nulla velit
+                malesuada tellus. Commodo aliquet nullam amet eros quam.
+              </p>
+            </div>
           </div>
-        </div>
-        {/* floatig asset hero */}
-        <div className="absolute top-[1500px] left-16 hidden lg:block">
-          <div>
+          {/* floatig asset hero */}
+          <div className="absolute top-[1500px] left-16 hidden lg:block">
+            <div>
+              <Image
+                src="/images/Back to School Doodle Illustration-16.svg"
+                alt="Hero Asset"
+                width={200}
+                height={210}
+              ></Image>
+            </div>
+          </div>
+          <div className="absolute top-[1350px] right-0 hidden lg:block">
             <Image
-              src="/images/Back to School Doodle Illustration-16.svg"
+              src="/images/main2.svg"
               alt="Hero Asset"
-              width={200}
-              height={210}
+              width={300}
+              height={100}
             ></Image>
           </div>
-        </div>
-        <div className="absolute top-[1350px] right-0 hidden lg:block">
-          <Image
-            src="/images/main2.svg"
-            alt="Hero Asset"
-            width={300}
-            height={100}
-          ></Image>
-        </div>
-      </section>
+        </section>
 
-      <section>
-        <div className="bg-[url('/images/grid.svg')] bg-cover bg-center bg-no-repeat">
-          <div className="bg-[url('/images/path.svg')] bg-cover bg-top bg-no-repeat">
-            <div className="container mx-auto px-4 md:px-6 py-16 lg:pt-56">
-              <div className=" flex flex-col items-center text-center">
-                <h2 className="text-2xl font-semibold text-white mb-5">
-                  - Pilihan Bahasa -
-                </h2>
-                <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-white">
-                  Embark on Your Language Odyssey
-                  <br />
-                  Explore Our Learning Pathway
-                </h1>
+        <section>
+          <div className="bg-[url('/images/grid.svg')] bg-cover bg-center bg-no-repeat">
+            <div className="bg-[url('/images/path.svg')] bg-cover bg-top bg-no-repeat">
+              <div className="container mx-auto px-4 md:px-6 py-16 lg:pt-56">
+                <div className=" flex flex-col items-center text-center">
+                  <h2 className="text-2xl font-semibold text-white mb-5">
+                    - Pilihan Bahasa -
+                  </h2>
+                  <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-white">
+                    Embark on Your Language Odyssey
+                    <br />
+                    Explore Our Learning Pathway
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <div className="bg-[url('/images/path2.svg')] bg-cover bg-bottom bg-no-repeat">
+              <div className="container mx-auto px-4 md:px-6 lg:pb-56">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {localLanguages.map((feature, index) => {
+                    return (
+                      <Card
+                        key={index}
+                        className="bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow"
+                      >
+                        <CardHeader>
+                          <CardTitle className="lg:text-2xl lg:font-bold">
+                            {feature.name}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="text-slate-600 pb-4">
+                            {feature.description}
+                          </p>
+                          <Button size={"lg"} className="bg-yellow-500">
+                            <div className="text-md font-semibold">
+                              Mulai Belajar
+                            </div>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
-          <div className="bg-[url('/images/path2.svg')] bg-cover bg-bottom bg-no-repeat">
-            <div className="container mx-auto px-4 md:px-6 lg:pb-56">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {localLanguages.map((feature, index) => {
-                  return (
-                    <Card
-                      key={index}
-                      className="bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow"
-                    >
-                      <CardHeader>
-                        <CardTitle className="lg:text-2xl lg:font-bold">
-                          {feature.name}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-slate-600 pb-4">
-                          {feature.description}
-                        </p>
-                        <Button size={"lg"} className="bg-yellow-500">
-                          <div className="text-md font-semibold">
-                            Mulai Belajar
-                          </div>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
+        </section>
+        {/* cara kerja */}
+        <section>
+          <div className="container mx-auto px-4 md:px-6 py-16 lg:py-[180px]">
+            <div className=" flex flex-col items-center text-center">
+              <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
+                - Cara Kerja -
+              </h2>
+              <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-indigo-900">
+                Embark on your language learning <br />
+                journey with Bahasa Kita
+              </h1>
             </div>
-          </div>
-        </div>
-      </section>
-      {/* cara kerja */}
-      <section>
-        <div className="container mx-auto px-4 md:px-6 py-16 lg:py-[180px]">
-          <div className=" flex flex-col items-center text-center">
-            <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
-              - Cara Kerja -
-            </h2>
-            <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-indigo-900">
-              Embark on your language learning <br />
-              journey with Bahasa Kita
-            </h1>
-          </div>
-          <div className="">
-            <div className="bg-[url('/images/Ellipse1.svg')] bg-no-repeat bg-center bg-contain">
-              <section className="mt-28">
-                <div className="grid grid-cols-4 w-full">
-                  <div className="col-span-2">
-                    <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
-                      <CardHeader className="text-center">
-                        <CardTitle className="lg:text-5xl lg:font-semibold">
-                          Sign Up For Free
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="text-center">
-                        <p className="text-slate-600 pb-4">
-                          Lorem, ipsum dolor sit amet consectetur adipisicing
-                          elit. Labore nam deserunt quisquam temporibus, maxime
-                          recusandae? Animi vitae veniam ab molestias nesciunt,
-                          quo omnis! Ea sapiente voluptatem quos itaque minima
-                          quasi.
-                        </p>
-                        <Button size={"lg"} className="bg-yellow-500">
-                          <div className="text-md font-semibold">
-                            Mulai Belajar
-                          </div>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </div>
-                  <div className="absolute top-[3600px] right-0 hidden lg:block">
-                    <Image
-                      src="/images/rocket.svg"
-                      alt="Cara Kerja"
-                      width={300}
-                      height={400}
-                    ></Image>
-                  </div>
-                </div>
-              </section>
-              <section className="mt-80">
-                <div className="grid grid-cols-4 w-full">
-                  <div className="absolute top-[4300px] left-10 hidden lg:block">
-                    <Image
-                      src="/images/cloud.svg"
-                      alt="Cara Kerja"
-                      width={456}
-                      height={307.73}
-                    ></Image>
-                  </div>
-                  <div className="col-start-3 col-span-2">
-                    <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
-                      <CardHeader className="text-center">
-                        <CardTitle className="lg:text-5xl lg:font-semibold">
-                          Sign Up For Free
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="text-center">
-                        <p className="text-slate-600 pb-4">
-                          Lorem, ipsum dolor sit amet consectetur adipisicing
-                          elit. Labore nam deserunt quisquam temporibus, maxime
-                          recusandae? Animi vitae veniam ab molestias nesciunt,
-                          quo omnis! Ea sapiente voluptatem quos itaque minima
-                          quasi.
-                        </p>
-                        <Button size={"lg"} className="bg-yellow-500">
-                          <div className="text-md font-semibold">
-                            Mulai Belajar
-                          </div>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
-              </section>
-              <section className="mt-80">
-                <div className="grid grid-cols-4 w-full">
-                  <div className="col-span-2">
-                    <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
-                      <CardHeader className="text-center">
-                        <CardTitle className="lg:text-5xl lg:font-semibold">
-                          Sign Up For Free
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="text-center">
-                        <p className="text-slate-600 pb-4">
-                          Lorem, ipsum dolor sit amet consectetur adipisicing
-                          elit. Labore nam deserunt quisquam temporibus, maxime
-                          recusandae? Animi vitae veniam ab molestias nesciunt,
-                          quo omnis! Ea sapiente voluptatem quos itaque minima
-                          quasi.
-                        </p>
-                        <Button size={"lg"} className="bg-yellow-500">
-                          <div className="text-md font-semibold">
-                            Mulai Belajar
-                          </div>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                    <div className="absolute top-[5100px] right-0 hidden lg:block">
+            <div className="">
+              <div className="bg-[url('/images/Ellipse1.svg')] bg-no-repeat bg-center bg-contain">
+                <section className="mt-28">
+                  <div className="grid grid-cols-4 w-full">
+                    <div className="col-span-2">
+                      <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
+                        <CardHeader className="text-center">
+                          <CardTitle className="lg:text-5xl lg:font-semibold">
+                            Sign Up For Free
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="text-center">
+                          <p className="text-slate-600 pb-4">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Labore nam deserunt quisquam temporibus,
+                            maxime recusandae? Animi vitae veniam ab molestias
+                            nesciunt, quo omnis! Ea sapiente voluptatem quos
+                            itaque minima quasi.
+                          </p>
+                          <Button size={"lg"} className="bg-yellow-500">
+                            <div className="text-md font-semibold">
+                              Mulai Belajar
+                            </div>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </div>
+                    <div className="absolute top-[3600px] right-0 hidden lg:block">
                       <Image
-                        src="/images/suncloud.svg"
+                        src="/images/rocket.svg"
                         alt="Cara Kerja"
                         width={300}
                         height={400}
                       ></Image>
                     </div>
                   </div>
-                </div>
-              </section>
+                </section>
+                <section className="mt-80">
+                  <div className="grid grid-cols-4 w-full">
+                    <div className="absolute top-[4300px] left-10 hidden lg:block">
+                      <Image
+                        src="/images/cloud.svg"
+                        alt="Cara Kerja"
+                        width={456}
+                        height={307.73}
+                      ></Image>
+                    </div>
+                    <div className="col-start-3 col-span-2">
+                      <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
+                        <CardHeader className="text-center">
+                          <CardTitle className="lg:text-5xl lg:font-semibold">
+                            Sign Up For Free
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="text-center">
+                          <p className="text-slate-600 pb-4">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Labore nam deserunt quisquam temporibus,
+                            maxime recusandae? Animi vitae veniam ab molestias
+                            nesciunt, quo omnis! Ea sapiente voluptatem quos
+                            itaque minima quasi.
+                          </p>
+                          <Button size={"lg"} className="bg-yellow-500">
+                            <div className="text-md font-semibold">
+                              Mulai Belajar
+                            </div>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </div>
+                </section>
+                <section className="mt-80">
+                  <div className="grid grid-cols-4 w-full">
+                    <div className="col-span-2">
+                      <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow h-96">
+                        <CardHeader className="text-center">
+                          <CardTitle className="lg:text-5xl lg:font-semibold">
+                            Sign Up For Free
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="text-center">
+                          <p className="text-slate-600 pb-4">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Labore nam deserunt quisquam temporibus,
+                            maxime recusandae? Animi vitae veniam ab molestias
+                            nesciunt, quo omnis! Ea sapiente voluptatem quos
+                            itaque minima quasi.
+                          </p>
+                          <Button size={"lg"} className="bg-yellow-500">
+                            <div className="text-md font-semibold">
+                              Mulai Belajar
+                            </div>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                      <div className="absolute top-[5100px] right-0 hidden lg:block">
+                        <Image
+                          src="/images/suncloud.svg"
+                          alt="Cara Kerja"
+                          width={300}
+                          height={400}
+                        ></Image>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
-        </div>
-        <section>
-          <div className="container mx-auto px-4 md:px-6 py-16">
-            <div className="flex items-center gap-24">
-              <div>
-                <Image
-                  src="/images/Mask group.png"
-                  alt="testimoni "
-                  width={566}
-                  height={503}
-                  objectFit="fit"
-                ></Image>
-              </div>
-              <div className="flex flex-col justify-center items-start gap-9">
+          <section>
+            <div className="container mx-auto px-4 md:px-6 py-16">
+              <div className="flex items-center gap-24">
                 <div>
-                  <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
-                    - Testimoni -
-                  </h2>
-                  <h1 className="text-2xl max-w-[900px] md:text-3xl lg:text-6xl/normal font-semibold text-indigo-900 mb-4">
-                    Voices of Success What Learners Love About Leranis
-                  </h1>
+                  <Image
+                    src="/images/Mask group.png"
+                    alt="testimoni "
+                    width={566}
+                    height={503}
+                    objectFit="fit"
+                  ></Image>
                 </div>
-                <p className="text-2xl max-w-[700px] leading-normal text-gray-700">
-                  I can't express how grateful I am to Leranis for making
-                  language learning such a delightful experience. The
-                  interactive lessons, personalized feedback, and engaging
-                  native speakers have transformed my journey.
-                </p>
+                <div className="flex flex-col justify-center items-start gap-9">
+                  <div>
+                    <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
+                      - Testimoni -
+                    </h2>
+                    <h1 className="text-2xl max-w-[900px] md:text-3xl lg:text-6xl/normal font-semibold text-indigo-900 mb-4">
+                      Voices of Success What Learners Love About Leranis
+                    </h1>
+                  </div>
+                  <p className="text-2xl max-w-[700px] leading-normal text-gray-700">
+                    I can't express how grateful I am to Leranis for making
+                    language learning such a delightful experience. The
+                    interactive lessons, personalized feedback, and engaging
+                    native speakers have transformed my journey.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </section>
         </section>
-      </section>
+      </div>
     </div>
   );
 };
