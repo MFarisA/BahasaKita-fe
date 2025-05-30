@@ -29,7 +29,6 @@ import {
 } from "../data/progressDashboardData";
 import { Achievement, LeaderboardEntry, StreakData } from "../types/progress";
 import NavbarHome from "../components/common/NavbarHome";
-import { notificationsData } from "../data/notificationsData";
 
 interface ProgressDashboardProps {
   achievements?: Achievement[];
@@ -62,7 +61,6 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
       <NavbarHome
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
-        notifications={notificationsData}
       />
       <div className="w-full max-w-7xl mx-auto p-4">
         <h1 className="text-3xl font-bold mb-6 text-center text-indigo-900">

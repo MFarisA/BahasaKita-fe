@@ -19,7 +19,7 @@ interface NavbarProps {
 const menus = [
   { name: "Lessons", label: "Lessons" },
   { name: "My Progress", label: "My Progress" },
-  { name: "Tentang Kita", label: "Tentang Kita" },
+  { name: "Cultural Content", label: "Cultural Content" },
   { name: "Community", label: "Community" },
 ];
 
@@ -79,7 +79,7 @@ const NavbarHome: React.FC<NavbarProps> = ({
           menuOpen ? "flex" : "hidden"
         } flex-col md:flex md:flex-row flex-wrap justify-center md:justify-start items-center gap-4 md:gap-10 w-full md:w-auto mt-2 md:mt-0`}
       >
-        <div className="px-20 mx-12 flex flex-col md:flex-row items-center gap-4 md:gap-10">
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10 px-20">
           {menus.map((menu) => (
             <Link
               href={
@@ -87,6 +87,10 @@ const NavbarHome: React.FC<NavbarProps> = ({
                   ? "/?route=progress-dashboard"
                   : menu.name === "Lessons"
                   ? "/?route=home"
+                  : menu.name === "Cultural Content"
+                  ? "/?route=culture-content"
+                  : menu.name === "Community"
+                  ? "/?route=community-forum"
                   : "#"
               }
               key={menu.name}
@@ -104,7 +108,7 @@ const NavbarHome: React.FC<NavbarProps> = ({
         </div>
 
         {/* Right section */}
-        <div className="flex items-center gap-2 md:gap-4 mt-2 md:mt-0">
+        <div className="flex items-center gap-2 md:gap-4 mt-2 md:mt-0 mx-4 px-10">
           {/* Language Button */}
           <button className="flex items-center gap-2 px-2 py-1 md:px-3 md:py-1 rounded-lg border border-indigo-300 bg-white text-indigo-900 hover:bg-indigo-50 transition text-sm md:text-base">
             <Image
@@ -116,7 +120,6 @@ const NavbarHome: React.FC<NavbarProps> = ({
             />
             <span className="font-medium sm:inline">Language</span>
           </button>
-          <NotificationsMenu notifications={notifications} />
           <SettingsMenu />
         </div>
       </nav>

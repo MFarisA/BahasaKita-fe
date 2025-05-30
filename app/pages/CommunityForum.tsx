@@ -32,9 +32,11 @@ import {
 import { forumThreadsData, ForumThread } from "../data/forumThreadsData";
 import { popularTagsData } from "../data/popularTagsData";
 import ThreadCard from "../components/common/ThreadCard";
+import NavbarHome from "../components/common/NavbarHome";
 
 const CommunityForum: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeMenu, setActiveMenu] = useState<string>("home"); // Add this line
 
   // Data diimpor dari file data
   const forumThreads: ForumThread[] = forumThreadsData;
@@ -51,7 +53,12 @@ const CommunityForum: React.FC = () => {
   );
 
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-indigo-50 min-h-screen p-4 md:p-8">
+     <div className="min-h-screen bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
+   
+      <NavbarHome
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+      />
       <div className="max-w-6xl mx-auto">
         <header className="text-center mb-12">
           <div className="inline-block rounded-full bg-indigo-100 p-2 mb-4">

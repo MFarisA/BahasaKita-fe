@@ -12,7 +12,7 @@ import { Settings } from "lucide-react";
 const SettingsMenu: React.FC = () => (
   <DropdownMenu>
     <DropdownMenuTrigger asChild>
-      <Button variant="outline" className="bg-indigo-900 border-none">
+      <Button variant="outline" className="bg-indigo-900 border-none hover:bg-indigo-700">
         <Settings className="h-5 w-5 text-white" />
       </Button>
     </DropdownMenuTrigger>

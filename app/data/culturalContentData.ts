@@ -7,7 +7,7 @@ export const culturalContentData: CulturalContentData = {
       title: "Roro Jonggrang",
       excerpt:
         "Legenda Jawa tentang asal-usul Candi Prambanan dan kutukan sang putri...",
-      imageUrl: "/images/roro-jonggrang.jpg",
+      imageUrl: "/images/rorojonggrang.jpg",
       language: "Jawa",
     },
     {
@@ -23,7 +23,7 @@ export const culturalContentData: CulturalContentData = {
       title: "Malin Kundang",
       excerpt:
         "Kisah anak durhaka dari Sumatera Barat yang dikutuk menjadi batu...",
-      imageUrl: "/images/malin-kundang.jpg",
+      imageUrl: "/images/malinkundang.jpg",
       language: "Minangkabau",
     },
   ],
