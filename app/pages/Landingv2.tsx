@@ -263,47 +263,49 @@ const Landingv2: React.FC = () => {
       </section>
 
       <section>
-        <div className="bg-[url('/images/path.svg')] bg-cover bg-top bg-no-repeat">
-          <div className="container mx-auto px-4 md:px-6 py-16 lg:pt-56">
-            <div className=" flex flex-col items-center text-center">
-              <h2 className="text-2xl font-semibold text-white mb-5">
-                - Pilihan Bahasa -
-              </h2>
-              <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-white">
-                Embark on Your Language Odyssey
-                <br />
-                Explore Our Learning Pathway
-              </h1>
+        <div className="bg-[url('/images/grid.svg')] bg-cover bg-center bg-no-repeat">
+          <div className="bg-[url('/images/path.svg')] bg-cover bg-top bg-no-repeat">
+            <div className="container mx-auto px-4 md:px-6 py-16 lg:pt-56">
+              <div className=" flex flex-col items-center text-center">
+                <h2 className="text-2xl font-semibold text-white mb-5">
+                  - Pilihan Bahasa -
+                </h2>
+                <h1 className="text-2xl md:text-3xl lg:text-5xl/normal font-semibold text-white">
+                  Embark on Your Language Odyssey
+                  <br />
+                  Explore Our Learning Pathway
+                </h1>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="bg-[url('/images/path2.svg')] bg-cover bg-bottom bg-no-repeat">
-          <div className="container mx-auto px-4 md:px-6 lg:pb-56">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {localLanguages.map((feature, index) => {
-                return (
-                  <Card
-                    key={index}
-                    className="bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow"
-                  >
-                    <CardHeader>
-                      <CardTitle className="lg:text-2xl lg:font-bold">
-                        {feature.name}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-slate-600 pb-4">
-                        {feature.description}
-                      </p>
-                      <Button size={"lg"} className="bg-yellow-500">
-                        <div className="text-md font-semibold">
-                          Mulai Belajar
-                        </div>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                );
-              })}
+          <div className="bg-[url('/images/path2.svg')] bg-cover bg-bottom bg-no-repeat">
+            <div className="container mx-auto px-4 md:px-6 lg:pb-56">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {localLanguages.map((feature, index) => {
+                  return (
+                    <Card
+                      key={index}
+                      className="bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow"
+                    >
+                      <CardHeader>
+                        <CardTitle className="lg:text-2xl lg:font-bold">
+                          {feature.name}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-slate-600 pb-4">
+                          {feature.description}
+                        </p>
+                        <Button size={"lg"} className="bg-yellow-500">
+                          <div className="text-md font-semibold">
+                            Mulai Belajar
+                          </div>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -417,13 +419,13 @@ const Landingv2: React.FC = () => {
                       </CardContent>
                     </Card>
                     <div className="absolute top-[5100px] right-0 hidden lg:block">
-                    <Image
-                      src="/images/suncloud.svg"
-                      alt="Cara Kerja"
-                      width={300}
-                      height={400}
-                    ></Image>
-                  </div>
+                      <Image
+                        src="/images/suncloud.svg"
+                        alt="Cara Kerja"
+                        width={300}
+                        height={400}
+                      ></Image>
+                    </div>
                   </div>
                 </div>
               </section>
@@ -431,39 +433,33 @@ const Landingv2: React.FC = () => {
           </div>
         </div>
         <section>
-          <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-16 p-8 lg:p-12 max-w-6xl mx-auto">
-            <div className="flex-shrink-0">
-              <div className="relative w-32 h-32 lg:w-40 lg:h-40">
-                <div className="absolute top-0 left-0 w-12 h-12 lg:w-16 lg:h-16 bg-black rounded-sm"></div>
-                <div className="absolute top-0 right-0 w-12 h-12 lg:w-16 lg:h-16 bg-black rounded-sm"></div>
-
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 lg:w-16 lg:h-16 bg-black rounded-sm"></div>
-                <div className="absolute top-1/2 right-0 w-8 h-8 lg:w-12 lg:h-12 bg-black rounded-sm"></div>
-
-                <div className="absolute bottom-0 left-0 w-12 h-12 lg:w-16 lg:h-16 bg-black rounded-sm"></div>
-                <div className="absolute bottom-0 right-0 w-12 h-12 lg:w-16 lg:h-16 bg-black rounded-sm"></div>
+          <div className="container mx-auto px-4 md:px-6 py-16">
+            <div className="flex items-center gap-24">
+              <div>
+                <Image
+                  src="/images/Mask group.png"
+                  alt="testimoni "
+                  width={566}
+                  height={503}
+                  objectFit="fit"
+                ></Image>
               </div>
-            </div>
-
-            <div className="flex-1 space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="h-px bg-purple-400 w-12"></div>
-                <span className="text-purple-400 font-medium text-sm tracking-wider uppercase">
-                  Testimonial
-                </span>
-                <div className="h-px bg-purple-400 w-12"></div>
+              <div className="flex flex-col justify-center items-start gap-9">
+                <div>
+                  <h2 className="text-2xl font-semibold text-indigo-500 mb-5">
+                    - Testimoni -
+                  </h2>
+                  <h1 className="text-2xl max-w-[900px] md:text-3xl lg:text-6xl/normal font-semibold text-indigo-900 mb-4">
+                    Voices of Success What Learners Love About Leranis
+                  </h1>
+                </div>
+                <p className="text-2xl max-w-[700px] leading-normal text-gray-700">
+                  I can't express how grateful I am to Leranis for making
+                  language learning such a delightful experience. The
+                  interactive lessons, personalized feedback, and engaging
+                  native speakers have transformed my journey.
+                </p>
               </div>
-
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
-                Voices of Success What Learners Love About Leranis
-              </h2>
-
-              <blockquote className="text-lg lg:text-xl text-gray-600 italic leading-relaxed">
-                "I can't express how grateful I am to Leranis for making
-                language learning such a delightful experience. The interactive
-                lessons, personalized feedback, and engaging native speakers
-                have transformed my journey."
-              </blockquote>
             </div>
           </div>
         </section>
