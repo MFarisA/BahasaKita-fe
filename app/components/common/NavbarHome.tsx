@@ -79,7 +79,7 @@ const NavbarHome: React.FC<NavbarProps> = ({
           menuOpen ? "flex" : "hidden"
         } flex-col md:flex md:flex-row flex-wrap justify-center md:justify-start items-center gap-4 md:gap-10 w-full md:w-auto mt-2 md:mt-0`}
       >
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10 px-20">
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10 px-4">
           {menus.map((menu) => (
             <Link
               href={
@@ -120,6 +120,7 @@ const NavbarHome: React.FC<NavbarProps> = ({
             />
             <span className="font-medium sm:inline">Language</span>
           </button>
+          <NotificationsMenu notifications={notifications} />
           <SettingsMenu />
         </div>
       </nav>

@@ -20,6 +20,7 @@ import { Button } from "../components/ui/button";
 import { culturalContentData } from "../data/culturalContentData";
 import { CulturalContentData } from "../types/culturalContent";
 import NavbarHome from "../components/common/NavbarHome";
+import { notificationsData } from "../data/notificationsData";
 
 interface CultureContentProps {
   language?: string;
@@ -30,15 +31,17 @@ const CultureContent: React.FC<CultureContentProps> = ({
 }) => {
   // Data diimpor dari file data
   const culturalContent: CulturalContentData = culturalContentData;
-  // Tambahkan state untuk activeMenu
   const [activeMenu, setActiveMenu] = React.useState("Cultural Content");
+
+  // Notifikasi
+  const notifications = notificationsData;
 
   return (
     <div className="min-h-screen bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
-   
       <NavbarHome
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
+        notifications={notifications}
       />
       <div className="min-h-screen p-4 md:p-8">
         <div className="max-w-6xl mx-auto">

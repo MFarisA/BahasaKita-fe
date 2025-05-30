@@ -31,12 +31,14 @@ import {
 // import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 import { forumThreadsData, ForumThread } from "../data/forumThreadsData";
 import { popularTagsData } from "../data/popularTagsData";
+import { notificationsData } from "../data/notificationsData";
 import ThreadCard from "../components/common/ThreadCard";
 import NavbarHome from "../components/common/NavbarHome";
 
 const CommunityForum: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeMenu, setActiveMenu] = useState<string>("home"); // Add this line
+  const [activeMenu, setActiveMenu] = useState<string>("Community");
+  const notifications = notificationsData;
 
   // Data diimpor dari file data
   const forumThreads: ForumThread[] = forumThreadsData;
@@ -54,10 +56,10 @@ const CommunityForum: React.FC = () => {
 
   return (
      <div className="min-h-screen bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
-   
       <NavbarHome
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
+        notifications={notifications}
       />
       <div className="max-w-6xl mx-auto">
         <header className="text-center mb-12">
