@@ -119,40 +119,6 @@ const LessonView = ({
 
   const [lessonProgress, setLessonProgress] = useState(lessons);
 
-  // Ambil progress dari localStorage jika ada
-  React.useEffect(() => {
-    const saved = localStorage.getItem("lessonProgress");
-    if (saved) {
-      setLessonProgress(JSON.parse(saved));
-    }
-  }, []);
-
-  // Simpan progress ke localStorage setiap kali berubah
-  React.useEffect(() => {
-    localStorage.setItem("lessonProgress", JSON.stringify(lessonProgress));
-  }, [lessonProgress]);
-
-  // Fungsi untuk menandai lesson selesai dan membuka lesson berikutnya
-  const markLessonCompleted = (lessonId: number) => {
-    setLessonProgress((prev) => {
-      return prev.map((l, idx, arr) => {
-        if (l.id === lessonId) {
-          return { ...l, completed: true, current: false };
-        }
-        if (arr[idx - 1] && arr[idx - 1].id === lessonId) {
-          // Lesson berikutnya setelah yang selesai
-          return { ...l, current: true };
-        }
-        return l;
-      });
-    });
-  };
-  // Export agar bisa dipanggil dari LevelView jika perlu
-  React.useEffect(() => {
-    // @ts-ignore
-    window.markLessonCompleted = markLessonCompleted;
-  }, [lessonProgress]);
-
   return (
     <div className="min-h-screen">
       {/* Tampilkan NavbarHome hanya jika hideNavbar tidak true */}
