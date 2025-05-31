@@ -131,7 +131,7 @@ const LessonView = ({
           />
         </div>
       )}
-      <div className="flex flex-col lg:flex-row max-w-6xl mx-auto gap-6">
+      <div className="flex flex-col lg:flex-row mx-auto gap-6">
         {/* Main lesson path */}
         <div className="flex-1 p-4 md:p-8 relative">
           <div className="relative max-w-md mx-auto">

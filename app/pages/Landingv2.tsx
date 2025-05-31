@@ -181,9 +181,9 @@ const Landingv2: React.FC = () => {
             </div>
           </section>
           {/* floating asset hero */}
-          <div className="absolute top-20 left-0 hidden lg:block xl:top-80">
+          <div className="absolute top-20 left-10 hidden lg:block xl:top-80">
             <Image
-              src="/images/main.svg"
+              src="/images/cloud.svg"
               alt="Hero Asset"
               width={200}
               height={120}
