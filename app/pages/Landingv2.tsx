@@ -43,7 +43,7 @@ const Landingv2: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
+    const handleScroll = () => setScrolled(window.scrollY > 100);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -99,7 +99,7 @@ const Landingv2: React.FC = () => {
         <section
           className={`sticky top-0 z-50 ${
             scrolled
-              ? "bg-white/90 shadow backdrop-blur-md"
+              ? "bg-white shadow backdrop-blur-md"
               : "bg-transparent text-white"
           }`}
         >
@@ -134,7 +134,7 @@ const Landingv2: React.FC = () => {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="bg-indigo-700 border-0 hover:bg-indigo-600 text-white"
+                    className="bg-indigo-700 border-0 hover:bg-indigo-600 text-white transition-transform hover:scale-105 hover:font-semibold"
                   >
                     Registrasi / Masuk
                   </Button>
@@ -150,7 +150,7 @@ const Landingv2: React.FC = () => {
           </div>
         </section>
         {/* Hero Section */}
-        <section className="relative pt-16 md:pt-20 lg:pt-32 pb-12 md:pb-24">
+        <section className="relative pt-16 md:pt-20 lg:pt-32`">
           <div className="container mx-auto px-4 md:px-6">
             <div className="space-y-6 lg:space-y-10 text-white text-center">
               <h1 className="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-semibold tracking-tight text-indigo-900 mb-4 md:mb-8">
@@ -209,16 +209,16 @@ const Landingv2: React.FC = () => {
               alt="Hero Asset"
               width={200}
               height={120}
-              className="xl:w-[250px] xl:h-[150px]"
+              className="xl:w-[348.84px] xl:h-[228.01px]"
             ></Image>
           </div>
-          <div className="absolute top-0 right-0 hidden lg:block xl:top-8">
+          <div className="absolute top-0 right-0 hidden lg:block xl:top-0">
             <Image
               src="/images/main-1.svg"
               alt="Hero Asset"
               width={150}
               height={80}
-              className="xl:w-[200px] xl:h-[100px]"
+              className="xl:w-[267.05px] xl:h-[162.12px]"
             ></Image>
           </div>
         </section>
@@ -259,22 +259,24 @@ const Landingv2: React.FC = () => {
             </div>
           </div>
           {/* floating asset about us */}
-          <div className="absolute bottom-0 left-0 hidden lg:block">
+          {/* Hidden on screens smaller than large (lg) */}
+          <div className="absolute bottom-20 left-24 hidden lg:block">
             <Image
               src="/images/Back to School Doodle Illustration-16.svg"
               alt="Hero Asset"
               width={150}
               height={160}
-              className="xl:w-[200px] xl:h-[210px]"
+              className="xl:w-[220px] xl:h-[242px]"
             ></Image>
           </div>
-          <div className="absolute top-[1350px] right-0 hidden lg:block">
+          {/* Hidden on screens smaller than large (lg) */}
+          <div className="absolute bottom-24 right-0 hidden lg:block">
             <Image
-              src="/images/main2.svg"
+              src="/images/main.svg"
               alt="Hero Asset"
               width={250}
               height={80}
-              className="xl:w-[300px] xl:h-[100px]"
+              className="xl:w-[400px] xl:h-[200px]"
             ></Image>
           </div>
         </section>
@@ -302,7 +304,7 @@ const Landingv2: React.FC = () => {
                     return (
                       <Card
                         key={index}
-                        className="bg-white/90 backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow"
+                        className="bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow"
                       >
                         <CardHeader>
                           <CardTitle className="text-xl lg:text-2xl font-bold">
@@ -341,12 +343,13 @@ const Landingv2: React.FC = () => {
             </div>
             <div className="relative">
               {/* Ellipse background for larger screens */}
-              <div className="hidden lg:block absolute inset-0 bg-[url('/images/Ellipse1.svg')] bg-no-repeat bg-center bg-contain opacity-50"></div>
+              {/* Hidden on screens smaller than large (lg) */}
+              <div className="hidden lg:block absolute inset-0 bg-[url('/images/Ellipse1.svg')] bg-no-repeat bg-center bg-contain"></div>
 
               <section className="mt-12 md:mt-20 lg:mt-28 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                   <div className="lg:col-span-1">
-                    <Card className="flex flex-col justify-center bg-white/90 backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow p-6 h-auto min-h-[250px] md:min-h-[300px] lg:min-h-[384px]">
+                    <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow p-6 h-auto min-h-[250px] md:min-h-[300px] lg:min-h-[384px]">
                       <CardHeader className="text-center">
                         <CardTitle className="text-3xl md:text-4xl lg:text-5xl font-semibold">
                           Sign Up For Free
@@ -368,12 +371,13 @@ const Landingv2: React.FC = () => {
                       </CardContent>
                     </Card>
                   </div>
-                  <div className="hidden lg:flex justify-center items-center lg:col-span-1">
+                  {/* Hidden on screens smaller than large (lg) */}
+                  <div className="hidden lg:flex justify-end items-center lg:col-span-1">
                     <Image
                       src="/images/rocket.svg"
                       alt="Cara Kerja"
-                      width={250}
-                      height={350}
+                      width={350}
+                      height={450}
                       className="object-contain"
                     ></Image>
                   </div>
@@ -382,17 +386,18 @@ const Landingv2: React.FC = () => {
 
               <section className="mt-16 md:mt-24 lg:mt-48 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-                  <div className="hidden lg:flex justify-center items-center lg:col-span-1">
+                  {/* Hidden on screens smaller than large (lg) */}
+                  <div className="hidden lg:flex justify-start items-center lg:col-span-1">
                     <Image
                       src="/images/cloud.svg"
                       alt="Cara Kerja"
-                      width={350}
-                      height={250}
+                      width={450}
+                      height={350}
                       className="object-contain"
                     ></Image>
                   </div>
                   <div className="lg:col-span-1">
-                    <Card className="flex flex-col justify-center bg-white/90 backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow p-6 h-auto min-h-[250px] md:min-h-[300px] lg:min-h-[384px]">
+                    <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow p-6 h-auto min-h-[250px] md:min-h-[300px] lg:min-h-[384px]">
                       <CardHeader className="text-center">
                         <CardTitle className="text-3xl md:text-4xl lg:text-5xl font-semibold">
                           Engage & Learn
@@ -419,7 +424,7 @@ const Landingv2: React.FC = () => {
               <section className="mt-16 md:mt-24 lg:mt-48 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                   <div className="lg:col-span-1">
-                    <Card className="flex flex-col justify-center bg-white/90 backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow p-6 h-auto min-h-[250px] md:min-h-[300px] lg:min-h-[384px]">
+                    <Card className="flex flex-col justify-center bg-white backdrop-blur-sm border border-black shadow-md hover:shadow-lg transition-shadow p-6 h-auto min-h-[250px] md:min-h-[300px] lg:min-h-[384px]">
                       <CardHeader className="text-center">
                         <CardTitle className="text-3xl md:text-4xl lg:text-5xl font-semibold">
                           Track & Master
@@ -439,13 +444,13 @@ const Landingv2: React.FC = () => {
                       </CardContent>
                     </Card>
                   </div>
-                  <div className="hidden lg:flex justify-center items-center lg:col-span-1">
+                  {/* Hidden on screens smaller than large (lg) */}
+                  <div className="hidden lg:flex justify-end items-center lg:col-span-1">
                     <Image
-                      src="/images/suncloud.svg"
+                      src="/images/Group.png"
                       alt="Cara Kerja"
-                      width={250}
-                      height={350}
-                      className="object-contain"
+                      width={350}
+                      height={450}
                     ></Image>
                   </div>
                 </div>
@@ -464,16 +469,16 @@ const Landingv2: React.FC = () => {
                     className="object-contain lg:w-[566px] lg:h-[503px]"
                   ></Image>
                 </div>
-                <div className="w-full lg:w-1/2 flex flex-col justify-center items-center lg:items-start gap-6 text-center lg:text-left">
+                <div className="w-full lg:w-2/3 flex flex-col justify-center items-center lg:items-start gap-6 text-center lg:text-left">
                   <div>
                     <h2 className="text-xl md:text-2xl font-semibold text-indigo-500 mb-3 md:mb-5">
                       - Testimoni -
                     </h2>
                     <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl/normal font-semibold text-indigo-900 mb-4">
-                      Voices of Success What Learners Love About Leranis
+                      Voices of Success What Learners Love About Bahasa Kita
                     </h1>
                   </div>
-                  <p className="text-base md:text-lg lg:text-xl xl:text-2xl max-w-[700px] leading-normal text-gray-700">
+                  <p className="text-base md:text-md lg:text-lg xl:text-xl max-w-[700px] leading-normal text-gray-700">
                     I can't express how grateful I am to Leranis for making
                     language learning such a delightful experience. The
                     interactive lessons, personalized feedback, and engaging
