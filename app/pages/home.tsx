@@ -28,10 +28,10 @@ const Home: React.FC<HomeProps> = ({
     <div className="min-h-screen bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
       {/* Header */}
       <NavbarHome activeMenu={activeMenu} setActiveMenu={setActiveMenu} notifications={notifications} />
-
       {/* Main Content */}
       <main>
-        <LessonView lessonId="default-lesson-id" />
+        {/* Hapus NavbarHome dari LessonView agar tidak double */}
+        <LessonView lessonId="1" hideNavbar={true} />
       </main>
     </div>
   );

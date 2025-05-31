@@ -13,6 +13,7 @@ import {
   Settings,
   Lightbulb,
 } from "lucide-react";
+import { useSearchParams, useRouter } from "next/navigation";
 
 // Mock data for demonstration
 const mockQuestions = [
@@ -96,6 +97,12 @@ const ttsService = {
 };
 
 const ExerciseComponent = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const lessonId = searchParams.get("lessonId") || "";
+  const unitId = searchParams.get("unitId") || undefined;
+  const level = parseInt(searchParams.get("level") || "1", 10);
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
@@ -176,6 +183,16 @@ const ExerciseComponent = () => {
     setTimeSpent(0);
   };
 
+  const handleContinueLearning = () => {
+    if (level < 4) {
+      // Redirect ke LevelView untuk level berikutnya
+      router.push(`/?route=levelview&lessonId=${lessonId}${unitId ? `&unitId=${unitId}` : ""}&level=${level + 1}`);
+    } else {
+      // Jika sudah level terakhir, redirect ke halaman utama lessonview (route=home)
+      router.push(`/?route=home`);
+    }
+  };
+
   if (showSummary) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
@@ -202,7 +219,10 @@ const ExerciseComponent = () => {
             >
               Try Again
             </button>
-            <button className="flex-1 py-3 px-4 bg-green-500 text-white rounded-xl font-bold hover:bg-green-600">
+            <button
+              onClick={handleContinueLearning}
+              className="flex-1 py-3 px-4 bg-green-500 text-white rounded-xl font-bold hover:bg-green-600"
+            >
               Continue Learning
             </button>
           </div>

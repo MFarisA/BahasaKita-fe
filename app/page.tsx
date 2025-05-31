@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import ProgressDashboard from "./pages/ProgressDashboard";
+import LevelView from "./pages/LevelView";
 
 // Import all components
 const LandingPage = dynamic(() => import("./pages/LandingPage"));
@@ -18,12 +19,13 @@ const ExerciseComponent = dynamic(() => import("./pages/ExerciseComponent"));
 export default async function Router({
   searchParams,
 }: {
-  searchParams: Promise<{ route?: string; lessonId?: string; unitId?: string }>;
+  searchParams: Promise<{ route?: string; lessonId?: string; unitId?: string; level?: string }>;
 }) {
   const params = await searchParams;
   const route = params.route || "";
   const lessonId = params.lessonId;
   const unitId = params.unitId;
+  const level = params.level;
 
   // Route mapping
   switch (route) {
@@ -54,6 +56,11 @@ export default async function Router({
         return <div>Lesson ID is required</div>;
       }
       return <LessonView lessonId={lessonId} unitId={unitId} />;
+    case "levelview":
+      if (!lessonId || !level) {
+        return <div>Lesson ID dan level diperlukan</div>;
+      }
+      return <LevelView lessonId={lessonId} unitId={unitId} level={parseInt(level, 10)} />;
     default:
       return <LandingPage />;
   }

@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import ExerciseComponent from "./ExerciseComponent";
+import NavbarHome from "../components/common/NavbarHome";
+import { notificationsData } from "../data/notificationsData";
 
 const VocabularyItem = ({
   word,
@@ -71,10 +73,15 @@ const VocabularyItem = ({
 const LessonView = ({
   lessonId,
   unitId,
+  hideNavbar,
 }: {
   lessonId: string;
   unitId?: string;
+  hideNavbar?: boolean;
 }) => {
+  const [activeMenu, setActiveMenu] = useState("Lesson");
+  const notifications = notificationsData;
+
   const lessons = [
     { id: 1, title: "Greeting 1", completed: true, current: false },
     { id: 2, title: "Greeting 2", completed: true, current: false },
@@ -110,16 +117,52 @@ const LessonView = ({
     { id: 20, title: "Basic", completed: false, current: false },
   ];
 
+  const [lessonProgress, setLessonProgress] = useState(lessons);
+
+  const handleStartOrContinue = (lessonIndex: number) => {
+    setLessonProgress((prev) => {
+      const updated = prev.map((l, idx) => {
+        if (idx === lessonIndex) {
+          return { ...l, completed: true, current: false };
+        }
+        // Hanya set current=true jika lesson berikutnya ada
+        if (idx === lessonIndex + 1 && lessonIndex + 1 < prev.length) {
+          return { ...l, current: true };
+        }
+        return l;
+      });
+      // Redirect ke halaman lesson utama
+      if (typeof window !== "undefined") {
+        window.location.href = "/?route=home";
+      }
+      return updated;
+    });
+  };
+
   return (
     <div className="min-h-screen">
+      {/* Tampilkan NavbarHome hanya jika hideNavbar tidak true */}
+      {!hideNavbar && (
+        <div className="bg-white/80 sticky top-0 z-20">
+          <NavbarHome
+            activeMenu={activeMenu}
+            setActiveMenu={setActiveMenu}
+            notifications={notifications}
+          />
+        </div>
+      )}
       <div className="flex flex-col lg:flex-row max-w-6xl mx-auto gap-6">
         {/* Main lesson path */}
         <div className="flex-1 p-4 md:p-8 relative">
           <div className="relative max-w-md mx-auto">
-            {lessons.map((lesson, index) => {
+            {lessonProgress.map((lesson, index) => {
               const isLeft = index % 2 === 0;
               const yPosition = index * 120;
-
+              // Batasi lesson yang bisa diakses: completed, current, dan lesson berikutnya setelah completed
+              const canAccess =
+                lesson.completed ||
+                lesson.current ||
+                (index > 0 && lessonProgress[index - 1].completed);
               return (
                 <div key={lesson.id} className="relative mb-8">
                   {/* Connecting line */}
@@ -144,38 +187,69 @@ const LessonView = ({
                   >
                     {/* Lesson circle */}
                     <div className="relative flex-shrink-0">
-                      <Link
-                        href={`/?route=exercise&lessonId=${lesson.id}${unitId ? `&unitId=${unitId}` : ""}`}
-                        scroll={false}
-                        className="block"
-                      >
-                        <div
-                          className={`w-16 h-16 rounded-full flex items-center justify-center border-4 border-white shadow-lg cursor-pointer transition-transform hover:scale-105 ${
-                            lesson.current
-                              ? "bg-blue-500 ring-4 ring-blue-200"
-                              : lesson.completed
-                              ? lesson.isCheckpoint
-                                ? "bg-yellow-500"
-                                : "bg-green-500"
-                              : "bg-gray-300"
-                          }`}
+                      {canAccess ? (
+                        <Link
+                          href={`/?route=levelview&lessonId=${lesson.id}&level=1`}
+                          scroll={false}
+                          className="block"
                         >
-                          {lesson.completed && !lesson.isCheckpoint && (
-                            <CheckCircle className="h-8 w-8 text-white" />
-                          )}
-                          {lesson.isCheckpoint && (
-                            <Award className="h-8 w-8 text-white" />
-                          )}
-                          {lesson.current && (
-                            <div className="w-6 h-6 bg-white rounded-full" />
-                          )}
-                          {!lesson.completed &&
-                            !lesson.current &&
-                            !lesson.isCheckpoint && (
-                              <div className="w-6 h-6 bg-gray-500 rounded-full" />
+                          <div
+                            className={`w-16 h-16 rounded-full flex items-center justify-center border-4 border-white shadow-lg cursor-pointer transition-transform hover:scale-105 ${
+                              lesson.current
+                                ? "bg-blue-500 ring-4 ring-blue-200"
+                                : lesson.completed
+                                ? lesson.isCheckpoint
+                                  ? "bg-yellow-500"
+                                  : "bg-green-500"
+                                : "bg-gray-300"
+                            }`}
+                          >
+                            {lesson.completed && !lesson.isCheckpoint && (
+                              <CheckCircle className="h-8 w-8 text-white" />
                             )}
+                            {lesson.isCheckpoint && (
+                              <Award className="h-8 w-8 text-white" />
+                            )}
+                            {lesson.current && (
+                              <div className="w-6 h-6 bg-white rounded-full" />
+                            )}
+                            {!lesson.completed &&
+                              !lesson.current &&
+                              !lesson.isCheckpoint && (
+                                <div className="w-6 h-6 bg-gray-500 rounded-full" />
+                              )}
+                          </div>
+                        </Link>
+                      ) : (
+                        <div className="block opacity-50 cursor-not-allowed">
+                          <div
+                            className={`w-16 h-16 rounded-full flex items-center justify-center border-4 border-white shadow-lg transition-transform ${
+                              lesson.current
+                                ? "bg-blue-500 ring-4 ring-blue-200"
+                                : lesson.completed
+                                ? lesson.isCheckpoint
+                                  ? "bg-yellow-500"
+                                  : "bg-green-500"
+                                : "bg-gray-300"
+                            }`}
+                          >
+                            {lesson.completed && !lesson.isCheckpoint && (
+                              <CheckCircle className="h-8 w-8 text-white" />
+                            )}
+                            {lesson.isCheckpoint && (
+                              <Award className="h-8 w-8 text-white" />
+                            )}
+                            {lesson.current && (
+                              <div className="w-6 h-6 bg-white rounded-full" />
+                            )}
+                            {!lesson.completed &&
+                              !lesson.current &&
+                              !lesson.isCheckpoint && (
+                                <div className="w-6 h-6 bg-gray-500 rounded-full" />
+                              )}
+                          </div>
                         </div>
-                      </Link>
+                      )}
                     </div>
                     {/* Lesson card */}
                     <div
@@ -200,7 +274,10 @@ const LessonView = ({
                           : "Not started"}
                       </p>
                       {lesson.current && (
-                        <button className="mt-3 bg-blue-500 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">
+                        <button
+                          className="mt-3 bg-blue-500 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+                          onClick={() => handleStartOrContinue(index)}
+                        >
                           Continue
                         </button>
                       )}

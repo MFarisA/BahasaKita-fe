@@ -58,8 +58,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
   const notifications = notificationsData;
 
   return (
-     <div className="min-h-screen bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
-   
+    <div className="min-h-screen bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
       <NavbarHome
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
@@ -72,22 +71,27 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
 
         {/* Summary Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-         
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg text-indigo-900">Total XP</CardTitle>
+              <CardTitle className="text-lg text-indigo-900">
+                Total XP
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center">
                 <Star className="h-8 w-8 text-yellow-500 mr-2" />
-                <span className="text-3xl font-bold text-indigo-900">{totalXp}</span>
+                <span className="text-3xl font-bold text-indigo-900">
+                  {totalXp}
+                </span>
               </div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg text-indigo-900">Lessons Completed</CardTitle>
+              <CardTitle className="text-lg text-indigo-900">
+                Lessons Completed
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col">
@@ -95,7 +99,9 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                   <span className="text-3xl font-bold mr-2 text-indigo-900">
                     {completedLessons}
                   </span>
-                  <span className="text-muted-foreground text-indigo-900">/ {totalLessons}</span>
+                  <span className="text-muted-foreground text-indigo-900">
+                    / {totalLessons}
+                  </span>
                 </div>
                 <Progress
                   value={(completedLessons / totalLessons) * 100}
@@ -107,7 +113,9 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
 
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg text-indigo-900">Current Streak</CardTitle>
+              <CardTitle className="text-lg text-indigo-900">
+                Current Streak
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center">
@@ -254,10 +262,14 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                         </div>
                         <Avatar className="h-10 w-10 mr-3">
                           <AvatarImage src={entry.avatar} alt={entry.name} />
-                          <AvatarFallback>{entry.name.charAt(0)}</AvatarFallback>
+                          <AvatarFallback>
+                            {entry.name.charAt(0)}
+                          </AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="font-medium text-indigo-900">{entry.name}</p>
+                          <p className="font-medium text-indigo-900">
+                            {entry.name}
+                          </p>
                           {entry.name === "You" && (
                             <p className="text-xs text-muted-foreground text-indigo-900">
                               Keep it up!
@@ -267,7 +279,9 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                       </div>
                       <div className="flex items-center">
                         <Star className="h-4 w-4 text-yellow-500 mr-1" />
-                        <span className="font-bold text-indigo-900">{entry.points}</span>
+                        <span className="font-bold text-indigo-900">
+                          {entry.points}
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -287,7 +301,9 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           <TabsContent value="proficiency">
             <Card>
               <CardHeader>
-                <CardTitle className="text-indigo-900">Language Proficiency</CardTitle>
+                <CardTitle className="text-indigo-900">
+                  Language Proficiency
+                </CardTitle>
                 <CardDescription className="text-muted-foreground text-indigo-900">
                   Your current level in each language
                 </CardDescription>
@@ -297,12 +313,17 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                   <div key={index} className="space-y-2">
                     <div className="flex justify-between">
                       <div>
-                        <h4 className="font-medium text-indigo-900">{lang.language}</h4>
+                        <h4 className="font-medium text-indigo-900">
+                          {lang.language}
+                        </h4>
                         <p className="text-sm text-muted-foreground text-indigo-900">
                           {lang.level}
                         </p>
                       </div>
-                      <Badge variant={lang.progress > 50 ? "default" : "outline"} className="text-indigo-900 border-indigo-900">
+                      <Badge
+                        variant={lang.progress > 50 ? "default" : "outline"}
+                        className="text-indigo-900 border-indigo-900"
+                      >
                         {lang.progress}%
                       </Badge>
                     </div>
@@ -322,7 +343,9 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                   <Flame className="h-5 w-5 text-orange-500 mr-2" />
                   Your Learning Streak
                 </CardTitle>
-                <CardDescription className="text-indigo-900">Last 7 days of activity</CardDescription>
+                <CardDescription className="text-indigo-900">
+                  Last 7 days of activity
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex justify-between text-indigo-900 font-semibold">
