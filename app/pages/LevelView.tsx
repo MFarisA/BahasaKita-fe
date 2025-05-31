@@ -125,7 +125,7 @@ const LevelView = ({
                       {/* Level Content Card - Responsive */}
                       <div
                         className={`flex-1 w-full max-w-full ${
-                          index % 2 === 0 ? "text-left" : "text-right"
+                          index % 2 === 0 ? "text-left" : "text-left"
                         }`}
                       >
                         <div

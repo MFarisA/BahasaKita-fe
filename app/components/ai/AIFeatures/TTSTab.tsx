@@ -27,36 +27,36 @@ const TTSTab: React.FC<TTSTabProps> = ({ textToSpeak, setTextToSpeak, voices, se
   <Card>
     <CardHeader className="bg-gradient-to-r from-blue-50 to-green-50 border-b border-blue-100">
       <CardTitle className="flex items-center gap-2">
-        <span className="text-xl">🔊</span> Text-to-Speech
+        <span className="text-xl">🔊</span> Teks-to-Speech
       </CardTitle>
       <CardDescription>
-        Convert text to speech for pronunciation practice
+        Ubah teks menjadi suara untuk latihan pelafalan
       </CardDescription>
     </CardHeader>
     <CardContent className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="text-to-speak">Text to speak</Label>
+        <Label htmlFor="text-to-speak">Teks yang akan diucapkan</Label>
         <Textarea
           id="text-to-speak"
-          placeholder="Enter text to be spoken..."
+          placeholder="Masukkan teks yang akan diucapkan..."
           value={textToSpeak}
           onChange={(e) => setTextToSpeak(e.target.value)}
           className="min-h-24"
         />
       </div>
       <div className="space-y-2">
-        <Label>Engine</Label>
+        <Label>Mesin</Label>
         <select value={engine} onChange={e => setEngine(e.target.value as 'web' | 'gemini')} className="w-full border rounded p-2">
           <option value="gemini">Gemini (API)</option>
           <option value="web">Web Speech API</option>
         </select>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="voice">Voice</Label>
+          <Label htmlFor="voice">Suara</Label>
           <Select value={selectedVoice} onValueChange={setSelectedVoice} disabled={engine === 'gemini'}>
             <SelectTrigger id="voice">
-              <SelectValue placeholder="Select voice" />
+              <SelectValue placeholder="Pilih suara" />
             </SelectTrigger>
             <SelectContent>
               {voices.map((voice) => (
@@ -68,7 +68,7 @@ const TTSTab: React.FC<TTSTabProps> = ({ textToSpeak, setTextToSpeak, voices, se
           </Select>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="rate">Speech Rate: {rate}</Label>
+          <Label htmlFor="rate">Kecepatan Bicara: {rate}</Label>
           <input
             id="rate"
             type="range"
@@ -81,8 +81,8 @@ const TTSTab: React.FC<TTSTabProps> = ({ textToSpeak, setTextToSpeak, voices, se
             disabled={engine === 'gemini'}
           />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="pitch">Pitch: {pitch}</Label>
+        <div className="space-y-2 col-span-1 sm:col-span-2">
+          <Label htmlFor="pitch">Nada: {pitch}</Label>
           <input
             id="pitch"
             type="range"
@@ -105,7 +105,7 @@ const TTSTab: React.FC<TTSTabProps> = ({ textToSpeak, setTextToSpeak, voices, se
           className="flex items-center gap-2 font-bold py-2 px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
         >
           <VolumeX className="h-4 w-4" />
-          <span>Stop Speaking</span>
+          <span>Berhenti Berbicara</span>
         </Button>
       ) : (
         <Button
@@ -114,7 +114,7 @@ const TTSTab: React.FC<TTSTabProps> = ({ textToSpeak, setTextToSpeak, voices, se
           className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
         >
           <Volume2 className="h-4 w-4" />
-          <span>Speak Text</span>
+          <span>Ucapkan Teks</span>
         </Button>
       )}
     </CardFooter>

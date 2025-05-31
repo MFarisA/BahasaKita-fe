@@ -341,16 +341,16 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
               <CardHeader>
                 <CardTitle className="flex items-center text-indigo-900">
                   <Flame className="h-5 w-5 text-orange-500 mr-2" />
-                  Your Learning Streak
+                  Streak Belajar Anda
                 </CardTitle>
                 <CardDescription className="text-indigo-900">
-                  Last 7 days of activity
+                  7 hari aktivitas terakhir
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex justify-between text-indigo-900 font-semibold">
                   {streakData.lastWeek.map((day, index) => {
-                    const dayNames = ["M", "T", "W", "T", "F", "S", "S"];
+                    const dayNames = ["S", "S", "R", "K", "J", "S", "M"];
                     return (
                       <div key={index} className="flex flex-col items-center">
                         <div
@@ -370,17 +370,17 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
 
                 <div className="mt-6 flex justify-between items-center text-indigo-900">
                   <div>
-                    <p className="text-sm font-medium">Current streak</p>
+                    <p className="text-sm font-medium">Streak saat ini</p>
                     <p className="text-2xl font-bold">
-                      {streakData.currentStreak} days
+                      {streakData.currentStreak} hari
                     </p>
                   </div>
                   <div>
                     <p className="text-sm font-medium text-right">
-                      Longest streak
+                      Streak terpanjang
                     </p>
                     <p className="text-2xl font-bold text-right">
-                      {streakData.longestStreak} days
+                      {streakData.longestStreak} hari
                     </p>
                   </div>
                 </div>
@@ -394,6 +394,3 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
 };
 
 export default ProgressDashboard;
-
-// Pastikan tidak ada deklarasi variabel id, language, dsb di luar scope map/props.
-// Jika error masih muncul, pastikan tidak ada typo atau variable leak di luar map/props.

@@ -12,13 +12,8 @@ const AIFeaturesModalContent: React.FC = () => {
   const [showApiKeyDialog, setShowApiKeyDialog] = React.useState(false);
   const [apiKey, setApiKey] = React.useState("");
 
-  const {
-    prompt,
-    setPrompt,
-    geminiResponse,
-    isGenerating,
-    generateText,
-  } = useGemini();
+  const { prompt, setPrompt, geminiResponse, isGenerating, generateText } =
+    useGemini();
   const {
     textToSpeak,
     setTextToSpeak,
@@ -45,7 +40,8 @@ const AIFeaturesModalContent: React.FC = () => {
   React.useEffect(() => {
     if (
       indonesianVoices.length > 0 &&
-      (!selectedVoice || !indonesianVoices.some((v) => v.voiceURI === selectedVoice))
+      (!selectedVoice ||
+        !indonesianVoices.some((v) => v.voiceURI === selectedVoice))
     ) {
       setSelectedVoice(indonesianVoices[0].voiceURI);
     }
@@ -70,8 +66,8 @@ const AIFeaturesModalContent: React.FC = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-white rounded-xl p-2 md:p-6 shadow-lg max-w-2xl mx-auto border-2 border-blue-100">
-      <h2 className="text-xl md:text-2xl font-bold mb-4 flex items-center gap-2">
-        <span className="text-2xl md:text-3xl">🤖</span> AI Features
+      <h2 className="text-xl md:text-2xl text-indigo-900 font-bold mb-4 flex items-center gap-2">
+        AI Features
       </h2>
       <Tabs defaultValue="gemini" className="w-full">
         <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-6 bg-blue-100 p-1 rounded-lg">

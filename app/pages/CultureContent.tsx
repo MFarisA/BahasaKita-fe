@@ -31,7 +31,7 @@ const CultureContent: React.FC<CultureContentProps> = ({
 }) => {
   // Data diimpor dari file data
   const culturalContent: CulturalContentData = culturalContentData;
-  const [activeMenu, setActiveMenu] = React.useState("Cultural Content");
+  const [activeMenu, setActiveMenu] = React.useState("Konten Budaya");
 
   // Notifikasi
   const notifications = notificationsData;
@@ -50,11 +50,10 @@ const CultureContent: React.FC<CultureContentProps> = ({
               <Globe className="h-6 w-6 text-indigo-600" />
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-4">
-              {language} Cultural Content
+              Konten Budaya {language}
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Immerse yourself in the rich cultural heritage of {language}
-              -speaking regions through stories, proverbs, and interesting facts.
+              Jelajahi kekayaan warisan budaya dari daerah penutur {language} melalui cerita, peribahasa, dan fakta menarik.
             </p>
           </header>
 
@@ -62,17 +61,17 @@ const CultureContent: React.FC<CultureContentProps> = ({
           <Tabs defaultValue="stories" className="w-full">
             <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-8">
               <TabsTrigger value="stories" className="flex items-center gap-2">
-                <BookOpen className="h-4 w-4" /> Stories
+                <BookOpen className="h-4 w-4" /> Cerita
               </TabsTrigger>
               <TabsTrigger value="proverbs" className="flex items-center gap-2">
-                <Lightbulb className="h-4 w-4" /> Proverbs
+                <Lightbulb className="h-4 w-4" /> Peribahasa
               </TabsTrigger>
               <TabsTrigger value="trivia" className="flex items-center gap-2">
-                <Globe className="h-4 w-4" /> Trivia
+                <Globe className="h-4 w-4" /> Fakta
               </TabsTrigger>
             </TabsList>
 
-            {/* Konten Stories */}
+            {/* Konten Cerita */}
             <TabsContent value="stories" className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {culturalContent.stories.map((story) => (
@@ -100,7 +99,7 @@ const CultureContent: React.FC<CultureContentProps> = ({
                     </CardContent>
                     <CardFooter>
                       <Button variant="outline" className="w-full bg-indigo-900 text-white hover:bg-indigo-800">
-                        Read Full Story
+                        Baca Cerita Lengkap
                       </Button>
                     </CardFooter>
                   </Card>
@@ -108,7 +107,7 @@ const CultureContent: React.FC<CultureContentProps> = ({
               </div>
             </TabsContent>
 
-            {/* Konten Proverbs */}
+            {/* Konten Peribahasa */}
             <TabsContent value="proverbs" className="space-y-6 min-h-[300px]">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                 {culturalContent.proverbs.map((proverb) => (
@@ -132,7 +131,7 @@ const CultureContent: React.FC<CultureContentProps> = ({
               </div>
             </TabsContent>
 
-            {/* Konten Trivia */}
+            {/* Konten Fakta */}
             <TabsContent value="trivia" className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {culturalContent.trivia.map((item) => (
