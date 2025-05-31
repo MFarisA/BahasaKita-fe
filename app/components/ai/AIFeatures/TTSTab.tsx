@@ -19,9 +19,11 @@ interface TTSTabProps {
   isSpeaking: boolean;
   onSpeak: () => void;
   onStop: () => void;
+  engine: 'web' | 'gemini';
+  setEngine: (e: 'web' | 'gemini') => void;
 }
 
-const TTSTab: React.FC<TTSTabProps> = ({ textToSpeak, setTextToSpeak, voices, selectedVoice, setSelectedVoice, rate, setRate, pitch, setPitch, isSpeaking, onSpeak, onStop }) => (
+const TTSTab: React.FC<TTSTabProps> = ({ textToSpeak, setTextToSpeak, voices, selectedVoice, setSelectedVoice, rate, setRate, pitch, setPitch, isSpeaking, onSpeak, onStop, engine, setEngine }) => (
   <Card>
     <CardHeader className="bg-gradient-to-r from-blue-50 to-green-50 border-b border-blue-100">
       <CardTitle className="flex items-center gap-2">
@@ -42,10 +44,17 @@ const TTSTab: React.FC<TTSTabProps> = ({ textToSpeak, setTextToSpeak, voices, se
           className="min-h-24"
         />
       </div>
+      <div className="space-y-2">
+        <Label>Engine</Label>
+        <select value={engine} onChange={e => setEngine(e.target.value as 'web' | 'gemini')} className="w-full border rounded p-2">
+          <option value="gemini">Gemini (API)</option>
+          <option value="web">Web Speech API</option>
+        </select>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="voice">Voice</Label>
-          <Select value={selectedVoice} onValueChange={setSelectedVoice}>
+          <Select value={selectedVoice} onValueChange={setSelectedVoice} disabled={engine === 'gemini'}>
             <SelectTrigger id="voice">
               <SelectValue placeholder="Select voice" />
             </SelectTrigger>
@@ -69,6 +78,7 @@ const TTSTab: React.FC<TTSTabProps> = ({ textToSpeak, setTextToSpeak, voices, se
             value={rate}
             onChange={(e) => setRate(parseFloat(e.target.value))}
             className="w-full"
+            disabled={engine === 'gemini'}
           />
         </div>
         <div className="space-y-2">
@@ -82,6 +92,7 @@ const TTSTab: React.FC<TTSTabProps> = ({ textToSpeak, setTextToSpeak, voices, se
             value={pitch}
             onChange={(e) => setPitch(parseFloat(e.target.value))}
             className="w-full"
+            disabled={engine === 'gemini'}
           />
         </div>
       </div>
@@ -99,7 +110,7 @@ const TTSTab: React.FC<TTSTabProps> = ({ textToSpeak, setTextToSpeak, voices, se
       ) : (
         <Button
           onClick={onSpeak}
-          disabled={!textToSpeak.trim() || voices.length === 0}
+          disabled={!textToSpeak.trim() || (engine === 'web' && voices.length === 0)}
           className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
         >
           <Volume2 className="h-4 w-4" />

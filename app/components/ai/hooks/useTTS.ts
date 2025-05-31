@@ -10,6 +10,7 @@ export function useTTS() {
   const [selectedVoice, setSelectedVoice] = useState("");
   const [rate, setRate] = useState(1);
   const [pitch, setPitch] = useState(1);
+  const [engine, setEngine] = useState<'web' | 'gemini'>('gemini');
 
   useEffect(() => {
     const loadVoices = async () => {
@@ -22,10 +23,19 @@ export function useTTS() {
     loadVoices();
   }, []);
 
-  const speak = () => {
+  const speak = async () => {
     if (!textToSpeak.trim()) return;
-    const success = ttsService.speak(textToSpeak, { rate, pitch, voice: selectedVoice });
-    if (success) setIsSpeaking(true);
+    if (engine === 'gemini') {
+      setIsSpeaking(true);
+      await ttsService.speakWithGemini(textToSpeak, {
+        languageCode: 'id-ID',
+        voiceName: undefined,
+      });
+      setIsSpeaking(false);
+    } else {
+      const success = ttsService.speak(textToSpeak, { rate, pitch, voice: selectedVoice });
+      if (success) setIsSpeaking(true);
+    }
   };
 
   const stop = () => {
@@ -46,5 +56,7 @@ export function useTTS() {
     isSpeaking,
     speak,
     stop,
+    engine,
+    setEngine,
   };
 }

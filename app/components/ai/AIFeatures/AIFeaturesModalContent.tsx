@@ -32,6 +32,8 @@ const AIFeaturesModalContent: React.FC = () => {
     isSpeaking,
     speak,
     stop,
+    engine,
+    setEngine,
   } = useTTS();
 
   // Filter voices to only show Indonesian voices
@@ -106,6 +108,8 @@ const AIFeaturesModalContent: React.FC = () => {
             isSpeaking={isSpeaking}
             onSpeak={speak}
             onStop={stop}
+            engine={engine}
+            setEngine={setEngine}
           />
         </TabsContent>
       </Tabs>

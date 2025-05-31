@@ -121,4 +121,48 @@ export const ttsService = {
     }
     return false;
   },
+
+  // Using Gemini API for TTS
+  speakWithGemini: async (
+    text: string,
+    options: { languageCode?: string; voiceName?: string } = {},
+  ) => {
+    if (!geminiService.apiKey) {
+      console.error("Gemini API key not set");
+      return false;
+    }
+    try {
+      const response = await fetch(
+        "https://texttospeech.googleapis.com/v1/text:synthesize",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": geminiService.apiKey,
+          },
+          body: JSON.stringify({
+            input: { text },
+            voice: {
+              languageCode: options.languageCode || "id-ID",
+              name: options.voiceName || undefined,
+            },
+            audioConfig: { audioEncoding: "MP3" },
+          }),
+        },
+      );
+      const data = await response.json();
+      if (data.audioContent) {
+        // Play the audio using browser Audio API
+        const audio = new Audio("data:audio/mp3;base64," + data.audioContent);
+        audio.play();
+        return true;
+      } else {
+        console.error("No audio content returned from Gemini TTS", data);
+        return false;
+      }
+    } catch (error) {
+      console.error("Error with Gemini TTS:", error);
+      return false;
+    }
+  },
 };
