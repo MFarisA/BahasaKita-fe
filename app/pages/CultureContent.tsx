@@ -31,7 +31,7 @@ const CultureContent: React.FC<CultureContentProps> = ({
 }) => {
   // Data diimpor dari file data
   const culturalContent: CulturalContentData = culturalContentData;
-  const [activeMenu, setActiveMenu] = React.useState("Konten Budaya");
+  const [activeMenu, setActiveMenu] = React.useState("Cultural Content");
 
   // Notifikasi
   const notifications = notificationsData;

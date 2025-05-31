@@ -17,9 +17,9 @@ interface NavbarProps {
 }
 
 const menus = [
-  { name: "Lessons", label: "Lessons" },
-  { name: "My Progress", label: "My Progress" },
-  { name: "Cultural Content", label: "Cultural Content" },
+  { name: "Lessons", label: "Pelajaran" },
+  { name: "My Progress", label: "Progres Saya" },
+  { name: "Cultural Content", label: "Konten Budaya" },
 ];
 
 const NavbarHome: React.FC<NavbarProps> = ({

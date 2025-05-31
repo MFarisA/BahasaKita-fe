@@ -66,7 +66,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
       />
       <div className="w-full max-w-7xl mx-auto p-4">
         <h1 className="text-3xl font-bold mb-6 text-center text-indigo-900">
-          Your Learning Progress
+          Progres Belajar Anda
         </h1>
 
         {/* Summary Stats */}
@@ -90,7 +90,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-lg text-indigo-900">
-                Lessons Completed
+                Pelajaran Selesai
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -114,18 +114,18 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-lg text-indigo-900">
-                Current Streak
+                Streak Saat Ini
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center">
                 <Flame className="h-8 w-8 text-orange-500 mr-2" />
                 <span className="text-3xl font-bold text-indigo-900">
-                  {streakData.currentStreak} days
+                  {streakData.currentStreak} hari
                 </span>
               </div>
               <p className="text-xs text-muted-foreground mt-1 text-indigo-900">
-                Longest: {streakData.longestStreak} days
+                Terpanjang: {streakData.longestStreak} hari
               </p>
             </CardContent>
           </Card>
@@ -133,9 +133,9 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
 
         <Tabs defaultValue="achievements" className="w-full">
           <TabsList className="grid grid-cols-3 mb-6">
-            <TabsTrigger value="achievements">Achievements</TabsTrigger>
-            <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
-            <TabsTrigger value="proficiency">Proficiency</TabsTrigger>
+            <TabsTrigger value="achievements">Pencapaian</TabsTrigger>
+            <TabsTrigger value="leaderboard">Papan Peringkat</TabsTrigger>
+            <TabsTrigger value="proficiency">Kemahiran</TabsTrigger>
           </TabsList>
 
           {/* Achievements Tab */}
@@ -181,7 +181,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                               variant="outline"
                               className="bg-primary/10 text-indigo-900 border-indigo-900"
                             >
-                              Earned
+                              Diraih
                             </Badge>
                           )}
                         </div>
@@ -195,12 +195,12 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                       <CardContent>
                         {achievement.earned ? (
                           <p className="text-xs text-muted-foreground text-indigo-900">
-                            Earned on {achievement.date}
+                            Diraih pada {achievement.date}
                           </p>
                         ) : (
                           <div className="flex flex-col">
                             <div className="flex justify-between text-xs mb-1 text-indigo-900">
-                              <span>Progress</span>
+                              <span>Progres</span>
                               <span>
                                 {achievement.progress}/
                                 {achievement.id === "3"
@@ -241,10 +241,10 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
               <CardHeader>
                 <CardTitle className="flex items-center text-indigo-900">
                   <Trophy className="h-5 w-5 text-yellow-500 mr-2" />
-                  Weekly Leaderboard
+                  Papan Peringkat Mingguan
                 </CardTitle>
                 <CardDescription className="text-indigo-900">
-                  See how you compare to other learners this week
+                  Lihat bagaimana perbandingan Anda dengan pembelajar lain minggu ini
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -253,7 +253,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                     <div
                       key={entry.id}
                       className={`flex items-center justify-between p-3 rounded-lg ${
-                        entry.name === "You" ? "bg-indigo-900/20" : "bg-blue/50"
+                        entry.name === "You" || entry.name === "Anda" ? "bg-indigo-900/20" : "bg-blue/50"
                       }`}
                     >
                       <div className="flex items-center">
@@ -268,11 +268,11 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                         </Avatar>
                         <div>
                           <p className="font-medium text-indigo-900">
-                            {entry.name}
+                            {entry.name === "You" ? "Anda" : entry.name}
                           </p>
-                          {entry.name === "You" && (
+                          {(entry.name === "You" || entry.name === "Anda") && (
                             <p className="text-xs text-muted-foreground text-indigo-900">
-                              Keep it up!
+                              Pertahankan!
                             </p>
                           )}
                         </div>
@@ -289,7 +289,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                   <div className="flex justify-center mt-4">
                     <div className="flex items-center text-sm text-muted-foreground text-indigo-900">
                       <Users className="h-4 w-4 mr-1" />
-                      <span>1,245 learners this week</span>
+                      <span>1.245 pembelajar minggu ini</span>
                     </div>
                   </div>
                 </div>
@@ -302,10 +302,10 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
             <Card>
               <CardHeader>
                 <CardTitle className="text-indigo-900">
-                  Language Proficiency
+                  Kemahiran Bahasa
                 </CardTitle>
                 <CardDescription className="text-muted-foreground text-indigo-900">
-                  Your current level in each language
+                  Tingkat kemampuan Anda di setiap bahasa
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -350,7 +350,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
               <CardContent>
                 <div className="flex justify-between text-indigo-900 font-semibold">
                   {streakData.lastWeek.map((day, index) => {
-                    const dayNames = ["S", "S", "R", "K", "J", "S", "M"];
+                    const dayNames = ["M", "S", "S", "R", "K", "J", "S"];
                     return (
                       <div key={index} className="flex flex-col items-center">
                         <div

@@ -61,7 +61,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
   const [emailNotifications, setEmailNotifications] = React.useState(true);
   const [pushNotifications, setPushNotifications] = React.useState(true);
   const [twoFactorAuth, setTwoFactorAuth] = React.useState(false);
-  const [activeMenu, setActiveMenu] = useState("Profile Settings");
+  const [activeMenu, setActiveMenu] = useState("Pengaturan Profil");
 
   const handleChange = (field: string, value: string) => {
     setUserData((prev) => ({
@@ -98,7 +98,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
       />
       <main className="max-w-5xl mx-auto p-8">
         <h1 className="text-3xl font-bold mb-6 text-indigo-900">
-          Profile Settings
+          Pengaturan Profil
         </h1>
 
         {/* Tabs  */}
@@ -106,18 +106,18 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
           <TabsList className="grid w-full grid-cols-3 mb-8">
             <TabsTrigger value="profile" className="flex items-center gap-2">
               <User className="h-4 w-4" />
-              <span>Profile</span>
+              <span>Profil</span>
             </TabsTrigger>
             <TabsTrigger
               value="notifications"
               className="flex items-center gap-2"
             >
               <Bell className="h-4 w-4" />
-              <span>Notifications</span>
+              <span>Notifikasi</span>
             </TabsTrigger>
             <TabsTrigger value="security" className="flex items-center gap-2">
               <Shield className="h-4 w-4" />
-              <span>Security</span>
+              <span>Keamanan</span>
             </TabsTrigger>
           </TabsList>
 
@@ -127,9 +127,9 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
               {/* Personal Information Card */}
               <Card className="flex-1">
                 <CardHeader>
-                  <CardTitle>Personal Information</CardTitle>
+                  <CardTitle>Informasi Pribadi</CardTitle>
                   <CardDescription>
-                    Update your personal details and preferences
+                    Perbarui detail dan preferensi pribadi Anda
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -145,13 +145,13 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
                         </AvatarFallback>
                       </Avatar>
                       <Button variant="outline" size="sm" className="text-white hover:bg-slate-500">
-                        Change Avatar
+                        Ganti Avatar
                       </Button>
                     </div>
 
                     <div className="space-y-4 flex-1">
                       <div className="space-y-2">
-                        <Label htmlFor="name">Full Name</Label>
+                        <Label htmlFor="name">Nama Lengkap</Label>
                         <Input
                           id="name"
                           value={userData.name}
@@ -160,7 +160,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="email">Email Address</Label>
+                        <Label htmlFor="email">Alamat Email</Label>
                         <Input
                           id="email"
                           type="email"
@@ -174,13 +174,13 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="language">Interface Language</Label>
+                    <Label htmlFor="language">Bahasa Antarmuka</Label>
                     <Select
                       value={userData.language}
                       onValueChange={(value) => handleChange("language", value)}
                     >
                       <SelectTrigger id="language" className="w-full">
-                        <SelectValue placeholder="Select language" />
+                        <SelectValue placeholder="Pilih bahasa" />
                       </SelectTrigger>
                       <SelectContent>
                         {interfaceLanguages.map((lang) => (
@@ -197,17 +197,17 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
               {/* Learning Preferences Card */}
               <Card className="flex-1">
                 <CardHeader>
-                  <CardTitle>Learning Preferences</CardTitle>
+                  <CardTitle>Preferensi Belajar</CardTitle>
                   <CardDescription>
-                    Customize your learning experience
+                    Sesuaikan pengalaman belajar Anda
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="difficulty">Difficulty Level</Label>
+                    <Label htmlFor="difficulty">Tingkat Kesulitan</Label>
                     <Select defaultValue="intermediate">
                       <SelectTrigger id="difficulty" className="w-full">
-                        <SelectValue placeholder="Select difficulty" />
+                        <SelectValue placeholder="Pilih tingkat kesulitan" />
                       </SelectTrigger>
                       <SelectContent>
                         {difficultyLevels.map((level) => (
@@ -221,11 +221,11 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
 
                   <div className="space-y-2">
                     <Label htmlFor="daily-goal">
-                      Daily Learning Goal (minutes)
+                      Target Belajar Harian (menit)
                     </Label>
                     <Select defaultValue="15">
                       <SelectTrigger id="daily-goal" className="w-full">
-                        <SelectValue placeholder="Select daily goal" />
+                        <SelectValue placeholder="Pilih target harian" />
                       </SelectTrigger>
                       <SelectContent>
                         {dailyGoals.map((goal) => (
@@ -244,20 +244,20 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
           <TabsContent value="notifications" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Notification Settings</CardTitle>
+                <CardTitle>Pengaturan Notifikasi</CardTitle>
                 <CardDescription>
-                  Manage how you receive notifications
+                  Atur bagaimana Anda menerima notifikasi
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <Label htmlFor="email-notifications">
-                      Email Notifications
+                      Notifikasi Email
                     </Label>
                     <p className="text-sm text-muted-foreground">
-                      Receive notifications about your progress and achievements
-                      via email
+                      Terima notifikasi tentang progres dan pencapaian Anda
+                      melalui email
                     </p>
                   </div>
                   <Switch
@@ -270,10 +270,10 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <Label htmlFor="push-notifications">
-                      Push Notifications
+                      Notifikasi Push
                     </Label>
                     <p className="text-sm text-muted-foreground">
-                      Receive notifications on your device
+                      Terima notifikasi di perangkat Anda
                     </p>
                   </div>
                   <Switch
@@ -284,10 +284,10 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="reminder-time">Daily Reminder Time</Label>
+                  <Label htmlFor="reminder-time">Waktu Pengingat Harian</Label>
                   <Select defaultValue="18">
                     <SelectTrigger id="reminder-time" className="w-full">
-                      <SelectValue placeholder="Select time" />
+                      <SelectValue placeholder="Pilih waktu" />
                     </SelectTrigger>
                     <SelectContent>
                       {reminderTimes.map((rt) => (
@@ -305,19 +305,19 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
           <TabsContent value="security" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Security Settings</CardTitle>
+                <CardTitle>Pengaturan Keamanan</CardTitle>
                 <CardDescription>
-                  Manage your account security preferences
+                  Kelola preferensi keamanan akun Anda
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-2">
-                  <Label>Change Password</Label>
+                  <Label>Ubah Kata Sandi</Label>
                   <div className="space-y-4">
-                    <Input type="password" placeholder="Current password" />
-                    <Input type="password" placeholder="New password" />
-                    <Input type="password" placeholder="Confirm new password" />
-                    <Button variant="outline">Update Password</Button>
+                    <Input type="password" placeholder="Kata sandi saat ini" />
+                    <Input type="password" placeholder="Kata sandi baru" />
+                    <Input type="password" placeholder="Konfirmasi kata sandi baru" />
+                    <Button variant="outline">Perbarui Kata Sandi</Button>
                   </div>
                 </div>
               </CardContent>
@@ -328,7 +328,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
         <div className="mt-8 flex justify-end">
           <Button onClick={handleSave} className="flex items-center gap-2">
             <Save className="h-4 w-4" />
-            <span>Save All Changes</span>
+            <span>Simpan Semua Perubahan</span>
           </Button>
         </div>
       </main>

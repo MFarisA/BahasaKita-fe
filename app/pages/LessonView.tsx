@@ -278,15 +278,15 @@ const LessonView = ({
               <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <span className="text-3xl font-bold text-orange-600">0</span>
               </div>
-              <p className="text-lg font-semibold text-gray-800">Day streak</p>
-              <p className="text-sm text-gray-500">Keep it up!</p>
+              <p className="text-lg font-semibold text-gray-800">Streak hari</p>
+              <p className="text-sm text-gray-500">Pertahankan terus!</p>
             </div>
 
             {/* XP Progress */}
             <div className="bg-gray-50 rounded-lg p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-700">
-                  Daily Goal
+                  Target Harian
                 </span>
                 <span className="text-sm text-gray-500">0/20 XP</span>
               </div>
@@ -302,7 +302,7 @@ const LessonView = ({
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 bg-blue-50 rounded-lg">
                 <div className="text-2xl font-bold text-blue-600">5</div>
-                <div className="text-xs text-gray-600 mt-1">Completed</div>
+                <div className="text-xs text-gray-600 mt-1">Selesai</div>
               </div>
               <div className="text-center p-4 bg-green-50 rounded-lg">
                 <div className="text-2xl font-bold text-green-600">0</div>
@@ -313,29 +313,28 @@ const LessonView = ({
             {/* Current lesson info */}
             <div className="border border-blue-200 bg-blue-50 rounded-lg p-4">
               <h3 className="font-semibold text-blue-800 mb-2">
-                Current Lesson
+                Pelajaran Saat Ini
               </h3>
               <p className="text-sm text-blue-700 mb-3">Greeting 4</p>
               <p className="text-xs text-blue-600 mb-3">
-                Learn basic greeting expressions and how to respond
-                appropriately.
+                Pelajari ungkapan salam dasar dan cara merespons dengan tepat.
               </p>
               <button className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors font-medium">
-                Start Lesson
+                Mulai Pelajaran
               </button>
             </div>
 
             {/* Achievements */}
             <div className="border rounded-lg p-4">
               <h3 className="font-semibold mb-3 text-gray-800">
-                Recent Achievements
+                Pencapaian Terbaru
               </h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3 p-2 bg-green-50 rounded-lg">
                   <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
                   <div>
                     <div className="text-sm font-medium text-green-800">
-                      First lesson completed
+                      Pelajaran pertama selesai
                     </div>
                     <div className="text-xs text-green-600">+10 XP</div>
                   </div>
@@ -344,7 +343,7 @@ const LessonView = ({
                   <Award className="h-5 w-5 text-yellow-500 flex-shrink-0" />
                   <div>
                     <div className="text-sm font-medium text-yellow-800">
-                      Checkpoint reached
+                      Checkpoint tercapai
                     </div>
                     <div className="text-xs text-yellow-600">+50 XP</div>
                   </div>
