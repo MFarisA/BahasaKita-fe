@@ -19,6 +19,7 @@ import Image from "next/image";
 const Landingv2: React.FC = () => {
   const [activeLanguage, setActiveLanguage] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 100);
@@ -120,7 +121,7 @@ const Landingv2: React.FC = () => {
               </div>
               {/* Mobile menu button (Hamburger icon) - you'd typically add a state to control its visibility */}
               <div className="lg:hidden">
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
                   <LucideIcons.Menu className="h-6 w-6 text-indigo-900" />
                 </Button>
               </div>
@@ -181,9 +182,9 @@ const Landingv2: React.FC = () => {
             </div>
           </section>
           {/* floating asset hero */}
-          <div className="absolute top-20 left-10 hidden lg:block xl:top-80">
+          <div className="absolute top-20 left-0 hidden lg:block xl:top-80">
             <Image
-              src="/images/cloud.svg"
+              src="/images/main.svg"
               alt="Hero Asset"
               width={200}
               height={120}
@@ -521,6 +522,41 @@ const Landingv2: React.FC = () => {
           </div>
         </footer>
       </div>
+
+      {/* Mobile menu overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-black/40 flex justify-end lg:hidden" onClick={() => setMobileMenuOpen(false)}>
+          <div className="bg-white w-3/4 max-w-xs h-full shadow-lg p-6 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-bold text-indigo-900">Menu</h2>
+              <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)}>
+                <LucideIcons.X className="h-6 w-6 text-indigo-900" />
+              </Button>
+            </div>
+            <Link href="" className="text-md font-normal text-indigo-900" onClick={() => setMobileMenuOpen(false)}>
+              Beranda
+            </Link>
+            <Link href="" className="text-md font-normal text-indigo-900" onClick={() => setMobileMenuOpen(false)}>
+              Tentang Kita
+            </Link>
+            <Link href="" className="text-md font-normal text-indigo-900" onClick={() => setMobileMenuOpen(false)}>
+              Bahasa
+            </Link>
+            <Link href="" className="text-md font-normal text-indigo-900" onClick={() => setMobileMenuOpen(false)}>
+              Community
+            </Link>
+            <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-indigo-700 border-0 hover:bg-indigo-600 text-white transition-transform hover:scale-105 hover:font-semibold w-full mt-4"
+              >
+                Registrasi / Masuk
+              </Button>
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
