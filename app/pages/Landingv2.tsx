@@ -9,36 +9,14 @@ import {
   CardTitle,
 } from "../components/ui/card";
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "../components/ui/tabs";
-import {
-  features,
-  extraFeatures,
   quickLinks,
   featuresList,
 } from "../data/landingPageData";
 import * as LucideIcons from "lucide-react";
 import Link from "next/link";
-import { FunctionComponent, SVGProps } from "react";
 import Image from "next/image";
 
-// Helper function to safely get Lucide icon component by string name
-type LucideIconComponent = FunctionComponent<SVGProps<SVGSVGElement>>;
-function getLucideIcon(name: string): LucideIconComponent {
-  return (
-    ((LucideIcons as Record<string, unknown>)[name] as LucideIconComponent) ||
-    (() => null)
-  );
-}
-
 const Landingv2: React.FC = () => {
-  const SparklesIcon = LucideIcons["Sparkles"];
-  const AwardIcon = LucideIcons["Award"];
-  const UsersIcon = LucideIcons["Users"];
-  const ArrowRightIcon = LucideIcons["ArrowRight"];
   const [activeLanguage, setActiveLanguage] = useState(0);
   const [scrolled, setScrolled] = useState(false);
 
