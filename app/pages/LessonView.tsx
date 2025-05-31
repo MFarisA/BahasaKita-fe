@@ -119,25 +119,39 @@ const LessonView = ({
 
   const [lessonProgress, setLessonProgress] = useState(lessons);
 
-  const handleStartOrContinue = (lessonIndex: number) => {
+  // Ambil progress dari localStorage jika ada
+  React.useEffect(() => {
+    const saved = localStorage.getItem("lessonProgress");
+    if (saved) {
+      setLessonProgress(JSON.parse(saved));
+    }
+  }, []);
+
+  // Simpan progress ke localStorage setiap kali berubah
+  React.useEffect(() => {
+    localStorage.setItem("lessonProgress", JSON.stringify(lessonProgress));
+  }, [lessonProgress]);
+
+  // Fungsi untuk menandai lesson selesai dan membuka lesson berikutnya
+  const markLessonCompleted = (lessonId: number) => {
     setLessonProgress((prev) => {
-      const updated = prev.map((l, idx) => {
-        if (idx === lessonIndex) {
+      return prev.map((l, idx, arr) => {
+        if (l.id === lessonId) {
           return { ...l, completed: true, current: false };
         }
-        // Hanya set current=true jika lesson berikutnya ada
-        if (idx === lessonIndex + 1 && lessonIndex + 1 < prev.length) {
+        if (arr[idx - 1] && arr[idx - 1].id === lessonId) {
+          // Lesson berikutnya setelah yang selesai
           return { ...l, current: true };
         }
         return l;
       });
-      // Redirect ke halaman lesson utama
-      if (typeof window !== "undefined") {
-        window.location.href = "/?route=home";
-      }
-      return updated;
     });
   };
+  // Export agar bisa dipanggil dari LevelView jika perlu
+  React.useEffect(() => {
+    // @ts-ignore
+    window.markLessonCompleted = markLessonCompleted;
+  }, [lessonProgress]);
 
   return (
     <div className="min-h-screen">
@@ -274,12 +288,13 @@ const LessonView = ({
                           : "Not started"}
                       </p>
                       {lesson.current && (
-                        <button
-                          className="mt-3 bg-blue-500 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
-                          onClick={() => handleStartOrContinue(index)}
+                        <Link
+                          href={`/?route=levelview&lessonId=${lesson.id}&level=1`}
+                          scroll={false}
+                          className="mt-3 bg-blue-500 text-white text-sm py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors block text-center"
                         >
                           Continue
-                        </button>
+                        </Link>
                       )}
                     </div>
                   </div>

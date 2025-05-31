@@ -188,7 +188,10 @@ const ExerciseComponent = () => {
       // Redirect ke LevelView untuk level berikutnya
       router.push(`/?route=levelview&lessonId=${lessonId}${unitId ? `&unitId=${unitId}` : ""}&level=${level + 1}`);
     } else {
-      // Jika sudah level terakhir, redirect ke halaman utama lessonview (route=home)
+      // Jika sudah level terakhir, tandai lesson selesai dan redirect ke halaman utama lessonview (route=home)
+      if (typeof window !== "undefined" && (window as any).markLessonCompleted) {
+        (window as any).markLessonCompleted(Number(lessonId));
+      }
       router.push(`/?route=home`);
     }
   };
