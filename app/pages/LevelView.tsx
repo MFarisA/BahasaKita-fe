@@ -29,7 +29,6 @@ const LevelView = ({
 
   // Add missing state for NavbarHome
   const [activeMenu, setActiveMenu] = React.useState<string>("Lessons");
-  const [notifications, setNotifications] = React.useState<any[]>([]);
 
   // Warna gradien untuk setiap level
   const levelColors = [
@@ -41,11 +40,7 @@ const LevelView = ({
 
   return (
     <div className="min-h-screen flex flex-col bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
-      <NavbarHome
-        activeMenu={activeMenu}
-        setActiveMenu={setActiveMenu}
-        notifications={notifications}
-      />
+      <NavbarHome activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
 
       {/* Header Section */}
       <div className="flex-1 flex flex-col justify-center items-center w-full py-10">

@@ -59,11 +59,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
 
   return (
     <div className="min-h-screen bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
-      <NavbarHome
-        activeMenu={activeMenu}
-        setActiveMenu={setActiveMenu}
-        notifications={notifications}
-      />
+      <NavbarHome activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
       <div className="w-full max-w-7xl mx-auto p-4">
         <h1 className="text-3xl font-bold mb-6 text-center text-indigo-900">
           Progres Belajar Anda
@@ -145,7 +141,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                 const Icon =
                   (LucideIcons[
                     achievement.icon as keyof typeof LucideIcons
-                  ] as React.ComponentType<any>) || LucideIcons.Award;
+                  ] as React.ComponentType<unknown>) || LucideIcons.Award;
                 const iconColor =
                   achievement.icon === "Award"
                     ? "text-green-500"
@@ -174,7 +170,7 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                       <CardHeader className="pb-2">
                         <div className="flex justify-between items-center">
                           <div className="p-2 rounded-full bg-muted">
-                            <Icon className={`h-6 w-6 ${iconColor}`} />
+                            <Icon />
                           </div>
                           {achievement.earned && (
                             <Badge

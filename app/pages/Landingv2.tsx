@@ -17,7 +17,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Landingv2: React.FC = () => {
-  const [activeLanguage, setActiveLanguage] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -192,7 +191,6 @@ const Landingv2: React.FC = () => {
                 {localLanguages.map((lang, index) => (
                   <button
                     key={index}
-                    onClick={() => setActiveLanguage(index)}
                     className={`group p-3 sm:p-4 rounded-xl border transition-all duration-300 shadow-lg bg-white transform hover:scale-105 hover:shadow-xl`}
                   >
                     <div className="text-2xl sm:text-3xl mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300">
@@ -603,4 +601,3 @@ const Landingv2: React.FC = () => {
 };
 
 export default Landingv2;
-// ...existing code...

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import NavbarHome from "../components/common/NavbarHome";
 import {
   Card,
@@ -27,7 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select";
-import { ArrowLeft, Save, User, Bell, Shield } from "lucide-react";
+import { Save, User, Bell, Shield } from "lucide-react";
 import { Switch } from "../components/ui/switch";
 import {
   interfaceLanguages,
@@ -35,7 +34,7 @@ import {
   dailyGoals,
   reminderTimes,
 } from "../data/profileSettingsData";
-import { UserProfile } from "../types/profile";
+import { UserProfile3 } from "../types/profile";
 import { notificationsData } from "../data/notificationsData";
 
 interface ProfileSettingsProps {
@@ -45,7 +44,7 @@ interface ProfileSettingsProps {
     avatar: string;
     language: string;
   };
-  onSave?: (userData: any) => void;
+  onSave?: (userData: unknown) => void;
 }
 
 const ProfileSettings: React.FC<ProfileSettingsProps> = ({
@@ -57,10 +56,9 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
   },
   onSave,
 }) => {
-  const [userData, setUserData] = React.useState<UserProfile>(user);
+  const [userData, setUserData] = React.useState<UserProfile3>(user);
   const [emailNotifications, setEmailNotifications] = React.useState(true);
   const [pushNotifications, setPushNotifications] = React.useState(true);
-  const [twoFactorAuth, setTwoFactorAuth] = React.useState(false);
   const [activeMenu, setActiveMenu] = useState("Pengaturan Profil");
 
   const handleChange = (field: string, value: string) => {
@@ -78,9 +76,6 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
           email: emailNotifications,
           push: pushNotifications,
         },
-        security: {
-          twoFactorAuth,
-        },
       });
     }
 
@@ -91,11 +86,7 @@ const ProfileSettings: React.FC<ProfileSettingsProps> = ({
 
   return (
     <div className="min-h-screen bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
-      <NavbarHome
-        activeMenu={activeMenu}
-        setActiveMenu={setActiveMenu}
-        notifications={notificationsData}
-      />
+      <NavbarHome activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
       <main className="max-w-5xl mx-auto p-8">
         <h1 className="text-3xl font-bold mb-6 text-indigo-900">
           Pengaturan Profil

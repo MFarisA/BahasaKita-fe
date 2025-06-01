@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import {
   CheckCircle,
-  Volume2,
-  Bot,
   Award,
 } from "lucide-react";
 import Link from "next/link";
@@ -12,7 +10,6 @@ import NavbarHome from "../components/common/NavbarHome";
 import { notificationsData } from "../data/notificationsData";
 
 const LessonView = ({
-  lessonId,
   hideNavbar,
 }: {
   lessonId: string;

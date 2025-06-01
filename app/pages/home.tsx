@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { notificationsData } from "../data/notificationsData";
 import LessonView from "./LessonView";
 import NavbarHome from "../components/common/NavbarHome";
 
 interface HomeProps {
-  username?: string;
-  streakDays?: number;
+  // username?: string;
+  // streakDays?: number;
   // notifications?: Array<{
   //   id: string;
   //   title: string;
@@ -17,11 +16,7 @@ interface HomeProps {
   // }>;
 }
 
-const Home: React.FC<HomeProps> = ({
-  username = "Language Learner",
-  streakDays = 7,
-  // notifications = notificationsData,
-}) => {
+const Home: React.FC<HomeProps> = () => {
   const [activeMenu, setActiveMenu] = useState("Lessons");
 
   return (

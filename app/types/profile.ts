@@ -1,4 +1,4 @@
-export interface UserProfile {
+export interface UserProfile3 {
   name: string;
   email: string;
   avatar: string;
@@ -6,6 +6,6 @@ export interface UserProfile {
 }
 
 export interface ProfileSettingsProps {
-  user?: UserProfile;
-  onSave?: (userData: any) => void;
+  user?: UserProfile3;
+  onSave?: (userData: unknown) => void;
 }
