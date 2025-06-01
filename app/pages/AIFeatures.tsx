@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { MessageCircle, X, Send } from "lucide-react";
+import { MessageCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -33,6 +33,14 @@ const AIFeatures = () => {
 
     try {
       const chatHistory = [];
+      chatHistory.push({
+        role: "system",
+        parts: [
+          {
+            text: "kamu merupkan AI yang membantu menjawab pertanyaan user seputar bahasa daerah indonesia, jika user menggunakan bahasa yang tidak pantas atau kasar, kamu harus mengingatkan user untuk menggunakan bahasa yang baik dan sopan. jawab pertanyaan user dengan bahasa yang baik dan sopan. jawab dengan maksimal dengan 40 kata ",
+          },
+        ],
+      });
       chatHistory.push({
         role: "user",
         parts: [{ text: userMessage.message }],
@@ -113,15 +121,6 @@ const AIFeatures = () => {
                   LIL BAH AI
                 </DialogTitle>
               </div>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsOpen(false)}
-                className="text-gray-500 hover:text-gray-700"
-                aria-label="Close chat"
-              >
-                <X size={24} />
-              </Button>
             </DialogHeader>
 
             <div className="flex-1 p-4 overflow-y-auto space-y-4">
