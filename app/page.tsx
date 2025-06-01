@@ -10,7 +10,6 @@ const Register = dynamic(() => import("./pages/Register"));
 const ProfileSettings = dynamic(() => import("./pages/ProfileSettings"));
 const AIFeatures = dynamic(() => import("./pages/AIFeatures"));
 const CultureContent = dynamic(() => import("./pages/CultureContent"));
-const CommunityForum = dynamic(() => import("./pages/CommunityForum"));
 const LessonView = dynamic(() => import("./pages/LessonView"));
 const Landingv2 = dynamic(() => import("./pages/Landingv2"));
 const ExerciseComponent = dynamic(() => import("./pages/ExerciseComponent"));
@@ -45,8 +44,6 @@ export default async function Router({
       return <AIFeatures />;
     case "culture-content":
       return <CultureContent />;
-    case "community-forum":
-      return <CommunityForum />;
      case "progress-dashboard":
       return <ProgressDashboard />;
     case "exercise":
