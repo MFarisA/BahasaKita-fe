@@ -4,10 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
   CheckCircle,
   XCircle,
-  ChevronRight,
-  Award,
   Clock,
-  Bot,
   Volume2,
   X,
   Settings,

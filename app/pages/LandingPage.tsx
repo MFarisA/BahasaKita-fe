@@ -160,7 +160,7 @@ const LandingPage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, idx) => {
+            {features.map((feature) => {
               const Icon = getLucideIcon(feature.icon);
               return (
                 <Card
