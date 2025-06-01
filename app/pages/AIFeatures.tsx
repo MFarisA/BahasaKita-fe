@@ -35,6 +35,8 @@ const AIFeatures: React.FC = () => {
     isSpeaking,
     speak,
     stop,
+    engine,
+    setEngine,
   } = useTTS();
 
   // Load Gemini API key on mount
@@ -99,6 +101,8 @@ const AIFeatures: React.FC = () => {
             isSpeaking={isSpeaking}
             onSpeak={speak}
             onStop={stop}
+            engine={engine}
+            setEngine={setEngine}
           />
         </TabsContent>
       </Tabs>
