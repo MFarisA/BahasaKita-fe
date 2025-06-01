@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import NotificationsMenu from "./NotificationsMenu";
 import SettingsMenu from "./SettingsMenu";
 
 interface NavbarProps {
