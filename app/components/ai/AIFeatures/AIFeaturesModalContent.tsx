@@ -45,7 +45,7 @@ const AIFeaturesModalContent: React.FC = () => {
     ) {
       setSelectedVoice(indonesianVoices[0].voiceURI);
     }
-  }, [voices]);
+  }, [indonesianVoices, selectedVoice, setSelectedVoice]);
 
   // Save API key
   const handleSaveApiKey = () => {

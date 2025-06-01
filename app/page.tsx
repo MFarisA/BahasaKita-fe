@@ -55,7 +55,7 @@ export default async function Router({
       if (!lessonId) {
         return <div>Lesson ID is required</div>;
       }
-      return <LessonView lessonId={lessonId} unitId={unitId} />;
+      return <LessonView lessonId={lessonId} />;
     case "levelview":
       if (!lessonId || !level) {
         return <div>Lesson ID dan level diperlukan</div>;
