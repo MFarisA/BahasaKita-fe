@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { Button } from "../components/ui/button";
 import {
   Card,
@@ -240,7 +241,7 @@ const LandingPage: React.FC = () => {
                       </Link>
                     </div>
                     <div className="md:w-1/2">
-                      <img
+                      <Image
                         src={ef.imageUrl}
                         alt={ef.title + " illustration"}
                         className="rounded-lg shadow-lg"

@@ -16,11 +16,11 @@ import {
   TabsList,
   TabsTrigger,
 } from "../components/ui/tabs";
+import Image from "next/image";
 import { Button } from "../components/ui/button";
 import { culturalContentData } from "../data/culturalContentData";
 import { CulturalContentData } from "../types/culturalContent";
 import NavbarHome from "../components/common/NavbarHome";
-import { notificationsData } from "../data/notificationsData";
 
 interface CultureContentProps {
   language?: string;
@@ -32,9 +32,6 @@ const CultureContent: React.FC<CultureContentProps> = ({
   // Data diimpor dari file data
   const culturalContent: CulturalContentData = culturalContentData;
   const [activeMenu, setActiveMenu] = React.useState("Cultural Content");
-
-  // Notifikasi
-  const notifications = notificationsData;
 
   return (
     <div className="min-h-screen bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
@@ -79,7 +76,7 @@ const CultureContent: React.FC<CultureContentProps> = ({
                     className="overflow-hidden hover:shadow-lg transition-shadow"
                   >
                     <div className="aspect-video w-full overflow-hidden">
-                      <img
+                      <Image
                         src={story.imageUrl}
                         alt={story.title}
                         className="w-full h-full object-cover transition-transform hover:scale-105"

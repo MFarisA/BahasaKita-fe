@@ -12,6 +12,7 @@ import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import { BookOpen, ChevronRight } from "lucide-react";
 import { CourseProps } from "../../types/course";
+import Image from "next/image";
 
 export interface CourseCardProps extends CourseProps {
   onClick?: (id: string) => void;
@@ -38,7 +39,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   return (
     <Card className="overflow-hidden transition-all hover:shadow-lg bg-white h-full flex flex-col">
       <div className="relative h-40 overflow-hidden">
-        <img
+        <Image
           src={
             imageUrl ||
             "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=800&q=80"
