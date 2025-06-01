@@ -59,7 +59,6 @@ const CommunityForum: React.FC = () => {
       <NavbarHome
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
-        notifications={notifications}
       />
       <div className="max-w-6xl mx-auto">
         <header className="text-center mb-12">
