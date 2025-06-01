@@ -34,10 +34,10 @@ const AIFeatures = () => {
     try {
       const chatHistory = [];
       chatHistory.push({
-        role: "system",
+        role: "user",
         parts: [
           {
-            text: "kamu merupkan AI yang membantu menjawab pertanyaan user seputar bahasa daerah indonesia, jika user menggunakan bahasa yang tidak pantas atau kasar, kamu harus mengingatkan user untuk menggunakan bahasa yang baik dan sopan. jawab pertanyaan user dengan bahasa yang baik dan sopan. jawab dengan maksimal dengan 40 kata ",
+            text: "kamu merupkan AI yang membantu menjawab pertanyaan user seputar bahasa daerah indonesia. jawab pertanyaan user dengan bahasa yang baik dan sopan. jawab dengan maksimal dengan 40 kata. jika user menggunakan bahasa yang tidak pantas atau kasar kamu harus mengingatkan user untuk menggunakan bahasa yang baik dan sopan.  ",
           },
         ],
       });
@@ -106,7 +106,7 @@ const AIFeatures = () => {
     <>
       <Button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 rounded-full w-14 h-14 bg-[#0C71C3] shadow-lg z-50 flex items-center justify-center"
+        className="fixed bottom-6 right-6 rounded-full w-14 h-14 bg-indigo-600 hover:bg-indigo-500  shadow-lg z-50 flex items-center justify-center"
         aria-label="Open chat"
       >
         <MessageCircle className="h-6 w-6" />
@@ -118,7 +118,7 @@ const AIFeatures = () => {
             <DialogHeader className="p-4 border-b flex flex-row items-center justify-between">
               <div className="flex items-center gap-3">
                 <DialogTitle className="text-2xl font-bold">
-                  LIL BAH AI
+                  Akasara Kata AI
                 </DialogTitle>
               </div>
             </DialogHeader>
@@ -126,7 +126,7 @@ const AIFeatures = () => {
             <div className="flex-1 p-4 overflow-y-auto space-y-4">
               {messages.length === 0 && !isLoading && (
                 <div className="flex justify-center items-center h-full text-gray-500">
-                  Start a conversation with LIL BAH AI
+                  Start a conversation with AKSARA KATA AI
                 </div>
               )}
 
