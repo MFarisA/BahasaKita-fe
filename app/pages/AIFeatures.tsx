@@ -114,19 +114,10 @@ const AIFeatures = () => {
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent
-          className="w-full max-w-full sm:max-w-[600px] md:max-w-[700px] p-0 rounded-3xl overflow-hidden max-h-[90vh] md:max-h-[700px] border-0 shadow-2xl bg-gradient-to-br from-white via-blue-50 to-sky-100 animate-fadeIn"
-        >
+        <DialogContent className="w-[400px] sm:w-[1000px] md:max-w-[700px] p-0 rounded-3xl overflow-hidden max-h-[90vh] md:max-h-[700px] border-0 shadow-2xl bg-gradient-to-br from-white via-blue-50 to-sky-100 animate-fadeIn">
           <div className="w-full flex flex-col h-[90vh] md:h-[700px]">
-            <DialogHeader className="p-4 md:p-5 border-b-0 flex flex-row items-center justify-between bg-gradient-to-r from-indigo-800 to-blue-700">
+            <DialogHeader className="p-4 md:p-5 border-b-0 flex flex-row items-center justify-between bg-gradient-to-r from-indigo-800 to-blue-500">
               <div className="flex items-center gap-2 md:gap-3">
-                <div className="w-10 h-10 md:w-20 md:h-20 flex items-center justify-center">
-                  <img
-                    src="/images/logo.svg"
-                    alt="AI Avatar"
-                    className="w-10 h-10 md:w-20 md:h-20"
-                  />
-                </div>
                 <DialogTitle className="text-lg md:text-2xl font-bold text-white tracking-wide drop-shadow-lg">
                   Akasara Kata AI
                 </DialogTitle>
