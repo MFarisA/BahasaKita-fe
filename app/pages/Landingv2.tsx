@@ -221,7 +221,7 @@ const Landingv2: React.FC = () => {
               style={{ transform: "scaleX(-1)" }}
               />
             </div>
-            <div className="absolute top-0 right-0 hidden lg:block xl:top-40 animate-float-delayed">
+            <div className="absolute top-0 right-0 hidden lg:block xl:top-0 animate-float-delayed">
             <Image
               src="/images/main-1.svg"
               alt="Hero Asset"
