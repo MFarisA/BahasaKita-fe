@@ -484,7 +484,7 @@ const Landingv2: React.FC = () => {
                     </h1>
                   </div>
                   <p className="text-base md:text-md lg:text-lg xl:text-xl max-w-[700px] leading-normal text-gray-700">
-                    I can't express how grateful I am to Leranis for making
+                    I can&apos;t express how grateful I am to Leranis for making
                     language learning such a delightful experience. The
                     interactive lessons, personalized feedback, and engaging
                     native speakers have transformed my journey.

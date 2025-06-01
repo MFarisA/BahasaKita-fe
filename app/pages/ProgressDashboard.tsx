@@ -29,7 +29,6 @@ import {
 } from "../data/progressDashboardData";
 import { Achievement, LeaderboardEntry, StreakData } from "../types/progress";
 import NavbarHome from "../components/common/NavbarHome";
-import { notificationsData } from "../data/notificationsData";
 
 interface ProgressDashboardProps {
   achievements?: Achievement[];
@@ -55,7 +54,6 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
   languageProficiency = languageProficiencyDefault,
 }) => {
   const [activeMenu, setActiveMenu] = useState("My Progress");
-  const notifications = notificationsData;
 
   return (
     <div className="min-h-screen bg-[url('/images/union.svg')] bg-indigo-200 bg-cover bg-center bg-no-repeat bg-fixed p-4 md:p-8">
@@ -142,20 +140,6 @@ const ProgressDashboard: React.FC<ProgressDashboardProps> = ({
                   (LucideIcons[
                     achievement.icon as keyof typeof LucideIcons
                   ] as React.ComponentType<unknown>) || LucideIcons.Award;
-                const iconColor =
-                  achievement.icon === "Award"
-                    ? "text-green-500"
-                    : achievement.icon === "Star"
-                    ? "text-yellow-500"
-                    : achievement.icon === "Flame"
-                    ? "text-orange-500"
-                    : achievement.icon === "Trophy"
-                    ? "text-purple-500"
-                    : achievement.icon === "Clock"
-                    ? "text-blue-500"
-                    : achievement.icon === "Target"
-                    ? "text-red-500"
-                    : "";
                 return (
                   <motion.div
                     key={achievement.id}

@@ -7,7 +7,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import NavbarHome from "../components/common/NavbarHome";
-import { notificationsData } from "../data/notificationsData";
 
 const LessonView = ({
   hideNavbar,
@@ -16,7 +15,6 @@ const LessonView = ({
   hideNavbar?: boolean;
 }) => {
   const [activeMenu, setActiveMenu] = useState("Lesson");
-  const notifications = notificationsData;
 
   const lessons = [
     { id: 1, title: "Greeting 1", completed: true, current: false },

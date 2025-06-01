@@ -4,19 +4,7 @@ import React, { useState } from "react";
 import LessonView from "./LessonView";
 import NavbarHome from "../components/common/NavbarHome";
 
-interface HomeProps {
-  // username?: string;
-  // streakDays?: number;
-  // notifications?: Array<{
-  //   id: string;
-  //   title: string;
-  //   message: string;
-  //   read: boolean;
-  //   type: "achievement" | "reminder" | "system";
-  // }>;
-}
-
-const Home: React.FC<HomeProps> = () => {
+const Home: React.FC = () => {
   const [activeMenu, setActiveMenu] = useState("Lessons");
 
   return (

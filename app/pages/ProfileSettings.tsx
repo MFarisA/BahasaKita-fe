@@ -35,7 +35,6 @@ import {
   reminderTimes,
 } from "../data/profileSettingsData";
 import { UserProfile3 } from "../types/profile";
-import { notificationsData } from "../data/notificationsData";
 
 interface ProfileSettingsProps {
   user?: {
