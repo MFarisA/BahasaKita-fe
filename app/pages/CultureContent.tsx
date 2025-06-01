@@ -41,7 +41,6 @@ const CultureContent: React.FC<CultureContentProps> = ({
       <NavbarHome
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
-        notifications={notifications}
       />
       <div className="min-h-screen p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
