@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import AIFeaturesFloatingButton from "./components/common/AIFeaturesFloatingButton";
+import AIFeatures from "@/app/pages/AIFeatures";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -39,7 +39,7 @@ export default function RootLayout({
       >
         {children}
         {/* Floating AI Features Button */}
-        <AIFeaturesFloatingButton />
+        <AIFeatures />
       </body>
     </html>
   );
