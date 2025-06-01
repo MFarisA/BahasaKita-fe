@@ -2,81 +2,20 @@
 
 import React, { useState } from "react";
 import {
-  ArrowLeft,
   CheckCircle,
   Volume2,
   Bot,
-  Star,
   Award,
 } from "lucide-react";
 import Link from "next/link";
-import ExerciseComponent from "./ExerciseComponent";
 import NavbarHome from "../components/common/NavbarHome";
 import { notificationsData } from "../data/notificationsData";
 
-const VocabularyItem = ({
-  word,
-  translation,
-}: {
-  word: string;
-  translation: string;
-}) => {
-  const [aiResponse, setAiResponse] = useState<string>("");
-  const [loading, setLoading] = useState(false);
-
-  const handleSpeak = () => {
-    console.log(`Speaking: ${word}`);
-  };
-
-  const handleAskAI = async () => {
-    setLoading(true);
-    setAiResponse("");
-    setTimeout(() => {
-      setAiResponse(
-        `"${word}" adalah kata yang digunakan untuk ${translation.toLowerCase()}. Contoh kalimat: "${word} is very important in daily conversation."`
-      );
-      setLoading(false);
-    }, 1500);
-  };
-
-  return (
-    <li className="flex flex-col gap-1 border-b pb-2 mb-2">
-      <div className="flex items-center gap-2">
-        <span className="font-medium text-base">{word}</span>
-        <button
-          onClick={handleSpeak}
-          title="Dengarkan"
-          className="text-blue-500 hover:text-blue-600"
-        >
-          <Volume2 className="h-4 w-4" />
-        </button>
-        <button
-          onClick={handleAskAI}
-          title="Tanya AI"
-          className="text-green-600 hover:text-green-800"
-        >
-          <Bot className="h-4 w-4" />
-        </button>
-        <span className="ml-auto text-gray-500">{translation}</span>
-      </div>
-      {loading && (
-        <span className="text-xs text-blue-500">Meminta jawaban AI...</span>
-      )}
-      {aiResponse && (
-        <div className="text-xs bg-gray-50 p-2 rounded mt-1">{aiResponse}</div>
-      )}
-    </li>
-  );
-};
-
-// Accept lessonId and unitId as props
 const LessonView = ({
   lessonId,
-  unitId,
   hideNavbar,
 }: {
   lessonId: string;
-  unitId?: string;
   hideNavbar?: boolean;
 }) => {
   const [activeMenu, setActiveMenu] = useState("Lesson");
@@ -117,7 +56,7 @@ const LessonView = ({
     { id: 20, title: "Basic", completed: false, current: false },
   ];
 
-  const [lessonProgress, setLessonProgress] = useState(lessons);
+  const [lessonProgress] = useState(lessons);
 
   return (
     <div className="min-h-screen">
@@ -127,7 +66,6 @@ const LessonView = ({
           <NavbarHome
             activeMenu={activeMenu}
             setActiveMenu={setActiveMenu}
-            notifications={notifications}
           />
         </div>
       )}
@@ -137,8 +75,6 @@ const LessonView = ({
           <div className="relative max-w-md mx-auto">
             {lessonProgress.map((lesson, index) => {
               const isLeft = index % 2 === 0;
-              const yPosition = index * 120;
-              // Batasi lesson yang bisa diakses: completed, current, dan lesson berikutnya setelah completed
               const canAccess =
                 lesson.completed ||
                 lesson.current ||
