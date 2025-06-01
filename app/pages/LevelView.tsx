@@ -78,7 +78,7 @@ const LevelView = ({
                       {/* Level Circle - Made Bigger */}
                       <div className="relative flex-shrink-0 mb-2 sm:mb-0">
                         <div
-                          className={`w-20 h-20 rounded-full flex items-center justify-center border-4 transition-all duration-500 transform
+                          className={`w-20 h-20 rounded-full flex items-center justify-center border-4 transition-all duration-1000 transform
                           ${
                             isCompleted
                               ? `bg-gradient-to-br ${levelColors[index]} border-white shadow-lg scale-100`
@@ -200,7 +200,7 @@ const LevelView = ({
                                   unitId ? `&unitId=${unitId}` : ""
                                 }&level=${lvl}`}
                                 className={`inline-flex items-center justify-center gap-3 w-full py-3 px-4 rounded-xl font-semibold text-base
-                              transition-all duration-300 transform hover:scale-105 active:scale-95
+                              transition-all duration-1000 transform hover:scale-105 active:scale-95
                               ${
                                 isCompleted
                                   ? `bg-gradient-to-r ${levelColors[index]} text-white shadow-md hover:shadow-lg`
