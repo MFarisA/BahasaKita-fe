@@ -7,13 +7,13 @@ import SettingsMenu from "./SettingsMenu";
 interface NavbarProps {
   activeMenu: string;
   setActiveMenu: (menu: string) => void;
-  notifications?: Array<{
-    id: string;
-    title: string;
-    message: string;
-    read: boolean;
-    type: "achievement" | "reminder" | "system";
-  }>;
+  // notifications?: Array<{
+  //   id: string;
+  //   title: string;
+  //   message: string;
+  //   read: boolean;
+  //   type: "achievement" | "reminder" | "system";
+  // }>;
 }
 
 const menus = [
@@ -25,10 +25,10 @@ const menus = [
 const NavbarHome: React.FC<NavbarProps> = ({
   activeMenu,
   setActiveMenu,
-  notifications = [],
+  // notifications = [],
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const unreadNotifications = notifications.filter((n) => !n.read).length;
+  // const unreadNotifications = notifications.filter((n) => !n.read).length;
 
   return (
     <header
@@ -127,7 +127,7 @@ const NavbarHome: React.FC<NavbarProps> = ({
               />
               <span className="font-medium">Language</span>
             </button>
-            <NotificationsMenu notifications={notifications} />
+            {/* <NotificationsMenu notifications={notifications} /> */}
             <SettingsMenu />
           </div>
         </div>
@@ -177,7 +177,7 @@ const NavbarHome: React.FC<NavbarProps> = ({
               />
               <span className="font-medium">Language</span>
             </button>
-            <NotificationsMenu notifications={notifications} />
+            {/* <NotificationsMenu notifications={notifications} /> */}
             <SettingsMenu />
           </div>
         </nav>
