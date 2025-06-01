@@ -5,6 +5,7 @@ import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import { BookOpen, ChevronRight } from "lucide-react";
 import { CourseCardProps } from "./CourseCard";
+import Image from "next/image";
 
 const ModernCourseCard: React.FC<CourseCardProps> = ({
   id,
@@ -27,7 +28,7 @@ const ModernCourseCard: React.FC<CourseCardProps> = ({
     <div className="relative group">
       <Card className="pt-8 pb-4 px-4 rounded-3xl border-2 border-transparent group-hover:border-gray-300 shadow-xl transition-all duration-300 bg-gradient-to-br from-white via-blue-50 to-yellow-50 scale-100 group-hover:scale-105">
         <div className="flex flex-col items-center">
-          <img
+          <Image
             src={imageUrl}
             alt={language}
             className="rounded-xl w-24 h-24 object-cover mb-2 border-4 border-white shadow-md"

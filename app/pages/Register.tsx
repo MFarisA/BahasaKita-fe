@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "../components/ui/card";
 import { Button } from "../components/ui/button";
+import Image from "next/image";
 
 interface RegisterProps {
   onGoogleRegister?: () => void;
@@ -17,7 +18,7 @@ interface RegisterProps {
 
 // Simple SVG Logo Component
 const Logo = () => (
-  <img
+  <Image
     src="images/logo.svg"
     alt="BahasaKita Logo"
     className="w-20 h-20"
