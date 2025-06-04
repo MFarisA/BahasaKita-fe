@@ -60,14 +60,22 @@ const Login: React.FC<LoginProps> = ({ onGoogleLogin }) => {
 
   const handleGoogleLogin = async () => {
     setIsLoading(true);
-    // Simulate loading
-    setTimeout(() => {
-      setIsLoading(false);
-      if (onGoogleLogin) {
-        onGoogleLogin();
+    try {
+      // Call your Next.js API route which internally calls your backend controller.
+      const response = await fetch("/api/googleAuth");
+      if (!response.ok) {
+        console.error("Failed to fetch Google auth URL", response.status);
+        setIsLoading(false);
+        return;
       }
-      console.log("Google login initiated");
-    }, 1500);
+      const data = await response.json();
+      // data contains the URL from your Laravel controller redirectToGoogle method.
+      window.location.href = data.url;
+    } catch (error) {
+      console.error("Error fetching Google auth URL", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -102,7 +110,7 @@ const Login: React.FC<LoginProps> = ({ onGoogleLogin }) => {
           <Button
             onClick={handleGoogleLogin}
             disabled={isLoading}
-            className="w-full h-12 bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 active:scale-95"
+            className="w-full h-12 bg-white  hover:bg-gray-50  border border-gray-300 shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 active:scale-95"
             type="button"
           >
             {isLoading ? (
@@ -113,7 +121,7 @@ const Login: React.FC<LoginProps> = ({ onGoogleLogin }) => {
             ) : (
               <div className="flex items-center space-x-3">
                 <GoogleIcon />
-                <span className="font-medium">Continue with Google</span>
+                <span className="font-medium text-gray-700 hover:text-inherit">Continue with Google</span>
               </div>
             )}
           </Button>

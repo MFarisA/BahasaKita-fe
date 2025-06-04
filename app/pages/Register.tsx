@@ -60,14 +60,20 @@ const Register: React.FC<RegisterProps> = ({ onGoogleRegister }) => {
 
   const handleGoogleRegister = async () => {
     setIsLoading(true);
-    // Simulate loading
-    setTimeout(() => {
-      setIsLoading(false);
-      if (onGoogleRegister) {
-        onGoogleRegister();
+    try {
+      const response = await fetch("/api/googleAuth");
+      if (!response.ok) {
+        console.error("Failed to fetch Google auth URL", response.status);
+        setIsLoading(false);
+        return;
       }
-      console.log("Google registration initiated");
-    }, 1500);
+      const data = await response.json();
+      window.location.href = data.url;
+    } catch (error) {
+      console.error("Error fetching Google auth URL", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
