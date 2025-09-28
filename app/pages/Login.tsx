@@ -96,7 +96,7 @@ const Login: React.FC<LoginProps> = ({ onGoogleLogin }) => {
             </span>
           </div>
           <CardTitle className="text-xl font-semibold text-indigo-900">
-            Masuk ke Akun Anda  
+            Masuk ke Akun Anda
           </CardTitle>
           <div className="space-y-2">
             <CardDescription className="text-gray-600 text-base">
@@ -110,20 +110,23 @@ const Login: React.FC<LoginProps> = ({ onGoogleLogin }) => {
           <Button
             onClick={handleGoogleLogin}
             disabled={isLoading}
-            className="w-full h-12 bg-white  hover:bg-gray-50  border border-gray-300 shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 active:scale-95"
+            className="w-full h-12 bg-white hover:bg-gray-500 border border-gray-300 shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 active:scale-95 group"
             type="button"
+            style={{ color: !isLoading ? "#111827" : undefined }} 
           >
-            {isLoading ? (
-              <div className="flex items-center space-x-3">
-                <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                <span>Signing in...</span>
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                <GoogleIcon />
-                <span className="font-medium text-gray-700 hover:text-inherit">Continue with Google</span>
-              </div>
-            )}
+            <span className="font-medium text-gray-700 group-hover:text-white hover:text-white transition-colors duration-200">
+              {isLoading ? (
+                <div className="flex items-center space-x-3">
+                  <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                  <span>Signing in...</span>
+                </div>
+              ) : (
+                <div className="flex items-center space-x-3">
+                  <GoogleIcon />
+                  <span>Continue with Google</span>
+                </div>
+              )}
+            </span>
           </Button>
 
           <div className="text-center">

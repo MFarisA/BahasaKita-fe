@@ -98,7 +98,8 @@ const Register: React.FC<RegisterProps> = ({ onGoogleRegister }) => {
           </CardTitle>
           <div className="space-y-2">
             <CardDescription className="text-gray-600 text-base">
-              Bergabunglah dengan ribuan pembelajar! Buat akun Anda untuk memulai perjalanan bahasa Anda
+              Bergabunglah dengan ribuan pembelajar! Buat akun Anda untuk
+              memulai perjalanan bahasa Anda
             </CardDescription>
           </div>
         </CardHeader>
@@ -107,31 +108,34 @@ const Register: React.FC<RegisterProps> = ({ onGoogleRegister }) => {
           <Button
             onClick={handleGoogleRegister}
             disabled={isLoading}
-            className="w-full h-12 bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 active:scale-95"
+            className="w-full h-12 bg-white hover:bg-gray-500 border border-gray-300 shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 active:scale-95 group"
             type="button"
+            style={{ color: !isLoading ? "#111827" : undefined }} 
           >
-            {isLoading ? (
-              <div className="flex items-center space-x-3">
-                <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                <span>Creating account...</span>
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                <GoogleIcon />
-                <span className="font-medium">Sign up with Google</span>
-              </div>
-            )}
+            <span className="font-medium text-gray-700 group-hover:text-white hover:text-white transition-colors duration-200">
+              {isLoading ? (
+                <div className="flex items-center space-x-3">
+                  <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                  <span>Creating account...</span>
+                </div>
+              ) : (
+                <div className="flex items-center space-x-3">
+                  <GoogleIcon />
+                  <span>Sign up with Google</span>
+                </div>
+              )}
+            </span>
           </Button>
 
           <div className="text-center">
             <p className="text-sm text-gray-500">
               Dengan membuat akun, Anda menyetujui{" "}
               <a href="#" className="text-blue-600 hover:underline">
-              Ketentuan Layanan
+                Ketentuan Layanan
               </a>{" "}
               dan{" "}
               <a href="#" className="text-blue-600 hover:underline">
-              Kebijakan Privasi
+                Kebijakan Privasi
               </a>
             </p>
           </div>
@@ -141,8 +145,11 @@ const Register: React.FC<RegisterProps> = ({ onGoogleRegister }) => {
           <div className="w-full text-center">
             <p className="text-sm text-gray-500">
               Sudah punya akun?{" "}
-              <a href="/login" className="text-blue-600 hover:underline font-medium">
-              Login
+              <a
+                href="/login"
+                className="text-blue-600 hover:underline font-medium"
+              >
+                Login
               </a>
             </p>
           </div>
@@ -151,12 +158,20 @@ const Register: React.FC<RegisterProps> = ({ onGoogleRegister }) => {
 
       <style jsx>{`
         @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
         }
-        
+
         @keyframes fade-in-up {
           0% {
             opacity: 0;
@@ -167,19 +182,19 @@ const Register: React.FC<RegisterProps> = ({ onGoogleRegister }) => {
             transform: translateY(0);
           }
         }
-        
+
         .animate-blob {
           animation: blob 7s infinite;
         }
-        
+
         .animation-delay-2000 {
           animation-delay: 2s;
         }
-        
+
         .animation-delay-4000 {
           animation-delay: 4s;
         }
-        
+
         .animate-fade-in-up {
           animation: fade-in-up 0.6s ease-out;
         }
