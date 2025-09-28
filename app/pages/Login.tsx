@@ -10,7 +10,12 @@ import {
   CardTitle,
 } from "../components/ui/card";
 import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import { Alert, AlertDescription } from "../components/ui/alert";
+import { useAuth } from "../contexts/AuthContext";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface LoginProps {
   onGoogleLogin?: () => void;
@@ -56,25 +61,67 @@ const GoogleIcon = () => (
 );
 
 const Login: React.FC<LoginProps> = ({ onGoogleLogin }) => {
+  const { login, googleLogin, isLoading: authLoading } = useAuth();
+  const router = useRouter();
+  
+  const [formData, setFormData] = React.useState({
+    email: '',
+    password: ''
+  });
   const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState<string>('');
+  const [showPassword, setShowPassword] = React.useState(false);
 
-  const handleGoogleLogin = async () => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    // Clear error when user starts typing
+    if (error) setError('');
+  };
+
+  const validateForm = (): boolean => {
+    if (!formData.email.trim()) {
+      setError('Email harus diisi');
+      return false;
+    }
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setError('Format email tidak valid');
+      return false;
+    }
+    if (!formData.password) {
+      setError('Password harus diisi');
+      return false;
+    }
+    return true;
+  };
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) return;
+    
     setIsLoading(true);
+    setError('');
+
     try {
-      // Call your Next.js API route which internally calls your backend controller.
-      const response = await fetch("/api/googleAuth");
-      if (!response.ok) {
-        console.error("Failed to fetch Google auth URL", response.status);
-        setIsLoading(false);
-        return;
-      }
-      const data = await response.json();
-      // data contains the URL from your Laravel controller redirectToGoogle method.
-      window.location.href = data.url;
-    } catch (error) {
-      console.error("Error fetching Google auth URL", error);
+      await login(formData.email, formData.password);
+      // Redirect to home page after successful login
+      router.push('/?route=home');
+    } catch (err: any) {
+      setError(err.message || 'Login gagal. Periksa email dan password Anda.');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      await googleLogin();
+    } catch (err: any) {
+      setError(err.message || 'Google sign in gagal. Silakan coba lagi.');
     }
   };
 
@@ -107,18 +154,91 @@ const Login: React.FC<LoginProps> = ({ onGoogleLogin }) => {
         </CardHeader>
 
         <CardContent className="space-y-6">
+          {error && (
+            <Alert variant="destructive">
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Masukkan email"
+                value={formData.email}
+                onChange={handleInputChange}
+                disabled={isLoading || authLoading}
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Masukkan password"
+                value={formData.password}
+                onChange={handleInputChange}
+                disabled={isLoading || authLoading}
+                required
+              />
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="showPassword"
+                checked={showPassword}
+                onChange={(e) => setShowPassword(e.target.checked)}
+                className="rounded"
+              />
+              <Label htmlFor="showPassword" className="text-sm">
+                Tampilkan password
+              </Label>
+            </div>
+
+            <Button
+              type="submit"
+              disabled={isLoading || authLoading}
+              className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors duration-200"
+            >
+              {isLoading ? (
+                <div className="flex items-center space-x-3">
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span>Masuk...</span>
+                </div>
+              ) : (
+                'Masuk'
+              )}
+            </Button>
+          </form>
+
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-white px-2 text-muted-foreground">Atau</span>
+            </div>
+          </div>
+
           <Button
             onClick={handleGoogleLogin}
-            disabled={isLoading}
+            disabled={isLoading || authLoading}
             className="w-full h-12 bg-white hover:bg-gray-500 border border-gray-300 shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105 active:scale-95 group"
             type="button"
             style={{ color: !isLoading ? "#111827" : undefined }} 
           >
             <span className="font-medium text-gray-700 group-hover:text-white hover:text-white transition-colors duration-200">
-              {isLoading ? (
+              {authLoading ? (
                 <div className="flex items-center space-x-3">
                   <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                  <span>Signing in...</span>
+                  <span>Redirecting...</span>
                 </div>
               ) : (
                 <div className="flex items-center space-x-3">

@@ -1,6 +1,11 @@
+"use client";
+
 import dynamic from "next/dynamic";
 import ProgressDashboard from "./pages/ProgressDashboard";
 import LevelView from "./pages/LevelView";
+import { useAuth } from "./contexts/AuthContext";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 // Import all components
 const LandingPage = dynamic(() => import("./pages/LandingPage"));
@@ -15,29 +20,53 @@ const Landingv2 = dynamic(() => import("./pages/Landingv2"));
 const ExerciseComponent = dynamic(() => import("./pages/ExerciseComponent"));
 
 // Main router component
-export default async function Router({
+export default function Router({
   searchParams,
 }: {
-  searchParams: Promise<{ route?: string; lessonId?: string; unitId?: string; level?: string }>;
+  searchParams?: { route?: string; lessonId?: string; unitId?: string; level?: string };
 }) {
-  const params = await searchParams;
-  const route = params.route || "";
-  const lessonId = params.lessonId;
-  const unitId = params.unitId;
-  const level = params.level;
+  const { isAuthenticated, isLoading } = useAuth();
+  const router = useRouter();
+  
+  const route = searchParams?.route || "";
+  const lessonId = searchParams?.lessonId;
+  const unitId = searchParams?.unitId;
+  const level = searchParams?.level;
+
+  // Show loading while checking authentication
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle authentication redirects
+  useEffect(() => {
+    if (!isLoading && isAuthenticated && (route === "" || route === "login" || route === "register")) {
+      router.push('/?route=home');
+    }
+  }, [isAuthenticated, isLoading, route, router]);
 
   // Route mapping
   switch (route) {
     case "":
-      return <Landingv2 />;
+      // If authenticated, redirect will happen in useEffect
+      return isAuthenticated ? <Home /> : <Landingv2 />;
     case "landing":
       return <LandingPage />;
     case "home":
       return <Home />;
     case "login":
-      return <Login />;
+      // If authenticated, redirect will happen in useEffect
+      return isAuthenticated ? null : <Login />;
     case "register":
-      return <Register />;
+      // If authenticated, redirect will happen in useEffect
+      return isAuthenticated ? null : <Register />;
     case "profile-settings":
       return <ProfileSettings />;
     case "ai-features":

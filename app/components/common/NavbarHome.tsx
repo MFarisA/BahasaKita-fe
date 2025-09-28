@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import SettingsMenu from "./SettingsMenu";
+import UserAvatar from "./UserAvatar";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface NavbarProps {
   activeMenu: string;
@@ -27,6 +29,7 @@ const NavbarHome: React.FC<NavbarProps> = ({
   // notifications = [],
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user } = useAuth();
   // const unreadNotifications = notifications.filter((n) => !n.read).length;
 
   return (
@@ -113,19 +116,22 @@ const NavbarHome: React.FC<NavbarProps> = ({
             ))}
           </nav>
 
-          {/* Right section - Language, Notifications, Settings */}
+          {/* Right section - User Avatar, Name, Settings */}
           <div className="flex items-center gap-4 flex-shrink-0">
-            {/* Language Button */}
-            <button className="flex items-center gap-2 px-3 py-1 rounded-lg border border-indigo-300 bg-white text-indigo-900 hover:bg-indigo-50 transition text-base">
-              <Image
-                src="/images/indonesia.png"
-                alt=""
-                width={24}
-                height={16}
-                className="w-6 h-auto"
-              />
-              <span className="font-medium">Language</span>
-            </button>
+            {/* User Avatar & Name */}
+            <div className="flex items-center gap-3">
+              {/* Avatar */}
+              <UserAvatar user={user || undefined} size="md" />
+              {/* User Name */}
+              <div className="hidden sm:flex flex-col">
+                <span className="text-indigo-900 font-medium text-sm">
+                  {user?.name || "User"}
+                </span>
+                <span className="text-indigo-600 text-xs">
+                  Level {user?.profile?.level || 1}
+                </span>
+              </div>
+            </div>
             {/* <NotificationsMenu notifications={notifications} /> */}
             <SettingsMenu />
           </div>
@@ -165,17 +171,20 @@ const NavbarHome: React.FC<NavbarProps> = ({
 
           {/* Mobile Right section */}
           <div className="flex items-center gap-4 mt-2 px-4">
-            {/* Language Button */}
-            <button className="flex items-center gap-2 px-2 py-1 rounded-lg border border-indigo-300 bg-white text-indigo-900 hover:bg-indigo-50 transition text-sm">
-              <Image
-                src="/images/indonesia.png"
-                alt=""
-                width={24}
-                height={16}
-                className="w-6 h-auto"
-              />
-              <span className="font-medium">Language</span>
-            </button>
+            {/* User Avatar & Name for Mobile */}
+            <div className="flex items-center gap-3 flex-1">
+              {/* Avatar */}
+              <UserAvatar user={user || undefined} size="sm" />
+              {/* User Name */}
+              <div className="flex flex-col">
+                <span className="text-indigo-900 font-medium text-sm">
+                  {user?.name || "User"}
+                </span>
+                <span className="text-indigo-600 text-xs">
+                  Level {user?.profile?.level || 1}
+                </span>
+              </div>
+            </div>
             {/* <NotificationsMenu notifications={notifications} /> */}
             <SettingsMenu />
           </div>
